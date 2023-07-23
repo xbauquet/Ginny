@@ -1,0 +1,42 @@
+<header class="container">
+  <div class="logo">
+    <img ngSrc="assets/logo-24px.png" height="24" width="24" alt="">
+    <h1>Ginny</h1>
+  </div>
+
+  <div class="right-menu">
+    <mat-icon class="icon" [matMenuTriggerFor]="mainMenu">
+      more_vert
+    </mat-icon>
+  </div>
+</header>
+
+<!--------------------------------------------
+Main menu
+--------------------------------------------->
+<mat-menu #mainMenu="matMenu">
+  <button mat-menu-item (click)="toggleTheme()">
+    <mat-icon>{{ theme === "dark" ? "light_mode" : "dark_mode" }}</mat-icon>
+    {{ theme === "dark" ? "Activate light mode" : "Activate dark mode" }}
+  </button>
+  <mat-divider></mat-divider>
+  <a mat-menu-item href="https://github.com/xbauquet/Ginny" target="_blank">
+    <mat-icon>code</mat-icon>
+    Sources on github
+  </a>
+  <a mat-menu-item href="https://www.flaticon.com/collections/MTAzODYxOTQ=" target="_blank">
+    <div class="logo-menu-item">
+      <img ngSrc="assets/logo-outline-24px.png"
+           alt=""
+           height="24"
+           width="24">
+      Logo
+    </div>
+  </a>
+
+  <mat-divider></mat-divider>
+  <a mat-menu-item href="https://github.com/xbauquet" target="_blank">
+    <mat-icon class="heart-icon">favorite</mat-icon>
+    Coded by @xbauquet
+  </a>
+</mat-menu>

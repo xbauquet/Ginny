@@ -1,0 +1,14 @@
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+@import "variables";
+
+html, body {
+  font-family: 'Open sans', sans-serif;
+  height: 100%;
+  letter-spacing: 0.5px;
+  font-size: 1rem;
+  background-color: var(--background);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
