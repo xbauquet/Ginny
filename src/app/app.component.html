@@ -1,3 +1,6 @@
-<div>
+<div style="height: 100%">
   <app-header></app-header>
+  <div *ngIf="!isLoggedIn" style=" height: 100%">
+    <app-login></app-login>
+  </div>
 </div>

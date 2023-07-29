@@ -1,5 +1,6 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {ContextService} from "./context.service";
+import {GithubApiService} from "./github-api.service";
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,11 @@ import {ContextService} from "./context.service";
 })
 export class AppComponent implements OnInit {
 
-  constructor(private contextService: ContextService) {
+  isLoggedIn = false;
+
+  constructor(private contextService: ContextService,
+              private githubApiService: GithubApiService) {
+    this.githubApiService.isLoggedIn.subscribe(v => this.isLoggedIn = v);
   }
 
   ngOnInit() {

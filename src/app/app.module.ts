@@ -10,12 +10,14 @@ import {MatDividerModule} from "@angular/material/divider";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {NgOptimizedImage} from "@angular/common";
 import {WorkspaceSelectorComponent} from './workspace-selector/workspace-selector.component';
+import {LoginComponent} from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    WorkspaceSelectorComponent
+    WorkspaceSelectorComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

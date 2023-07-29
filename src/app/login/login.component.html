@@ -1,0 +1,11 @@
+<div class="container">
+  <div>
+    Add a github token to use the app.
+  </div>
+  <input #tokenInput type="text" placeholder="Token..."/>
+  <button (click)="logIn(tokenInput.value)"
+          class="login-button">
+    <mat-icon>login</mat-icon>
+    Login with a token
+  </button>
+</div>
