@@ -39,7 +39,9 @@
         <h1>{{ repo.repo.owner }}/{{ repo.repo.name }}</h1>
         <div style="flex: 1"></div>
         <div *ngIf="repo.workflowRun && repo.workflowRun.length > 0">
-          <mat-icon>{{ openRepos.get(repo.repo.owner + '/' + repo.repo.name) ? 'remove' : 'add' }}</mat-icon>
+          <mat-icon [matTooltip]="openRepos.get(repo.repo.owner + '/' + repo.repo.name) ? 'Hide details' : 'Show details'">
+            {{ openRepos.get(repo.repo.owner + '/' + repo.repo.name) ? 'remove' : 'add' }}
+          </mat-icon>
         </div>
         <div *ngIf="!repo.workflowRun || repo.workflowRun.length === 0">No workflows</div>
       </div>

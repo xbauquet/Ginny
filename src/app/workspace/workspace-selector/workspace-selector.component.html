@@ -7,6 +7,7 @@
   <div *ngIf="workspace && !showNewWorkspace">
     <div class="previous-workspace-button">
       <mat-icon *ngIf="hasPrevious"
+                matTooltip="Go to previous workspace"
                 (click)="selectPreviousWorkspace()">
         chevron_left
       </mat-icon>
@@ -14,13 +15,15 @@
 
     <div class="workspace-name">
       <div>{{ workspace.name }}</div>
-      <mat-icon [matMenuTriggerFor]="workspaceMenu">
+      <mat-icon [matMenuTriggerFor]="workspaceMenu"
+                matTooltip="Workspace menu">
         more_vert
       </mat-icon>
     </div>
 
     <div class="next-workspace-button">
       <mat-icon *ngIf="hasNext"
+                matTooltip="Go to next workspace"
                 (click)="selectNextWorkspace()">
         chevron_right
       </mat-icon>
