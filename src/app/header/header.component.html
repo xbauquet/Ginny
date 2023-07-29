@@ -3,13 +3,21 @@
     <img ngSrc="assets/logo-24px.png" height="24" width="24" alt="">
     <h1>Ginny</h1>
   </div>
-
-  <div class="right-menu">
+  <div *ngIf="!smallScreen"
+       class="workspace-selector">
+    <app-workspace-selector></app-workspace-selector>
+  </div>
+  <div class="app-menu">
     <mat-icon class="icon" [matMenuTriggerFor]="mainMenu">
       more_vert
     </mat-icon>
   </div>
 </header>
+<div *ngIf="smallScreen" class="container">
+  <div class="workspace-selector">
+    <app-workspace-selector></app-workspace-selector>
+  </div>
+</div>
 
 <!--------------------------------------------
 Main menu

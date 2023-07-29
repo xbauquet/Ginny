@@ -9,11 +9,13 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {NgOptimizedImage} from "@angular/common";
+import {WorkspaceSelectorComponent} from './workspace-selector/workspace-selector.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    WorkspaceSelectorComponent
   ],
   imports: [
     BrowserModule,

@@ -10,9 +10,11 @@ export class HeaderComponent {
 
   // Current app color theme
   theme = "light";
+  smallScreen = false;
 
   constructor(private contextService: ContextService) {
     this.contextService.theme.subscribe(this.applyTheme);
+    this.contextService.smallScreen.subscribe(v => this.smallScreen = v);
   }
 
   /**

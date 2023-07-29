@@ -9,6 +9,7 @@ export class ContextService {
   private themeKey = "ginny-theme";
 
   theme = new BehaviorSubject<'light' | 'dark'>('light');
+  smallScreen = new BehaviorSubject(false);
 
   constructor() {
     this.initTheme();
@@ -32,5 +33,9 @@ export class ContextService {
       localStorage.setItem(this.themeKey, "dark");
       this.theme.next("dark");
     }
+  }
+
+  setSmallScreen(isSmall: boolean) {
+    this.smallScreen.next(isSmall);
   }
 }
