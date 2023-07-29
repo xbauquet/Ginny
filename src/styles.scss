@@ -13,9 +13,18 @@ html, body {
   padding: 0;
 }
 
+h1 {
+  color: var(--orange);
+  font-size: 0.9rem;
+}
+
 input {
   border: none;
   background-color: var(--light-grey);
   padding: 10px;
 }
 
+.mat-mdc-progress-spinner
+.mdc-circular-progress__indeterminate-circle-graphic {
+  stroke: var(--orange) !important;
+}

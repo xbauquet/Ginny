@@ -9,15 +9,18 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {NgOptimizedImage} from "@angular/common";
-import {WorkspaceSelectorComponent} from './workspace-selector/workspace-selector.component';
+import {WorkspaceSelectorComponent} from './workspace/workspace-selector/workspace-selector.component';
 import {LoginComponent} from './login/login.component';
+import { RepositorySelectorComponent } from './workspace/repository-selector/repository-selector.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     WorkspaceSelectorComponent,
-    LoginComponent
+    LoginComponent,
+    RepositorySelectorComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,8 @@ import {LoginComponent} from './login/login.component';
     MatMenuModule,
     MatDividerModule,
     MatTooltipModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

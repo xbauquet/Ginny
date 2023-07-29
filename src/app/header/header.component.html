@@ -3,7 +3,7 @@
     <img ngSrc="assets/logo-24px.png" height="24" width="24" alt="">
     <h1>Ginny</h1>
   </div>
-  <div *ngIf="!smallScreen"
+  <div *ngIf="!smallScreen && isLoggedIn"
        class="workspace-selector">
     <app-workspace-selector></app-workspace-selector>
   </div>
@@ -13,7 +13,7 @@
     </mat-icon>
   </div>
 </header>
-<div *ngIf="smallScreen" class="container">
+<div *ngIf="smallScreen && isLoggedIn" class="container">
   <div class="workspace-selector">
     <app-workspace-selector></app-workspace-selector>
   </div>

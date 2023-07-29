@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.loading-repo {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.repo-list {
+  overflow-y: scroll;
+  max-width: 1024px;
+  display: flex;
+  flex-direction: column;
+  height: 90%;
+}
+
+.repo {
+  padding: 10px;
+}

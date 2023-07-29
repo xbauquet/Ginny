@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
-import {Workspace} from "./workspace.model";
-import {WorkspaceService} from "./workspace.service";
+import {Workspace} from "../workspace.model";
+import {WorkspaceService} from "../workspace.service";
+import {ContextService} from "../../context.service";
 
 @Component({
   selector: 'app-workspace-selector',
@@ -14,7 +15,8 @@ export class WorkspaceSelectorComponent {
   hasPrevious = false;
   showNewWorkspace = false;
 
-  constructor(private workspaceService: WorkspaceService) {
+  constructor(private workspaceService: WorkspaceService,
+              private contextService: ContextService) {
     this.workspaceService.workspace.subscribe(v => this.workspace = v);
     this.workspaceService.hasNext.subscribe(v => this.hasNext = v);
     this.workspaceService.hasPrevious.subscribe(v => this.hasPrevious = v);
@@ -40,5 +42,9 @@ export class WorkspaceSelectorComponent {
 
   deleteWorkspace() {
     this.workspaceService.delete();
+  }
+
+  showRepositorySelector() {
+    this.contextService.setShowRepositorySelector(true);
   }
 }

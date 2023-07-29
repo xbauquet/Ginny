@@ -1,6 +1,24 @@
-<div style="height: 100%">
-  <app-header></app-header>
-  <div *ngIf="!isLoggedIn" style=" height: 100%">
-    <app-login></app-login>
+<div class="container">
+  <div>
+    <app-header></app-header>
   </div>
+  <div class="main-section">
+    <div *ngIf="!isLoggedIn"
+         class="login">
+      <app-login></app-login>
+    </div>
+  </div>
+</div>
+<!--------------------------------------------
+Repository selector
+--------------------------------------------->
+<div *ngIf="showRepositorySelector"
+     class="repository-selector-container">
+  <div class="repository-selector">
+    <app-repository-selector></app-repository-selector>
+  </div>
+  <mat-icon class="repository-selector-close"
+            (click)="hideRepositorySelector()">
+    close
+  </mat-icon>
 </div>
