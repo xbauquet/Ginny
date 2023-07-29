@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: var(--background-light);
+  border-radius: 1000px;
+  width: 100%;
+  height: 40px;
+}
+
+.new-workspace {
+  display: flex;
+  align-items: center;
+}
+
+input {
+  padding: 5px;
+}
+
+mat-icon {
+  cursor: pointer;
+}
+
+.workspace-name {
+  display: flex;
+  align-items: center;
+}
+
+.previous-workspace-button {
+  position: absolute;
+  top: 0;
+  left: 5px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.next-workspace-button {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+

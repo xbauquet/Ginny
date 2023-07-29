@@ -1,0 +1,56 @@
+<div class="container">
+  <div *ngIf="!workspace || showNewWorkspace" class="new-workspace">
+    <input #workspaceInput type="text" placeholder="Name...">
+    <mat-icon (click)="addWorkspace(workspaceInput.value)">check_circle</mat-icon>
+    <mat-icon (click)="showNewWorkspace = false">cancel</mat-icon>
+  </div>
+  <div *ngIf="workspace && !showNewWorkspace">
+    <div class="previous-workspace-button">
+      <mat-icon *ngIf="hasPrevious"
+                (click)="selectPreviousWorkspace()">
+        chevron_left
+      </mat-icon>
+    </div>
+
+    <div class="workspace-name">
+      <div>{{ workspace.name }}</div>
+      <mat-icon [matMenuTriggerFor]="workspaceMenu">
+        more_vert
+      </mat-icon>
+    </div>
+
+    <div class="next-workspace-button">
+      <mat-icon *ngIf="hasNext"
+                (click)="selectNextWorkspace()">
+        chevron_right
+      </mat-icon>
+    </div>
+  </div>
+</div>
+
+<!--------------------------------------------
+Workspace menu
+--------------------------------------------->
+<mat-menu #workspaceMenu="matMenu">
+  <h1 style="margin-left: 10px">Workspace</h1>
+  <mat-divider></mat-divider>
+  <button mat-menu-item (click)="selectPreviousWorkspace()"
+          [disabled]="!hasPrevious">
+    <mat-icon>chevron_right</mat-icon>
+    Next workspace
+  </button>
+  <button mat-menu-item (click)="selectNextWorkspace()"
+          [disabled]="!hasNext">
+    <mat-icon>chevron_left</mat-icon>
+    Previous workspace
+  </button>
+  <mat-divider></mat-divider>
+  <button mat-menu-item (click)="showNewWorkspace = true">
+    <mat-icon>add</mat-icon>
+    New workspace
+  </button>
+  <button mat-menu-item (click)="deleteWorkspace()">
+    <mat-icon>delete</mat-icon>
+    Delete workspace
+  </button>
+</mat-menu>
