@@ -11,8 +11,11 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {NgOptimizedImage} from "@angular/common";
 import {WorkspaceSelectorComponent} from './workspace/workspace-selector/workspace-selector.component';
 import {LoginComponent} from './login/login.component';
-import { RepositorySelectorComponent } from './workspace/repository-selector/repository-selector.component';
+import {RepositorySelectorComponent} from './workspace/repository-selector/repository-selector.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {RunListComponent} from './runs/run-list/run-list.component';
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {RunRowComponent} from './runs/run-row/run-row.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     HeaderComponent,
     WorkspaceSelectorComponent,
     LoginComponent,
-    RepositorySelectorComponent
+    RepositorySelectorComponent,
+    RunListComponent,
+    RunRowComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +35,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     MatDividerModule,
     MatTooltipModule,
     NgOptimizedImage,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

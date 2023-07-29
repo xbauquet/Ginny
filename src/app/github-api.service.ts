@@ -6,6 +6,10 @@ import {Octokit} from "@octokit/rest";
 import {Octokit as Core} from "@octokit/core";
 import {BehaviorSubject} from "rxjs";
 import {Repository} from "./repository.model";
+import {Run} from "./runs/run.model";
+import {Workflow} from "./runs/workflow.model";
+import {WorkflowInputs} from "./runs/workflow-inputs.model";
+import * as yaml from "js-yaml";
 
 @Injectable({
   providedIn: 'root'
@@ -64,6 +68,106 @@ export class GithubApiService {
     } else {
       console.error("Calling GithubApiService.listUsersRepo but Octokit is undefined.");
       return [];
+    }
+  }
+
+  /***
+   * ******************************************************************************************************************
+   * List Workflow Runs
+   * ******************************************************************************************************************
+   */
+  public async listWorkflowRuns(owner: string, repo: string, workflowId: string, per_page = 1): Promise<Run[]> {
+    if (this.octokit) {
+      const results = await this.octokit.actions.listWorkflowRuns({
+        owner: owner,
+        repo: repo,
+        workflow_id: workflowId,
+        per_page: per_page
+      });
+      return results.data.workflow_runs.map(r => {
+        return new Run(
+          new Date(r.run_started_at!),
+          r.conclusion!,
+          r.status!,
+          r.display_title!,
+          r.head_branch!,
+          r.html_url!,
+          r.name!,
+          r.rerun_url!,
+          new Date(r.updated_at!)
+        );
+      });
+    } else {
+      console.error("Calling GithubApiService.listWorkflowRuns but Octokit is undefined.");
+      return [];
+    }
+  }
+
+  public async listWorkflows(owner: string, repo: string): Promise<Workflow[]> {
+    if (this.octokit) {
+      const workflows: any[] = await this.octokit
+        .paginate(this.octokit.rest.actions.listRepoWorkflows.endpoint({owner, repo}).url);
+      return Promise.all(workflows.map(async w => {
+        const inputs = await this.getWorkflowDispatchOptions(owner, repo, w.path);
+        return new Workflow(
+          w.badge_url,
+          new Date(w.created_at),
+          w.html_url,
+          w.id,
+          w.name,
+          w.path,
+          w.state,
+          new Date(w.updated_at),
+          w.url,
+          "https://github.com/" + owner + "/" + repo + "/blob/main/" + w.path,
+          inputs !== undefined,
+          inputs ?? []
+        );
+      }));
+    } else {
+      console.error("Calling GithubApiService.listWorkflows but Octokit is undefined.");
+      return [];
+    }
+  }
+
+  private async getWorkflowDispatchOptions(owner: string, repo: string, path: string) {
+    try {
+      const data = await this.getFileContent(owner, repo, path);
+      const content: any = yaml.load(data);
+      if (content.on.workflow_dispatch !== undefined) {
+        if (content.on.workflow_dispatch === null) {
+          return [];
+        }
+        return Object.entries<any>(content.on.workflow_dispatch.inputs).map(([k, v]) => new WorkflowInputs(
+          k,
+          v.description,
+          v.required,
+          v.type,
+          v.default,
+          v.options ?? []
+        ));
+      }
+    } catch (e) {
+      return undefined;
+    }
+    return undefined;
+  }
+
+  private async getFileContent(owner: string, repo: string, path: string): Promise<string> {
+    try {
+      if (this.octokit) {
+        const result: any = await this.octokit
+          .request('GET /repos/{owner}/{repo}/contents/{path}', {
+            owner,
+            repo,
+            path
+          });
+        return atob(result.data.content);
+      } else {
+        return Promise.reject();
+      }
+    } catch (e) {
+      return Promise.reject(e);
     }
   }
 }

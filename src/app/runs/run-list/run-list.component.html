@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="menu">
+    <mat-icon (click)="refreshOnce()"
+              matTooltip="Refresh once"
+              style="cursor: pointer;">
+      refresh
+    </mat-icon>
+    <mat-icon (click)="toggleRefresh()" style="cursor: pointer;"
+              [matTooltip]="this.repositoryObserverService.refreshing ? 'Stop auto refresh' : 'Start auto refresh'"
+              [class]="this.repositoryObserverService.refreshing ? 'rotate' : ''">
+      {{ this.repositoryObserverService.refreshing ? 'sync' : 'play_arrow' }}
+    </mat-icon>
+  </div>
+
+  <div *ngIf="workspace && workspace.repos.length === 0"
+       class="information-container">
+    <div>No repositories selected for this workspace.</div>
+    <div>
+      Use the menu
+      <mat-icon style="background-color: #4e525d">more_vert</mat-icon>
+      next to your workspace name to add repositories.
+    </div>
+  </div>
+
+  <div *ngIf="workspace && workspace.repos.length > 0 && repoRuns.length === 0"
+       class="information-container">
+    <mat-spinner mode="indeterminate"
+                 class="spinner"></mat-spinner>
+    <div>Loading data for your repositories</div>
+    <div>...</div>
+  </div>
+
+  <div class="repo-container">
+    <div *ngFor="let repo of repoRuns"
+         class="repo-row"
+         (click)="toggleWorkflow(repo.repo)">
+      <div class="repo-header">
+        <img alt="" [ngSrc]="repo.repo.ownerAvatarUrl" height="24" width="24"/>
+        <h1>{{ repo.repo.owner }}/{{ repo.repo.name }}</h1>
+        <div style="flex: 1"></div>
+        <div *ngIf="repo.workflowRun && repo.workflowRun.length > 0">
+          <mat-icon>{{ openRepos.get(repo.repo.owner + '/' + repo.repo.name) ? 'remove' : 'add' }}</mat-icon>
+        </div>
+        <div *ngIf="!repo.workflowRun || repo.workflowRun.length === 0">No workflows</div>
+      </div>
+
+      <div class="workflow-summary"
+           *ngIf="!openRepos.get(repo.repo.owner + '/' + repo.repo.name)">
+        <div *ngFor="let workflow of repo.workflowRun | slice:0: (isSmallScreen ? 3 : 5);"
+             class="workflow-chip"
+             [style]="isSmallScreen ? 'max-width: 30%' : 'max-width: 19%'">
+          <div class="workflow-name">
+            {{ workflow.workflow.name }}
+          </div>
+          <mat-icon *ngIf="workflow.runs.length > 0"
+                    class="{{ workflow.runs[0].conclusion }} workflow-dot-indicator">
+            circle
+          </mat-icon>
+        </div>
+      </div>
+
+      <div class="workflow-container"
+           *ngIf="openRepos.get(repo.repo.owner + '/' + repo.repo.name)">
+        <div *ngFor="let workflow of repo.workflowRun">
+          <app-run-row [workflow]="workflow.workflow"
+                       [repo]="repo.repo"
+                       [runs]="workflow.runs"></app-run-row>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

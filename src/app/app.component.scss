@@ -6,10 +6,14 @@
 
 .main-section {
   height: calc(100% - 50px);
+  display: flex;
+  justify-content: center;
 }
 
 .login {
   height: 100%;
+  max-width: 1024px;
+  flex: 1;
 }
 
 .repository-selector-container {
