@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 import {Workspace} from "./workspace.model";
+import {Repository} from "../repository.model";
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +52,25 @@ export class WorkspaceService {
       const index = this.workspaces.indexOf(this.workspace.value);
       this.setWorkspace(index + 1);
     }
+  }
+
+  addRepositoryToWorkspace(repository: Repository): void {
+    if (!this.workspace.value) {
+      return;
+    }
+    this.workspace.value.repos.push(repository);
+    this.saveWorkspaces();
+    this.workspace.next(this.workspace.value);
+  }
+
+  removeRepositoryFromWorkspace(repository: Repository): void {
+    if (!this.workspace.value) {
+      return;
+    }
+    const index = this.workspace.value.repos.indexOf(repository);
+    this.workspace.value.repos.splice(index, 1);
+    this.saveWorkspaces();
+    this.workspace.next(this.workspace.value);
   }
 
   private saveWorkspaces() {

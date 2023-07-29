@@ -33,13 +33,17 @@ Workspace menu
 --------------------------------------------->
 <mat-menu #workspaceMenu="matMenu">
   <h1 style="margin-left: 10px">Workspace</h1>
+  <button mat-menu-item (click)="showRepositorySelector()">
+    <mat-icon>format_list_bulleted</mat-icon>
+    Modify repo for workspace
+  </button>
   <mat-divider></mat-divider>
-  <button mat-menu-item (click)="selectPreviousWorkspace()"
+  <button mat-menu-item (click)="selectNextWorkspace()"
           [disabled]="!hasPrevious">
     <mat-icon>chevron_right</mat-icon>
     Next workspace
   </button>
-  <button mat-menu-item (click)="selectNextWorkspace()"
+  <button mat-menu-item (click)="selectPreviousWorkspace()"
           [disabled]="!hasNext">
     <mat-icon>chevron_left</mat-icon>
     Previous workspace
