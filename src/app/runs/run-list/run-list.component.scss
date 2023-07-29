@@ -1,0 +1,115 @@
+@import "../../../variables";
+
+.menu {
+  display: flex;
+  gap: 10px;
+  padding: 10px 20px;
+  background-color: var(--background);
+  border: 10px solid var(--background-light);
+  border-radius: 20px;
+
+  mat-icon {
+    cursor: pointer;
+  }
+}
+
+.information-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.repo-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 20px;
+}
+
+.repo-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background);
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 1em;
+  cursor: pointer;
+  color: var(--text-color-light);
+  gap: 10px;
+
+  h5 {
+    margin-left: 10px;
+    margin-top: 50px;
+  }
+}
+
+.repo-header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+}
+
+.workflow-summary {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+
+  .workflow-chip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 10px;
+    padding-left: 10px;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 1000px;
+    background-color: var(--background-light);
+
+    .workflow-name {
+      width: calc(100% - 10px);
+      text-overflow: ellipsis;
+      overflow: hidden;
+      padding: 5px;
+    }
+
+    .workflow-dot-indicator {
+      font-size: 15px;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+    }
+  }
+}
+
+.workflow-container {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+}
+
+@media (max-width: $small-screen) {
+  .workflow-container {
+    margin-left: 10px;
+  }
+}

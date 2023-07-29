@@ -7,6 +7,9 @@
          class="login">
       <app-login></app-login>
     </div>
+    <div *ngIf="isLoggedIn" class="login">
+      <app-run-list></app-run-list>
+    </div>
   </div>
 </div>
 <!--------------------------------------------

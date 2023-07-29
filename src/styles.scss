@@ -1,6 +1,7 @@
 @import "@angular/material/prebuilt-themes/deeppurple-amber.css";
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 @import "variables";
+@import "progress_bar";
 
 html, body {
   font-family: 'Open sans', sans-serif;
@@ -27,4 +28,16 @@ input {
 .mat-mdc-progress-spinner
 .mdc-circular-progress__indeterminate-circle-graphic {
   stroke: var(--orange) !important;
+}
+
+.rotate {
+  animation: loading 3s linear infinite;
+  @keyframes loading {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 }
