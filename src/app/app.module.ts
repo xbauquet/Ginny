@@ -18,6 +18,7 @@ import {RunRowComponent} from './runs/run-row/run-row.component';
 import {WorkflowRunnerComponent} from './runs/workflow-runner/workflow-runner.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { PipelineComponent } from './pipeline/pipeline/pipeline.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     RepositorySelectorComponent,
     RunListComponent,
     RunRowComponent,
-    WorkflowRunnerComponent
+    WorkflowRunnerComponent,
+    PipelineComponent
   ],
   imports: [
     BrowserModule,

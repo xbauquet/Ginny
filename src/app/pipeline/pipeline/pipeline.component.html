@@ -1,0 +1,87 @@
+<div style="height: 100%; width: 100%; display: flex; flex-direction: column">
+  <div class="menu">
+    <div [matMenuTriggerFor]="pipelineList"
+         style="display: flex; align-items: center;">
+      {{ selectedPipeline ? selectedPipeline.name : "-" }}
+      <mat-icon>expand_more</mat-icon>
+    </div>
+
+    <mat-menu #pipelineList="matMenu">
+      <button mat-menu-item
+              *ngFor="let pipeline of pipelines"
+              (click)="setSelectedPipeline(pipeline)">
+        {{ pipeline.name }}
+      </button>
+    </mat-menu>
+
+    <div style="position: relative">
+      <mat-icon (click)="workflowNaming.hidden = !workflowNaming.hidden"
+                matTooltip="Create new workflow"
+                *ngIf="!isEditable">add
+      </mat-icon>
+      <div #workflowNaming hidden
+           style="position: absolute;
+           padding: 20px;
+           background-color: white;
+            border-radius: 5px;
+           -moz-box-shadow: 0 0 3px #222021;
+            -webkit-box-shadow: 0 0 3px #222021;
+            box-shadow: 0 0 3px #222021;
+            z-index: 5;">
+        <div style=" display: flex; flex-direction: column; gap: 20px; justify-content: center">
+          <input #newWorkflowName type="text" placeholder="Workflow name ..." class="step-input"/>
+          <button (click)="workflowNaming.hidden = true; createNewWorkflow(newWorkflowName.value)">Create</button>
+        </div>
+
+      </div>
+    </div>
+    <mat-icon (click)="deletePipeline()">delete</mat-icon>
+
+    <div style="border: 1px solid white; margin-right: 10px"></div>
+
+    <mat-icon (click)="toggleEdit()"
+              *ngIf="!isEditable"
+              [matTooltip]="'Start workflow edition'">edit
+    </mat-icon>
+    <mat-icon (click)="run()"
+              *ngIf="!isEditable"
+              matTooltip="Run workflow">play_arrow
+    </mat-icon>
+    <div style="flex: 1"></div>
+  </div>
+
+  <div class="edition-menu" *ngIf="isEditable">
+    <mat-icon [matMenuTriggerFor]="appMenu"
+              matTooltip="Add step to workflow"
+              *ngIf="isEditable">add
+    </mat-icon>
+    <mat-icon (click)="savePipeline()"
+              matTooltip="Save workflow"
+              [style]="isSaved ? 'color: #61c30b' : ''"
+              *ngIf="isEditable">save
+    </mat-icon>
+    <div style="flex: 1"></div>
+    <mat-icon (click)="toggleEdit()"
+              [matTooltip]="'Stop workflow edition'">close
+    </mat-icon>
+  </div>
+
+
+  <mat-menu #appMenu="matMenu">
+    <ng-container *ngFor="let run of runRepos">
+      <div style="display: flex; gap: 10px; align-items: center; margin-left: 5px; margin-right: 5px">
+        <img alt="" [ngSrc]="run.repo.ownerAvatarUrl" width="24" height="24"/>
+        <h1>{{ run.repo.owner }}/{{ run.repo.name }}</h1>
+      </div>
+      <button mat-menu-item
+              *ngFor="let workflowRun of run.workflowRun"
+              (click)="addStep(run.repo, workflowRun.workflow)">
+        {{ workflowRun.workflow.name }}
+      </button>
+    </ng-container>
+  </mat-menu>
+  <div style="flex: 1; position: relative">
+    <div #drawflow style="width: 100%; height: 100%;" [class]="isEditable ? 'edition-background' : ''">
+    </div>
+  </div>
+</div>

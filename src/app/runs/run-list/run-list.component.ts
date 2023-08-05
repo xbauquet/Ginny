@@ -23,7 +23,7 @@ export class RunListComponent {
               public repositoryObserverService: RepositoryObserverService,
               private workspaceService: WorkspaceService) {
     this.workspaceService.workspace.subscribe(w => this.workspace = w);
-    this.repositoryObserverService.info.subscribe(i => this.repoRuns = i);
+    this.repositoryObserverService.runRepos.subscribe(i => this.repoRuns = i);
     this.contextService.smallScreen.subscribe(v => this.isSmallScreen = v);
   }
 

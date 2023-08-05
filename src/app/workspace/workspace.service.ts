@@ -12,7 +12,7 @@ export class WorkspaceService {
   hasNext = new BehaviorSubject(false);
   workspace = new BehaviorSubject<Workspace | undefined>(undefined);
 
-  private workspaceStorageKey = "ginny-workspaces";
+  private readonly workspaceStorageKey = "ginny-workspaces";
   private workspaces: Workspace[] = [];
 
   constructor() {

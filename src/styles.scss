@@ -1,7 +1,9 @@
 @import "@angular/material/prebuilt-themes/deeppurple-amber.css";
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
+@import "drawflow/dist/drawflow.min.css";
 @import "variables";
 @import "progress_bar";
+@import "pipeline";
 
 html, body {
   font-family: 'Open sans', sans-serif;

@@ -1,0 +1,30 @@
+.menu {
+  display: flex;
+  gap: 10px;
+  padding: 10px 20px;
+  background-color: var(--background);
+  border-radius: 10px;
+  margin: 10px;
+
+  mat-icon {
+    cursor: pointer;
+  }
+}
+
+.edition-menu {
+  display: flex;
+  gap: 10px;
+  padding: 10px 20px;
+  background-color: #4e525d;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
+  mat-icon {
+    cursor: pointer;
+  }
+}
+
+.edition-background {
+  background-size: 25px 25px;
+  background-image: linear-gradient(to right, #4e525d 1px, transparent 1px), linear-gradient(to bottom, #4e525d 1px, transparent 1px);
+}

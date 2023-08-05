@@ -12,7 +12,7 @@ import {RepoRun} from "./repo.run";
 })
 export class RepositoryObserverService {
 
-  info = new BehaviorSubject<RepoRun[]>([]);
+  runRepos = new BehaviorSubject<RepoRun[]>([]);
 
   private workspace?: Workspace;
   private isRefreshing = false;
@@ -26,7 +26,7 @@ export class RepositoryObserverService {
     this.workspaceService.workspace.subscribe(w => {
       this.initFrequency();
       this.workspace = w;
-      this.info.next([]);
+      this.runRepos.next([]);
       this.refreshOnce().catch(e => console.error(e));
     });
   }
@@ -51,7 +51,7 @@ export class RepositoryObserverService {
         }
         newArray.push({repo, workflowRun: tuple});
       }
-      this.info.next(newArray);
+      this.runRepos.next(newArray);
     }
   }
 

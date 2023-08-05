@@ -190,7 +190,7 @@ export class GithubApiService {
     }
   }
 
-  public async runWorkflow(repo: Repository, workflow: Workflow, branch: string, inputs: any = {}) {
+  public async runWorkflow(repo: {name: string, owner: string}, workflow: Workflow, branch: string, inputs: any = {}) {
     if (this.octokit) {
       await this.octokit.actions.createWorkflowDispatch({
         owner: repo.owner,
