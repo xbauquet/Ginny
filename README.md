@@ -15,7 +15,7 @@ Get the best of your Github actions with Ginny.
 - **No server**: Ginny does not store any of your information on any server. Everything stays on your device.
 - **Just a token**: Use [your Github token](#getting-the-right-token) to connect Ginny to Github.
 
-What can I do with Ginny: 
+What can you do with Ginny: 
 - [Organise your repositories in Workspaces](#organise-your-repositories-in-workspaces)
 - [Monitor your actions](#monitor-your-actions) 
 - [Run your actions](#run-your-actions)

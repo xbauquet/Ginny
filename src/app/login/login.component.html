@@ -1,10 +1,20 @@
 <div class="container">
   <img ngSrc="assets/logo.png" height="100" width="100" alt="">
-  <h2>Welcome to Ginny CI</h2>
+  <h2>Welcome to Ginny</h2>
+
+  <div>
+    What can you do with Ginny:
+    <ul>
+      <li>Organise your repositories in Workspaces</li>
+      <li>Monitor your actions</li>
+      <li>Run your actions</li>
+      <li>Create multi-repo pipelines</li>
+    </ul>
+    Learn more: <a href="https://github.com/xbauquet/Ginny" target="_blank" style="color:white;">xbauquet/Ginny</a>
+  </div>
 
   <div class="login">
     <div>Use your Github token to login</div>
-
     <input #tokenInput type="text" placeholder="Token..."/>
     <button (click)="logIn(tokenInput.value)"
             class="login-button">
