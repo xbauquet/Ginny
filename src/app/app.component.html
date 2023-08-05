@@ -6,7 +6,7 @@
        class="login">
     <app-login></app-login>
   </div>
-  <div class="main-section">
+  <div class="main-section" *ngIf="isLoggedIn">
     <div class="run-list" *ngIf="showRunList">
       <app-run-list></app-run-list>
     </div>
