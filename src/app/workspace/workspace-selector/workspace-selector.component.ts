@@ -2,6 +2,9 @@ import {Component} from '@angular/core';
 import {Workspace} from "../workspace.model";
 import {WorkspaceService} from "../workspace.service";
 import {ContextService} from "../../context.service";
+import {WorkflowRunnerComponent} from "../../runs/workflow-runner/workflow-runner.component";
+import {RepositorySelectorComponent} from "../repository-selector/repository-selector.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-workspace-selector',
@@ -16,7 +19,7 @@ export class WorkspaceSelectorComponent {
   showNewWorkspace = false;
 
   constructor(private workspaceService: WorkspaceService,
-              private contextService: ContextService) {
+              private dialog: MatDialog) {
     this.workspaceService.workspace.subscribe(v => this.workspace = v);
     this.workspaceService.hasNext.subscribe(v => this.hasNext = v);
     this.workspaceService.hasPrevious.subscribe(v => this.hasPrevious = v);
@@ -44,7 +47,7 @@ export class WorkspaceSelectorComponent {
     this.workspaceService.delete();
   }
 
-  showRepositorySelector() {
-    this.contextService.setShowRepositorySelector(true);
+  openRepositorySelector() {
+    this.dialog.open(RepositorySelectorComponent, RepositorySelectorComponent.config);
   }
 }

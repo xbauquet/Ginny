@@ -10,7 +10,6 @@ export class ContextService {
 
   theme = new BehaviorSubject<'light' | 'dark'>('light');
   smallScreen = new BehaviorSubject(false);
-  showRepositorySelector = new BehaviorSubject(false);
 
   constructor() {
     this.initTheme();
@@ -38,9 +37,5 @@ export class ContextService {
 
   setSmallScreen(isSmall: boolean) {
     this.smallScreen.next(isSmall);
-  }
-
-  setShowRepositorySelector(show: boolean) {
-    this.showRepositorySelector.next(show);
   }
 }

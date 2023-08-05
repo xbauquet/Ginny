@@ -1,4 +1,4 @@
-<div class="container">
+<div class="dialog-container">
   <div *ngIf="repoByOwner.size === 0"
        class="loading-repo">
     <mat-spinner mode="indeterminate"
@@ -27,4 +27,9 @@
       </div>
     </div>
   </div>
+  <div style="position: absolute; right: 10px; top: 10px">
+    <mat-icon (click)="close()"
+              matTooltip="Close">close</mat-icon>
+  </div>
 </div>
+

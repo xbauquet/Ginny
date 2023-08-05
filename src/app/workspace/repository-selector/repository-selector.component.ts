@@ -3,6 +3,7 @@ import {WorkspaceService} from "../workspace.service";
 import {Repository} from "../../repository.model";
 import {GithubApiService} from "../../github-api.service";
 import {Workspace} from "../workspace.model";
+import {MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-repository-selector',
@@ -11,18 +12,29 @@ import {Workspace} from "../workspace.model";
 })
 export class RepositorySelectorComponent implements OnInit {
 
+  public static config: MatDialogConfig = {
+    minWidth: '60vw',
+    maxWidth: 'none',
+    maxHeight: '98vh',
+    backdropClass: 'blur',
+    panelClass: 'matDialogPanel',
+    disableClose: true,
+    data: {}
+  };
+
   repoByOwner = new Map<string, Repository[]>();
   selectedRepoNames: string[] = [];
   workspace?: Workspace;
 
   constructor(private workspaceService: WorkspaceService,
-              private githubApiService: GithubApiService) {
+              private githubApiService: GithubApiService,
+              private dialogRef: MatDialogRef<RepositorySelectorComponent>) {
   }
 
   ngOnInit(): void {
     this.repoByOwner = new Map<string, Repository[]>();
     this.selectedRepoNames = [];
-    this.refresh()
+    this.getRepositories()
       .then(result => {
         this.repoByOwner = result.repoByOwner;
         this.selectedRepoNames = result.selectedRepoNames;
@@ -30,7 +42,19 @@ export class RepositorySelectorComponent implements OnInit {
       })
   }
 
-  private async refresh() {
+  selectionChanged(event: any, repo: any) {
+    if (event.target.checked) {
+      this.workspaceService.addRepositoryToWorkspace(repo);
+    } else {
+      this.workspaceService.removeRepositoryFromWorkspace(repo);
+    }
+  }
+
+  close() {
+    this.dialogRef.close();
+  }
+
+  private async getRepositories() {
     const repoByOwner = new Map<string, Repository[]>();
     const repos = await this.githubApiService.listUsersRepo();
     repos.forEach(repository => {
@@ -45,13 +69,5 @@ export class RepositorySelectorComponent implements OnInit {
       selectedRepoNames = workspace.repos.map(repo => repo.name)
     }
     return Promise.resolve({repoByOwner, selectedRepoNames, workspace});
-  }
-
-  selectionChanged(event: any, repo: any) {
-    if (event.target.checked) {
-      this.workspaceService.addRepositoryToWorkspace(repo);
-    } else {
-      this.workspaceService.removeRepositoryFromWorkspace(repo);
-    }
   }
 }

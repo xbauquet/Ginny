@@ -66,6 +66,7 @@ input, select {
 .dialog-container {
   width: calc(100% - 40px);
   height: calc(100% - 40px);
+  max-height: calc(98vh - 40px);
   padding: 20px;
   background-color: var(--background);
   display: flex;

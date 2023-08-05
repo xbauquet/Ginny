@@ -15,7 +15,6 @@ export class AppComponent implements OnInit {
   constructor(private contextService: ContextService,
               private githubApiService: GithubApiService) {
     this.githubApiService.isLoggedIn.subscribe(v => this.isLoggedIn = v);
-    this.contextService.showRepositorySelector.subscribe(v => this.showRepositorySelector = v);
   }
 
   ngOnInit() {
@@ -24,9 +23,5 @@ export class AppComponent implements OnInit {
 
   @HostListener("window:resize", []) onResize() {
     this.contextService.setSmallScreen(window.innerWidth < 1024);
-  }
-
-  hideRepositorySelector() {
-    this.contextService.setShowRepositorySelector(false);
   }
 }
