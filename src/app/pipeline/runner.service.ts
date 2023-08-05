@@ -2,7 +2,8 @@ import {DrawflowExport, DrawflowNode} from "drawflow";
 import EventEmitter from "eventemitter3";
 import {GithubApiService} from "../github-api.service";
 import {Run} from "../runs/run.model";
-import {Data} from "./pipeline/pipeline.component";
+
+import {PipelineData} from "./pipeline/pipeline-data.model";
 
 export declare interface RunnerService {
   on(event: 'stepStarted', listener: (stepId: string) => void): this;
@@ -48,7 +49,7 @@ export class RunnerService extends EventEmitter {
 
   private async processStep(step: DrawflowNode, steps: DrawflowNode[]): Promise<boolean> {
     this.onStepStarted(step.class);
-    const data = step.data as Data;
+    const data = step.data as PipelineData;
     const input: any = {};
     for (let i of Object.values(data.inputs) as any[]) {
       input[i.key] = i.value;

@@ -12,6 +12,7 @@ import {WorkspaceService} from "../../workspace/workspace.service";
 import {Workspace} from "../../workspace/workspace.model";
 import {RepositoryObserverService} from "../../runs/repository-observer.service";
 import {RepoRun} from "../../runs/repo.run";
+import {PipelineData} from "./pipeline-data.model";
 
 @Component({
   selector: 'app-pipeline',
@@ -95,7 +96,7 @@ export class PipelineComponent implements AfterViewInit {
     }
   }
 
-  add(data: Data) {
+  add(data: PipelineData) {
     if (this.editor) {
       const title = data.repo.owner + "/" + data.repo.name;
       const html = this.htmlBuilder.getHTML(title, data.workflow.name, data.inputs, data.branches);
@@ -170,7 +171,7 @@ export class PipelineComponent implements AfterViewInit {
       };
     }
 
-    const data = new Data(
+    const data = new PipelineData(
       Utils.randomUUID(),
       repo,
       workflow,
@@ -192,15 +193,5 @@ export class PipelineComponent implements AfterViewInit {
       this.selectedPipeline = undefined;
       this.pipelineService.removePipeline(p);
     }
-  }
-}
-
-export class Data {
-  constructor(public stepUUID: string,
-              public repo: Repository,
-              public workflow: Workflow,
-              public branches: string[] = [],
-              public inputs: any,
-              public branch: string = 'main') {
   }
 }

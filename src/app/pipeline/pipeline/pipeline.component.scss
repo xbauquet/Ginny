@@ -1,3 +1,49 @@
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.pipeline-selector {
+  display: flex;
+  align-items: center;
+}
+
+.pipeline-naming-dropdown {
+  position: relative;
+}
+
+.pipeline-naming-dropdown-container {
+  position: absolute;
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  -moz-box-shadow: 0 0 3px #222021;
+  -webkit-box-shadow: 0 0 3px #222021;
+  box-shadow: 0 0 3px #222021;
+  z-index: 5;
+}
+
+.pipeline-naming-dropdown-container-2 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+}
+
+.create-pipeline-button {
+  border: none;
+  border-radius: 1000px;
+  padding: 5px;
+  cursor: pointer;
+  background-color: var(--green);
+
+  &:hover {
+    box-shadow: 0 0 5px #00000050;
+  }
+}
+
 .menu {
   display: flex;
   gap: 10px;
@@ -9,6 +55,11 @@
   mat-icon {
     cursor: pointer;
   }
+}
+
+.menu-separator {
+  border: 1px solid white;
+  margin-right: 10px;
 }
 
 .edition-menu {
@@ -27,4 +78,17 @@
 .edition-background {
   background-size: 25px 25px;
   background-image: linear-gradient(to right, #4e525d 1px, transparent 1px), linear-gradient(to bottom, #4e525d 1px, transparent 1px);
+}
+
+.workflow-selection-menu {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.drawflow-container {
+  width: 100%;
+  height: 100%;
 }
