@@ -15,12 +15,16 @@ export class HeaderComponent {
   smallScreen = false;
   isLoggedIn = false;
   version: string = packageJson.version;
+  showPipeline = true;
+  showRuns = true;
 
   constructor(private contextService: ContextService,
               private githubApiService: GithubApiService) {
     this.contextService.theme.subscribe(this.applyTheme);
     this.contextService.smallScreen.subscribe(v => this.smallScreen = v);
     this.githubApiService.isLoggedIn.subscribe(v => this.isLoggedIn = v);
+    this.contextService.showPipelines.subscribe(v => this.showPipeline = v);
+    this.contextService.showRuns.subscribe(v => this.showRuns = v);
   }
 
   /**
@@ -39,5 +43,13 @@ export class HeaderComponent {
     document.body.classList.remove("dark");
     document.body.classList.remove("light");
     document.body.classList.add(newTheme);
+  }
+
+  togglePipeline() {
+    this.contextService.toggleShowPipelines();
+  }
+
+  toggleActions() {
+    this.contextService.toggleShoRuns();
   }
 }

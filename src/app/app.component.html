@@ -12,6 +12,7 @@
     </div>
     <div #pipelineContainer
          class="pipeline-container"
+         [style]="showRunList ? '' : 'flex: 1'"
          *ngIf="showPipeline">
       <div *ngIf="showRunList"
            class="resize-handle"

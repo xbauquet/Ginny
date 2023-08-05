@@ -25,6 +25,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   constructor(private contextService: ContextService,
               private githubApiService: GithubApiService) {
     this.githubApiService.isLoggedIn.subscribe(v => this.isLoggedIn = v);
+    this.contextService.showPipelines.subscribe(v => this.showPipeline = v);
+    this.contextService.showRuns.subscribe(v => this.showRunList = v);
   }
 
   ngOnInit() {
