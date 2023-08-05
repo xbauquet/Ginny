@@ -1,0 +1,57 @@
+name: Publish
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'New version, if 0.0.0 will bump last git tag.'
+        required: true
+        default: '0.0.0'
+        type: string
+permissions:
+  contents: write
+env:
+  NODE_VERSION: 18
+
+jobs:
+  Publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          # fetch all commits and tags
+          fetch-depth: "0"
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Bump version
+        run: |
+          if [[ ${{ github.event.inputs.version }} == '0.0.0' ]]
+          then
+            latest=$(git tag -l --sort=-creatordate | head -n 1)
+            echo $latest
+            majorAndMinor="${latest%.*}."
+            patch="${latest##*.}"
+            VERSION="$majorAndMinor$((patch+1))"
+          else
+            VERSION=${{ github.event.inputs.version }}
+          fi
+          npm --no-git-tag-version version $VERSION
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Build
+        run: npm run build
+
+      - name: Commit, Tag, Push
+        run: |
+          git config --global user.email "xavier.bauquet@gmail.com"
+          git config --global user.name "Xavier Bauquet"
+          git add .
+          git commit -m "${{ env.VERSION }}"
+          git tag -a ${{ env.VERSION }} -m "${{ env.VERSION }}"
+          git push origin main
+          git push --tags
