@@ -1,11 +1,10 @@
 <div class="container">
   <div class="menu">
     <mat-icon (click)="refreshOnce()"
-              matTooltip="Refresh once"
-              style="cursor: pointer;">
+              matTooltip="Refresh once">
       refresh
     </mat-icon>
-    <mat-icon (click)="toggleRefresh()" style="cursor: pointer;"
+    <mat-icon (click)="toggleRefresh()"
               [matTooltip]="this.repositoryObserverService.refreshing ? 'Stop auto refresh' : 'Start auto refresh'"
               [class]="this.repositoryObserverService.refreshing ? 'rotate' : ''">
       {{ this.repositoryObserverService.refreshing ? 'sync' : 'play_arrow' }}
@@ -17,7 +16,7 @@
     <div>No repositories selected for this workspace.</div>
     <div>
       Use the menu
-      <mat-icon style="background-color: #4e525d">more_vert</mat-icon>
+      <mat-icon class="description-icon">more_vert</mat-icon>
       next to your workspace name to add repositories.
     </div>
   </div>

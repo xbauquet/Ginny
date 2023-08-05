@@ -7,10 +7,10 @@
   background-color: var(--background);
   border: 10px solid var(--background-light);
   border-radius: 20px;
+}
 
-  mat-icon {
-    cursor: pointer;
-  }
+mat-icon {
+  cursor: pointer;
 }
 
 .information-container {
@@ -112,4 +112,9 @@
   .workflow-container {
     margin-left: 10px;
   }
+}
+
+.description-icon {
+  background-color: var(--background);
+  cursor: default;
 }

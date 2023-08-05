@@ -42,35 +42,44 @@ export class AppComponent implements OnInit, AfterViewInit {
   // Resizable pipeline container
   //_______________________________________________________________________________
   ngAfterViewInit() {
-    const pipelineWidth = localStorage.getItem(this.pipelineWidthKey);
-    if (pipelineWidth) {
-      this.pipelineContainer.nativeElement.style.width = pipelineWidth;
-    } else {
-      this.pipelineContainer.nativeElement.style.width = "70%";
+    if (this.pipelineContainer) {
+      const pipelineWidth = localStorage.getItem(this.pipelineWidthKey);
+      if (pipelineWidth) {
+        this.pipelineContainer.nativeElement.style.width = pipelineWidth;
+      } else {
+        this.pipelineContainer.nativeElement.style.width = "70%";
+      }
     }
   }
 
   startResizingPipeline(event: MouseEvent) {
-    this.resizingEvent = {
-      isResizing: true,
-      startingCursorX: event.clientX,
-      startingWidth: this.pipelineContainer.nativeElement.offsetWidth,
-    };
+    if (this.pipelineContainer) {
+      this.resizingEvent = {
+        isResizing: true,
+        startingCursorX: event.clientX,
+        startingWidth: this.pipelineContainer.nativeElement.offsetWidth,
+      };
+    }
   }
 
   @HostListener('window:mousemove', ['$event'])
   updatePipelineSize(event: MouseEvent) {
-    if (!this.resizingEvent.isResizing) {
-      return;
+    if (this.pipelineContainer) {
+      if (!this.resizingEvent.isResizing) {
+        return;
+      }
+      const cursorDeltaX = event.clientX - this.resizingEvent.startingCursorX;
+      const newWidth = this.resizingEvent.startingWidth - cursorDeltaX;
+      const percentage = newWidth / window.innerWidth * 100;
+      this.pipelineContainer.nativeElement.style.width = percentage + "%";
     }
-    const cursorDeltaX = event.clientX - this.resizingEvent.startingCursorX;
-    const newWidth = this.resizingEvent.startingWidth - cursorDeltaX;
-    this.pipelineContainer.nativeElement.style.width = newWidth + "px";
   }
 
   @HostListener('window:mouseup')
   stopResizing() {
-    this.resizingEvent.isResizing = false;
-    localStorage.setItem(this.pipelineWidthKey, this.pipelineContainer.nativeElement.style.width);
+    if (this.pipelineContainer) {
+      this.resizingEvent.isResizing = false;
+      localStorage.setItem(this.pipelineWidthKey, this.pipelineContainer.nativeElement.style.width);
+    }
   }
 }
