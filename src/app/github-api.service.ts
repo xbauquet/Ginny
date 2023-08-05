@@ -62,7 +62,8 @@ export class GithubApiService {
           r.owner.login,
           r.owner.avatar_url,
           r.html_url,
-          r.private
+          r.private,
+          r.default_branch
         );
       });
     } else {
@@ -169,5 +170,55 @@ export class GithubApiService {
     } catch (e) {
       return Promise.reject(e);
     }
+  }
+
+  /***
+   * ******************************************************************************************************************
+   * Running Workflow
+   * ******************************************************************************************************************
+   */
+  public async listBranchNames(repo: Repository): Promise<string[]> {
+    if (this.octokit) {
+      const branches = await this.octokit.rest.repos.listBranches({
+        owner: repo.owner,
+        repo: repo.name
+      });
+      return branches.data.map(b => b.name);
+    } else {
+      console.error("Calling GithubApiService.listBranchNames but Octokit is undefined.");
+      return [];
+    }
+  }
+
+  public async runWorkflow(repo: Repository, workflow: Workflow, branch: string, inputs: any = {}) {
+    if (this.octokit) {
+      await this.octokit.actions.createWorkflowDispatch({
+        owner: repo.owner,
+        repo: repo.name,
+        workflow_id: workflow.id,
+        ref: branch,
+        inputs: this.formatRunWorkflowInputs(inputs, workflow.inputs)
+      });
+    } else {
+      console.error("Calling GithubApiService.runWorkflow but Octokit is undefined.");
+    }
+  }
+
+  /**
+   * Format inputs to remove useless inputs and convert all of them to string.
+   *
+   * Github api only accept as inputs fields that are declared in the workflow as inputs. For example if 'branch' is
+   * present in the inputs the api will return an error rather than ignoring it.
+   * Inputs must also all be of type string.
+   */
+  private formatRunWorkflowInputs(inputs: any, workflowInputs: WorkflowInputs[]) {
+    const formattedInputs: any = {};
+    for(let key of Object.keys(inputs)) {
+      const index = workflowInputs.findIndex(i => i.key === key);
+      if (index !== -1) {
+        formattedInputs[key] = String(inputs[key]);
+      }
+    }
+    return formattedInputs;
   }
 }

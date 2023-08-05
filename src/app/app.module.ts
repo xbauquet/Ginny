@@ -15,6 +15,9 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {RunListComponent} from './runs/run-list/run-list.component';
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {RunRowComponent} from './runs/run-row/run-row.component';
+import {WorkflowRunnerComponent} from './runs/workflow-runner/workflow-runner.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -24,7 +27,8 @@ import {RunRowComponent} from './runs/run-row/run-row.component';
     LoginComponent,
     RepositorySelectorComponent,
     RunListComponent,
-    RunRowComponent
+    RunRowComponent,
+    WorkflowRunnerComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,10 @@ import {RunRowComponent} from './runs/run-row/run-row.component';
     MatTooltipModule,
     NgOptimizedImage,
     MatProgressSpinnerModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

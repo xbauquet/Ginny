@@ -1,0 +1,60 @@
+<div class="dialog-container">
+  <div *ngIf="repo && workflow && branches.length > 0"
+       class="repo-header">
+    <div class="repo-title">
+      <img alt="" [ngSrc]="repo.ownerAvatarUrl" height="24" width="24"/>
+      <h1>{{ repo.owner }}/{{ repo.name }}</h1>
+    </div>
+    <div>
+      <mat-icon (click)="close()"
+                matTooltip="Close">close</mat-icon>
+    </div>
+  </div>
+  <form [formGroup]="formData" class="inputs-container">
+    <div>
+      <label for="branch" class="input-title">Branch</label>
+      <div class="input-description">Branch to run workflow with</div>
+      <select class="select-width" id="branch" formControlName="branch">
+        <option *ngFor="let branch of branches"
+                [value]="branch">{{ branch }}</option>
+      </select>
+    </div>
+
+    <div *ngFor="let i of workflow?.inputs">
+      <div *ngIf="i.type === 'choice'">
+        <label [for]="i.key" class="input-title">{{ i.key }}</label>
+        <div class="input-description">{{ i.description }}</div>
+        <select class="select-width" [id]="i.key" [formControlName]="i.key">
+          <option *ngFor="let option of i.options"
+                  [value]="option"
+                  [selected]="i.defaultValue === option">{{ option }}</option>
+        </select>
+      </div>
+
+      <div *ngIf="i.type === 'boolean'">
+        <label [for]="i.key" class="input-title">{{ i.key }}</label>
+        <div class="input-description">{{ i.description }}</div>
+        <input type="checkbox" [id]="i.key" [formControlName]="i.key"/>
+      </div>
+
+      <div *ngIf="i.type === 'number'">
+        <label [for]="i.key" class="input-title">{{ i.key }}</label>
+        <div class="input-description">{{ i.description }}</div>
+        <input type="number" class="input-width" [id]="i.key" [formControlName]="i.key"/>
+      </div>
+
+      <div *ngIf="i.type === 'string'">
+        <label [for]="i.key" class="input-title">{{ i.key }}</label>
+        <div class="input-description">{{ i.description }}</div>
+        <input type="text" class="input-width" [id]="i.key" [formControlName]="i.key"/>
+      </div>
+
+    </div>
+  </form>
+  <div class="actions-container">
+    <div class="icon-button">
+      <mat-icon (click)="run()"
+                matTooltip="Run workflow">play_arrow</mat-icon>
+    </div>
+  </div>
+</div>
