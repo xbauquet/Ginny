@@ -42,12 +42,12 @@ Workspace menu
   </button>
   <mat-divider></mat-divider>
   <button mat-menu-item (click)="selectNextWorkspace()"
-          [disabled]="!hasPrevious">
+          [disabled]="!hasNext">
     <mat-icon>chevron_right</mat-icon>
     Next workspace
   </button>
   <button mat-menu-item (click)="selectPreviousWorkspace()"
-          [disabled]="!hasNext">
+          [disabled]="!hasPrevious">
     <mat-icon>chevron_left</mat-icon>
     Previous workspace
   </button>
