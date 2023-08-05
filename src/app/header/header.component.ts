@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {ContextService} from "../context.service";
 import {GithubApiService} from "../github-api.service";
+import packageJson from '../../../package.json';
 
 @Component({
   selector: 'app-header',
@@ -13,6 +14,7 @@ export class HeaderComponent {
   theme = "light";
   smallScreen = false;
   isLoggedIn = false;
+  version: string = packageJson.version;
 
   constructor(private contextService: ContextService,
               private githubApiService: GithubApiService) {
