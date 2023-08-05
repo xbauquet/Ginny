@@ -7,7 +7,7 @@
 .main-section {
   height: calc(100% - 50px);
   display: flex;
-  justify-content: center;
+
 }
 
 .login {
@@ -36,3 +36,35 @@
   cursor: pointer;
 }
 
+.pipeline-container {
+  display: flex;
+  overflow: auto;
+}
+
+.resize-handle {
+  height: 100%;
+  width: 2px;
+  background-color: lightblue;
+  cursor: ew-resize;
+  // Avoid selection of other elements on the page
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  &:hover {
+    width: 3px;
+    background-color: rgb(93, 159, 235);
+  }
+}
+
+.run-list {
+  flex: 1;
+  overflow-y: scroll;
+}
+
+.pipeline {
+  width: calc(100% - 2px);
+}

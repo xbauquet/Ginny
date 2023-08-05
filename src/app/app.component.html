@@ -2,14 +2,23 @@
   <div>
     <app-header></app-header>
   </div>
+  <div *ngIf="!isLoggedIn"
+       class="login">
+    <app-login></app-login>
+  </div>
   <div class="main-section">
-    <div *ngIf="!isLoggedIn"
-         class="login">
-      <app-login></app-login>
-    </div>
-    <div *ngIf="isLoggedIn" class="login">
+    <div class="run-list" *ngIf="showRunList">
       <app-run-list></app-run-list>
-      <!--app-pipeline></app-pipeline-->
+    </div>
+    <div #pipelineContainer
+         class="pipeline-container"
+         *ngIf="showPipeline">
+      <div *ngIf="showRunList"
+           class="resize-handle"
+           (mousedown)="startResizingPipeline($event)"></div>
+      <div class="pipeline">
+        <app-pipeline></app-pipeline>
+      </div>
     </div>
   </div>
 </div>
