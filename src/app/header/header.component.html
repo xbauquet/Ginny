@@ -29,11 +29,11 @@ Main menu
     <mat-icon>{{ theme === "dark" ? "light_mode" : "dark_mode" }}</mat-icon>
     {{ theme === "dark" ? "Activate light mode" : "Activate dark mode" }}
   </button>
-  <button mat-menu-item (click)="togglePipeline()">
+  <button mat-menu-item (click)="togglePipeline()" *ngIf="isLoggedIn">
     <mat-icon>rebase_edit</mat-icon>
     {{ showPipeline ? "Hide pipeline" : "Show pipeline" }}
   </button>
-  <button mat-menu-item (click)="toggleActions()">
+  <button mat-menu-item (click)="toggleRuns()" *ngIf="isLoggedIn">
     <mat-icon>lists</mat-icon>
     {{ showRuns ? "Hide actions" : "Show actions" }}
   </button>

@@ -49,7 +49,7 @@ export class HeaderComponent {
     this.contextService.toggleShowPipelines();
   }
 
-  toggleActions() {
+  toggleRuns() {
     this.contextService.toggleShoRuns();
   }
 }
