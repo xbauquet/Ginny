@@ -1,11 +1,15 @@
 <div class="container">
-  <div>
-    Add a github token to use the app.
+  <img ngSrc="assets/logo.png" height="100" width="100" alt="">
+  <h2>Welcome to Ginny CI</h2>
+
+  <div class="login">
+    <div>Use your Github token to login</div>
+
+    <input #tokenInput type="text" placeholder="Token..."/>
+    <button (click)="logIn(tokenInput.value)"
+            class="login-button">
+      <mat-icon>login</mat-icon>
+      Login with a token
+    </button>
   </div>
-  <input #tokenInput type="text" placeholder="Token..."/>
-  <button (click)="logIn(tokenInput.value)"
-          class="login-button">
-    <mat-icon>login</mat-icon>
-    Login with a token
-  </button>
 </div>
