@@ -248,6 +248,37 @@ export class GithubApiService {
     }
   }
 
+  public getUserAsOrg() {
+    if (this.octokit) {
+      return this.octokit.rest.users.getAuthenticated()
+        .then(o => new Organisation(
+          "" + o.data.id,
+          o.data.login,
+          o.url,
+          o.data.avatar_url
+        ));
+    } else {
+      console.error("Calling GithubApiService.getUserAsOrg but Octokit is undefined.");
+      return Promise.reject();
+    }
+  }
+
+  public async actionBillingForUser(username: string) {
+    if (this.octokit) {
+      return this.octokit.rest.billing.getGithubActionsBillingUser({username})
+        .then(v => {
+          return new ActionsBilling(
+            v.data.included_minutes,
+            v.data.total_minutes_used,
+            v.data.total_paid_minutes_used,
+            v.data.minutes_used_breakdown)
+        });
+    } else {
+      console.error("Calling GithubApiService.actionsBillingForOrg but Octokit is undefined.");
+      return Promise.reject();
+    }
+  }
+
   public actionsBillingForOrg(org: string): Promise<ActionsBilling> {
     if (this.octokit) {
       return this.octokit.rest.billing.getGithubActionsBillingOrg({org})

@@ -20,6 +20,9 @@ export class UsageComponent {
 
   private async getInfo() {
     this.data = [];
+    const user = await this.githubApiService.getUserAsOrg();
+    const userBilling = await this.githubApiService.actionBillingForUser(user.name);
+    this.data.push({org: user, billing: userBilling});
     const orgs = await this.githubApiService.listUsersOrg();
     for (let org of orgs) {
       const billing = await this.githubApiService.actionsBillingForOrg(org.name);

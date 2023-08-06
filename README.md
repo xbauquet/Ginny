@@ -20,10 +20,11 @@ What can you do with Ginny:
 - [Monitor your actions](#monitor-your-actions) 
 - [Run your actions](#run-your-actions)
 - [Create multi-repo pipelines](#create-multi-repo-pipelines)
+- [Monitor your usage](#monitor-your-usage)
 
 ## Getting the right token
 
-Ginny simply works with a github personal access token with the scopes `repo` and `workflow`.
+Ginny simply works with a github personal access token with the scopes `repo`, `workflow` and `user`.
 >Find more information on how to manage your personal access tokens on the [Github documentation.](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
 
 ![Token scopes](./src/assets/token-scopes.png)
@@ -57,3 +58,9 @@ With Ginny you can easily run any Github Action that includes a `workflow_dispat
 Create multi-repository pipelines and choose your input parameters for each action in the pipeline.
 
 ![Pipeline example](./src/assets/pipeline-example.png)
+
+## Monitor your usage
+
+Use Ginny to monitor your Github action usage across your organisations.
+
+![Pipeline example](./src/assets/usage-example.png)
