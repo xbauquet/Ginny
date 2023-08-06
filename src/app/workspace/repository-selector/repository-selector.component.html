@@ -1,33 +1,41 @@
-<div class="dialog-container">
-  <div *ngIf="repoByOwner.size === 0"
+<div class="container">
+  <div *ngIf="filteredRepoByOwner.size === 0"
        class="loading-repo">
     <mat-spinner mode="indeterminate"
                  class="spinner"></mat-spinner>
     <div>Loading your repositories</div>
     <div>...</div>
   </div>
-
-  <div class="repo-list" *ngIf="repoByOwner.size > 0">
-    <div>Select repositories to include in your workspace: <b>{{ workspace?.name }}</b></div>
-    <div>{{ selectedRepoNames.length }} repositories selected</div>
-    <div *ngFor="let ownerName of repoByOwner.keys()" class="repo">
-      <div *ngIf="repoByOwner.get(ownerName)!.length > 0">
-        <div style="display: flex; gap: 10px; align-items: center">
-          <img alt="" [ngSrc]="repoByOwner.get(ownerName)![0].ownerAvatarUrl" width="24" height="24"/>
-          <h1>{{ repoByOwner.get(ownerName)![0].owner }}</h1>
-        </div>
-        <div *ngFor="let repo of repoByOwner.get(ownerName)"
-             style="margin-left: 15px; padding: 5px; display: flex; gap: 10px">
-          <input type="checkbox"
-                 [name]="repo.name"
-                 (change)="selectionChanged($event, repo)"
-                 [checked]="selectedRepoNames.indexOf(repo.name) >= 0">
-          <label [for]="repo.name">{{ repo.name }}</label>
-        </div>
-      </div>
+  <div *ngIf="filteredRepoByOwner.size > 0">
+    <div class="search-bar">
+      <mat-icon>search</mat-icon>
+      <input #searchInput type="text" placeholder="Search..." (keyup)="filterByText(searchInput.value)"/>
+    </div>
+    <div style="padding: 10px">
+      <div>Select repositories to include in your workspace: <b>{{ workspace?.name }}</b></div>
+      <div>{{ selectedRepoNames.length }} repositories selected</div>
     </div>
   </div>
-  <div style="position: absolute; right: 10px; top: 10px">
+
+  <div class="repo-list" *ngIf="filteredRepoByOwner.size > 0">
+      <div *ngFor="let ownerName of filteredRepoByOwner.keys()" class="repo">
+        <div *ngIf="filteredRepoByOwner.get(ownerName)!.length > 0">
+          <div style="display: flex; gap: 10px; align-items: center">
+            <img alt="" [ngSrc]="filteredRepoByOwner.get(ownerName)![0].ownerAvatarUrl" width="24" height="24"/>
+            <h1>{{ filteredRepoByOwner.get(ownerName)![0].owner }}</h1>
+          </div>
+          <div *ngFor="let repo of filteredRepoByOwner.get(ownerName)"
+               class="repo-row">
+            <input type="checkbox"
+                   [name]="repo.name"
+                   (change)="selectionChanged($event, repo)"
+                   [checked]="selectedRepoNames.indexOf(repo.name) >= 0">
+            <label [for]="repo.name">{{ repo.name }}</label>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="close-button">
     <mat-icon (click)="close()"
               matTooltip="Close">close</mat-icon>
   </div>

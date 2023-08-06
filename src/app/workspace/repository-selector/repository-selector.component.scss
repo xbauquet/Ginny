@@ -1,3 +1,10 @@
+.container {
+  background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .loading-repo {
   display: flex;
   flex-direction: column;
@@ -14,10 +21,9 @@
 
 .repo-list {
   overflow-y: scroll;
-  max-width: 1024px;
   display: flex;
   flex-direction: column;
-  height: 90%;
+  padding: 10px
 }
 
 .repo {
@@ -26,4 +32,35 @@
 
 mat-icon {
   cursor: pointer;
+}
+
+.repo-row {
+  margin-left: 15px;
+  padding: 5px;
+  display: flex;
+  gap: 10px;
+}
+
+.close-button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.search-bar {
+  display: flex;
+  background-color: var(--background-light);
+  align-items: center;
+  padding: 5px 10px;
+  gap: 10px;
+
+  input {
+    background-color: var(--background-light);
+    color: var(--text-color);
+    min-width: 50%;
+  }
+
+  input:focus{
+    outline: none;
+  }
 }

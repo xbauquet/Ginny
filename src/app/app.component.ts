@@ -47,7 +47,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       if (pipelineWidth) {
         this.pipelineContainer.nativeElement.style.width = pipelineWidth;
       } else {
-        this.pipelineContainer.nativeElement.style.width = "70%";
+        this.pipelineContainer.nativeElement.style.width = "50%";
       }
     }
   }

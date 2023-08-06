@@ -15,14 +15,15 @@ export class RepositorySelectorComponent implements OnInit {
   public static config: MatDialogConfig = {
     minWidth: '60vw',
     maxWidth: 'none',
-    maxHeight: '98vh',
+    height: '98vh',
     backdropClass: 'blur',
     panelClass: 'matDialogPanel',
     disableClose: true,
     data: {}
   };
 
-  repoByOwner = new Map<string, Repository[]>();
+  filteredRepoByOwner = new Map<string, Repository[]>();
+  private allRepoByOwner = new Map<string, Repository[]>();
   selectedRepoNames: string[] = [];
   workspace?: Workspace;
 
@@ -32,11 +33,13 @@ export class RepositorySelectorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.repoByOwner = new Map<string, Repository[]>();
+    this.filteredRepoByOwner = new Map<string, Repository[]>();
+    this.allRepoByOwner = new Map<string, Repository[]>();
     this.selectedRepoNames = [];
     this.getRepositories()
       .then(result => {
-        this.repoByOwner = result.repoByOwner;
+        this.filteredRepoByOwner = result.repoByOwner;
+        this.allRepoByOwner = result.repoByOwner;
         this.selectedRepoNames = result.selectedRepoNames;
         this.workspace = result.workspace;
       })
@@ -69,5 +72,16 @@ export class RepositorySelectorComponent implements OnInit {
       selectedRepoNames = workspace.repos.map(repo => repo.name)
     }
     return Promise.resolve({repoByOwner, selectedRepoNames, workspace});
+  }
+
+  filterByText(text: string) {
+    const filteredRepo= new Map<string, Repository[]>();
+    this.allRepoByOwner.forEach((repositories, key) => {
+      const filtered = repositories.filter(r => r.name.toUpperCase().indexOf(text.toUpperCase()) > -1);
+      if (filtered.length > 0) {
+        filteredRepo.set(key, filtered);
+      }
+    });
+    this.filteredRepoByOwner = filteredRepo;
   }
 }
