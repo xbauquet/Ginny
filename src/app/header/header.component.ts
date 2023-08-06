@@ -21,6 +21,7 @@ export class HeaderComponent {
   showPipeline = true;
   showRuns = true;
   frequency = 0;
+  showUsage = true;
 
   constructor(private contextService: ContextService,
               private githubApiService: GithubApiService,
@@ -31,6 +32,7 @@ export class HeaderComponent {
     this.githubApiService.isLoggedIn.subscribe(v => this.isLoggedIn = v);
     this.contextService.showPipelines.subscribe(v => this.showPipeline = v);
     this.contextService.showRuns.subscribe(v => this.showRuns = v);
+    this.contextService.showUsage.subscribe(v => this.showUsage = v);
     this.frequency = this.repoObserverService.frequency;
   }
 
@@ -57,7 +59,11 @@ export class HeaderComponent {
   }
 
   toggleRuns() {
-    this.contextService.toggleShoRuns();
+    this.contextService.toggleShowRuns();
+  }
+
+  toggleUsage() {
+    this.contextService.toggleShowUsage();
   }
 
   setFrequency() {

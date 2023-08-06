@@ -26,7 +26,8 @@
     "@octokit/rest": "^19.0.13",
     "js-yaml": "^4.1.0",
     "drawflow": "^0.0.59",
-    "eventemitter3": "^5.0.1"
+    "eventemitter3": "^5.0.1",
+    "chart.js": "^4.3.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.1.0",

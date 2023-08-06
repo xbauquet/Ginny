@@ -14,6 +14,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   isLoggedIn = false;
   showRunList = true;
   showPipeline = true;
+  showUsage = true;
 
   private pipelineWidthKey = "pipelineWidthKey";
   private resizingEvent = {
@@ -27,6 +28,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.githubApiService.isLoggedIn.subscribe(v => this.isLoggedIn = v);
     this.contextService.showPipelines.subscribe(v => this.showPipeline = v);
     this.contextService.showRuns.subscribe(v => this.showRunList = v);
+    this.contextService.showUsage.subscribe(v => this.showUsage = v);
   }
 
   ngOnInit() {

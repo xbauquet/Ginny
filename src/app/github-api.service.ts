@@ -10,6 +10,8 @@ import {Run} from "./runs/run.model";
 import {Workflow} from "./runs/workflow.model";
 import {WorkflowInputs} from "./runs/workflow-inputs.model";
 import * as yaml from "js-yaml";
+import {Organisation} from "./usage/organisation.model";
+import {ActionsBilling} from "./usage/actions-billing.model";
 
 @Injectable({
   providedIn: 'root'
@@ -190,7 +192,10 @@ export class GithubApiService {
     }
   }
 
-  public async runWorkflow(repo: {name: string, owner: string}, workflow: Workflow, branch: string, inputs: any = {}) {
+  public async runWorkflow(repo: {
+    name: string,
+    owner: string
+  }, workflow: Workflow, branch: string, inputs: any = {}) {
     if (this.octokit) {
       await this.octokit.actions.createWorkflowDispatch({
         owner: repo.owner,
@@ -213,12 +218,49 @@ export class GithubApiService {
    */
   private formatRunWorkflowInputs(inputs: any, workflowInputs: WorkflowInputs[]) {
     const formattedInputs: any = {};
-    for(let key of Object.keys(inputs)) {
+    for (let key of Object.keys(inputs)) {
       const index = workflowInputs.findIndex(i => i.key === key);
       if (index !== -1) {
         formattedInputs[key] = String(inputs[key]);
       }
     }
     return formattedInputs;
+  }
+
+  /***
+   * ******************************************************************************************************************
+   * Org Billing
+   * ******************************************************************************************************************
+   */
+  public async listUsersOrg(): Promise<Organisation[]> {
+    if (this.octokit) {
+      return await this.octokit
+        .paginate(this.octokit.rest.orgs.listForAuthenticatedUser.endpoint({}).url)
+        .then((v: any[]) => v.map(o => new Organisation(
+          o.id,
+          o.login,
+          o.url,
+          o.avatar_url
+        )));
+    } else {
+      console.error("Calling GithubApiService.listUsersOrg but Octokit is undefined.");
+      return [];
+    }
+  }
+
+  public actionsBillingForOrg(org: string): Promise<ActionsBilling> {
+    if (this.octokit) {
+      return this.octokit.rest.billing.getGithubActionsBillingOrg({org})
+        .then(v => {
+          return new ActionsBilling(
+            v.data.included_minutes,
+            v.data.total_minutes_used,
+            v.data.total_paid_minutes_used,
+            v.data.minutes_used_breakdown)
+        });
+    } else {
+      console.error("Calling GithubApiService.actionsBillingForOrg but Octokit is undefined.");
+      return Promise.reject();
+    }
   }
 }

@@ -1,0 +1,5 @@
+<div style="display: flex; flex-direction: column; gap: 20px; justify-content: center">
+  <div *ngFor="let d of data">
+    <app-usage-chart [org]="d.org" [billing]="d.billing"></app-usage-chart>
+  </div>
+</div>

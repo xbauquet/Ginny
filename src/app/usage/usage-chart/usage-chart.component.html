@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="title-container">
+    <img alt="" [src]="org.avatarUrl"/>
+    <div>
+      <h1>{{ org.name }}</h1>
+      <div style="font-size: 0.8em; color: grey">
+        {{ billing.totalMinutesUsed }} / {{ billing.includedMinutes }} min
+      </div>
+    </div>
+  </div>
+  <div class="donut">
+    <canvas [id]="uuid"></canvas>
+  </div>
+</div>

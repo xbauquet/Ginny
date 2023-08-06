@@ -25,14 +25,6 @@
 Main menu
 --------------------------------------------->
 <mat-menu #mainMenu="matMenu">
-  <button mat-menu-item (click)="toggleTheme()">
-    <mat-icon>{{ theme === "dark" ? "light_mode" : "dark_mode" }}</mat-icon>
-    {{ theme === "dark" ? "Activate light mode" : "Activate dark mode" }}
-  </button>
-  <button mat-menu-item (click)="setFrequency()">
-    <mat-icon>sync</mat-icon>
-    Change refresh frequency ({{ frequency / 1000 }}s)
-  </button>
   <button mat-menu-item (click)="togglePipeline()" *ngIf="isLoggedIn">
     <mat-icon>rebase_edit</mat-icon>
     {{ showPipeline ? "Hide pipeline" : "Show pipeline" }}
@@ -40,6 +32,19 @@ Main menu
   <button mat-menu-item (click)="toggleRuns()" *ngIf="isLoggedIn">
     <mat-icon>lists</mat-icon>
     {{ showRuns ? "Hide actions" : "Show actions" }}
+  </button>
+  <button mat-menu-item (click)="toggleUsage()" *ngIf="isLoggedIn">
+    <mat-icon>data_usage</mat-icon>
+    {{ showUsage ? "Hide usage" : "Show usage" }}
+  </button>
+  <mat-divider></mat-divider>
+  <button mat-menu-item (click)="toggleTheme()">
+    <mat-icon>{{ theme === "dark" ? "light_mode" : "dark_mode" }}</mat-icon>
+    {{ theme === "dark" ? "Activate light mode" : "Activate dark mode" }}
+  </button>
+  <button mat-menu-item (click)="setFrequency()">
+    <mat-icon>sync</mat-icon>
+    Change refresh frequency ({{ frequency / 1000 }}s)
   </button>
   <button mat-menu-item (click)="logOut()" *ngIf="isLoggedIn">
     <mat-icon>logout</mat-icon>

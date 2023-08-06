@@ -20,6 +20,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { PipelineComponent } from './pipeline/pipeline/pipeline.component';
 import { RepoRefreshFrequencyComponent } from './header/repo-refresh-frequency/repo-refresh-frequency.component';
+import { UsageComponent } from './usage/usage/usage.component';
+import { UsageChartComponent } from './usage/usage-chart/usage-chart.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { RepoRefreshFrequencyComponent } from './header/repo-refresh-frequency/r
     RunRowComponent,
     WorkflowRunnerComponent,
     PipelineComponent,
-    RepoRefreshFrequencyComponent
+    RepoRefreshFrequencyComponent,
+    UsageComponent,
+    UsageChartComponent
   ],
   imports: [
     BrowserModule,
