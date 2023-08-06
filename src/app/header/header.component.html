@@ -29,6 +29,10 @@ Main menu
     <mat-icon>{{ theme === "dark" ? "light_mode" : "dark_mode" }}</mat-icon>
     {{ theme === "dark" ? "Activate light mode" : "Activate dark mode" }}
   </button>
+  <button mat-menu-item (click)="setFrequency()">
+    <mat-icon>sync</mat-icon>
+    Change refresh frequency ({{ frequency / 1000 }}s)
+  </button>
   <button mat-menu-item (click)="togglePipeline()" *ngIf="isLoggedIn">
     <mat-icon>rebase_edit</mat-icon>
     {{ showPipeline ? "Hide pipeline" : "Show pipeline" }}

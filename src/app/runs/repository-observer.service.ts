@@ -70,6 +70,10 @@ export class RepositoryObserverService {
   }
 
   setFrequency(frequency: number): void {
+    // if frequency < 10 seconds
+    if (frequency < 10 * 1000) {
+      frequency = 10 * 1000;
+    }
     this.refreshFrequency = frequency;
     localStorage.setItem(this.frequencyKey, this.refreshFrequency.toString());
   }

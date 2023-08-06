@@ -19,6 +19,7 @@ import {WorkflowRunnerComponent} from './runs/workflow-runner/workflow-runner.co
 import {MatDialogModule} from '@angular/material/dialog';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { PipelineComponent } from './pipeline/pipeline/pipeline.component';
+import { RepoRefreshFrequencyComponent } from './header/repo-refresh-frequency/repo-refresh-frequency.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { PipelineComponent } from './pipeline/pipeline/pipeline.component';
     RunListComponent,
     RunRowComponent,
     WorkflowRunnerComponent,
-    PipelineComponent
+    PipelineComponent,
+    RepoRefreshFrequencyComponent
   ],
   imports: [
     BrowserModule,
