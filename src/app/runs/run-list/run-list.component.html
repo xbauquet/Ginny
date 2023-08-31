@@ -5,9 +5,9 @@
       refresh
     </mat-icon>
     <mat-icon (click)="toggleRefresh()"
-              [matTooltip]="this.repositoryObserverService.refreshing ? 'Stop auto refresh' : 'Start auto refresh'"
+              [matTooltip]="this.repositoryObserverService.refreshing ? 'Stop watching repositories' : 'Start watching repositories'"
               [class]="this.repositoryObserverService.refreshing ? 'rotate' : ''">
-      {{ this.repositoryObserverService.refreshing ? 'sync' : 'play_arrow' }}
+      autorenew
     </mat-icon>
   </div>
 
