@@ -21,7 +21,7 @@
       </div>
     </div>
     <div *ngIf="!isLoggedIn" class="connection-container">
-      <!--app-not-connected></app-not-connected-->
+      <app-home></app-home>
     </div>
     <router-outlet *ngIf="isLoggedIn"></router-outlet>
   </div>

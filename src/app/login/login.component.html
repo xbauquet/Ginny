@@ -1,7 +1,8 @@
 <div class="container">
   <div class="inside-container">
     <div class="icon-container">
-      <img ngSrc="assets/github_logo.png" height="35" width="35" alt="">
+      <img ngSrc="assets/github_logo.png" height="35" width="35" alt=""
+           [style]="theme === 'light' ? 'filter: brightness(0%);' : ''">
       <mat-icon>arrow_forward</mat-icon>
       <img ngSrc="assets/logo.png" height="35" width="35" alt="">
     </div>

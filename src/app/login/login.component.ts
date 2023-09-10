@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {GithubApiService} from "../github-api.service";
+import {ContextService} from "../context.service";
 
 @Component({
   selector: 'app-login',
@@ -7,7 +8,12 @@ import {GithubApiService} from "../github-api.service";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  constructor(private githubApiService: GithubApiService) {
+
+  theme: "light" | "dark" = "light";
+
+  constructor(private githubApiService: GithubApiService,
+              private contextService: ContextService) {
+    this.contextService.theme.subscribe(t => this.theme = t);
   }
 
   connect(value: string) {
