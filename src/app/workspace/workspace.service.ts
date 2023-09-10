@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 import {Workspace} from "./workspace.model";
-import {Repository} from "../../repository.model";
+import {Repository} from "../repository.model";
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +11,9 @@ export class WorkspaceService {
   hasPrevious = new BehaviorSubject(false);
   hasNext = new BehaviorSubject(false);
   workspace = new BehaviorSubject<Workspace | undefined>(undefined);
+  workspaces: Workspace[] = [];
 
   private readonly workspaceStorageKey = "ginny-workspaces";
-  private workspaces: Workspace[] = [];
 
   constructor() {
     this.getWorkspaces();
@@ -71,6 +71,10 @@ export class WorkspaceService {
     this.workspace.value.repos.splice(index, 1);
     this.saveWorkspaces();
     this.workspace.next(this.workspace.value);
+  }
+
+  selectWorkspace(workspace: Workspace) {
+    this.workspace.next(workspace);
   }
 
   private saveWorkspaces() {

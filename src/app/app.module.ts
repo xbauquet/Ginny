@@ -8,7 +8,6 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {NgOptimizedImage} from "@angular/common";
-import {WorkspaceSelectorComponent} from './oldUI/workspace/workspace-selector/workspace-selector.component';
 import {RepositorySelectorComponent} from './oldUI/workspace/repository-selector/repository-selector.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {RunListComponent} from './oldUI/runs/run-list/run-list.component';
@@ -23,6 +22,8 @@ import {UsageComponent} from './oldUI/usage/usage/usage.component';
 import {UsageChartComponent} from './oldUI/usage/usage-chart/usage-chart.component';
 import {RouterModule, Routes} from "@angular/router";
 import {LoginComponent} from "./login/login.component";
+import {WorkspaceComponent} from './workspace/workspace.component';
+import {WorkspaceCreatorComponent} from "./workspace/workspace-creator/workspace-creator.component";
 
 const routes: Routes = [];
 
@@ -30,7 +31,6 @@ const routes: Routes = [];
   declarations: [
     AppComponent,
     HeaderComponent,
-    WorkspaceSelectorComponent,
     RepositorySelectorComponent,
     RunListComponent,
     RunRowComponent,
@@ -39,7 +39,9 @@ const routes: Routes = [];
     RepoRefreshFrequencyComponent,
     UsageComponent,
     UsageChartComponent,
-    LoginComponent
+    LoginComponent,
+    WorkspaceComponent,
+    WorkspaceCreatorComponent
   ],
   imports: [
     BrowserModule,

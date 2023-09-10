@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="workspace-list">
+    <div *ngFor="let workspace of workspaces"
+         [class.selected-workspace]="workspace === selectedWorkspace"
+         class="workspace-container"
+         (click)="selectWorkspace(workspace)">
+      <div class="chip"
+           [style.background-color]="getColor(workspace.name)">
+        {{ workspace.name | slice:0: 2 | uppercase }}
+      </div>
+      {{ workspace.name }}
+    </div>
+  </div>
+  <div class="add-button"
+       (click)="addWorkspace()">
+    <mat-icon matTooltip="Create new workspace">
+      add
+    </mat-icon>
+    <span class="text">New workspace</span>
+  </div>
+</div>

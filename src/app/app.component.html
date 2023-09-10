@@ -4,7 +4,7 @@
       <img ngSrc="assets/logo-24px.png" height="24" width="24" alt="">
     </div>
     <div class="left-menu-content">
-      <!--app-workspace-selection-menu *ngIf="isLoggedIn"></app-workspace-selection-menu-->
+      <app-workspace *ngIf="isLoggedIn"></app-workspace>
       <app-login *ngIf="!isLoggedIn"></app-login>
     </div>
   </div>

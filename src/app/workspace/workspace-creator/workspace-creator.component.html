@@ -1,0 +1,14 @@
+<div class="dialog-container">
+  <mat-icon class="close-button"
+            (click)="close()"
+            *ngIf="data.closable">
+    close
+  </mat-icon>
+  Choose a name for your workspace
+  <input #workspaceNameInput type="text"/>
+  <button (click)="createWorkspace(workspaceNameInput.value)"
+          [disabled]="!workspaceNameInput.value"
+          class="validation-button">
+    Create workspace
+  </button>
+</div>

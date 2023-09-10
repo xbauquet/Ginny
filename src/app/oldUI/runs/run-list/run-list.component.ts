@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
-import {WorkspaceService} from "../../workspace/workspace.service";
+import {WorkspaceService} from "../../../workspace/workspace.service";
 import {RepositoryObserverService} from "../repository-observer.service";
 import {ContextService} from "../../../context.service";
 import {Repository} from "../../../repository.model";
 import {Workflow} from "../workflow.model";
-import {Workspace} from "../../workspace/workspace.model";
+import {Workspace} from "../../../workspace/workspace.model";
 import {RepoRun} from "../repo.run";
 
 @Component({

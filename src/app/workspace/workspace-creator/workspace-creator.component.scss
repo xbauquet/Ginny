@@ -1,0 +1,29 @@
+.close-button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.dialog-container {
+  align-items: center;
+}
+
+.validation-button {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 1000px;
+  border: none;
+  cursor: pointer;
+  background-color: var(--orange);
+
+  &:hover {
+    box-shadow: 0 0 5px var(--text-color)50;
+  }
+}
+
+mat-icon {
+  cursor: pointer;
+}
