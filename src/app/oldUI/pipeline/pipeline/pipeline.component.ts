@@ -1,11 +1,11 @@
 import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
-import {GithubApiService} from "../../github-api.service";
+import {GithubApiService} from "../../../github-api.service";
 import Drawflow from "drawflow";
 import {Pipeline} from "../pipeline.model";
 import {PipelineHtmlBuilder} from "../pipeline-html.builder";
 import {RunnerService} from "../runner.service";
-import {Utils} from "../../../utils";
-import {Repository} from "../../repository.model";
+import {Utils} from "../../../../utils";
+import {Repository} from "../../../repository.model";
 import {Workflow} from "../../runs/workflow.model";
 import {PipelineService} from "../pipeline.service";
 import {WorkspaceService} from "../../workspace/workspace.service";

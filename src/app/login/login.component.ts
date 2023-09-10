@@ -7,11 +7,10 @@ import {GithubApiService} from "../github-api.service";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-
   constructor(private githubApiService: GithubApiService) {
   }
 
-  logIn(token: string) {
-    this.githubApiService.logIn(token);
+  connect(value: string) {
+    this.githubApiService.logIn(value);
   }
 }

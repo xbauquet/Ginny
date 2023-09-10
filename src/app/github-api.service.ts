@@ -6,12 +6,12 @@ import {Octokit} from "@octokit/rest";
 import {Octokit as Core} from "@octokit/core";
 import {BehaviorSubject} from "rxjs";
 import {Repository} from "./repository.model";
-import {Run} from "./runs/run.model";
-import {Workflow} from "./runs/workflow.model";
-import {WorkflowInputs} from "./runs/workflow-inputs.model";
+import {Run} from "./oldUI/runs/run.model";
+import {Workflow} from "./oldUI/runs/workflow.model";
+import {WorkflowInputs} from "./oldUI/runs/workflow-inputs.model";
 import * as yaml from "js-yaml";
-import {Organisation} from "./usage/organisation.model";
-import {ActionsBilling} from "./usage/actions-billing.model";
+import {Organisation} from "./oldUI/usage/organisation.model";
+import {ActionsBilling} from "./oldUI/usage/actions-billing.model";
 
 @Injectable({
   providedIn: 'root'

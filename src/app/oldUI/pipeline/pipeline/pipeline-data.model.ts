@@ -1,4 +1,4 @@
-import {Repository} from "../../repository.model";
+import {Repository} from "../../../repository.model";
 import {Workflow} from "../../runs/workflow.model";
 
 export class PipelineData {

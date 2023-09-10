@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Organisation} from "../organisation.model";
 import {ActionsBilling} from "../actions-billing.model";
-import {GithubApiService} from "../../github-api.service";
+import {GithubApiService} from "../../../github-api.service";
 
 @Component({
   selector: 'app-usage',

@@ -1,39 +1,66 @@
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  height: 100%;
-  margin-top: 20px;
-}
-
-.login-button {
-  padding: 10px 20px;
-  display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  border-radius: 1000px;
-  border: none;
-  cursor: pointer;
-  background-color: var(--orange);
+  height: calc(100% - 20px);
+  padding: 10px;
+}
 
-  &:hover {
-    box-shadow: 0 0 5px var(--text-color)50;
+.inside-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  background-color: var(--accent-20);
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: center;
+}
+
+.message {
+  text-align: center
+}
+
+.input-container {
+  width: 100%;
+  text-align: center;
+
+  input {
+    border-radius: 4px;
+    border: 1px solid var(--light-text-color) 50;
+    background-color: var(--light-background);
+    color: var(--light-text-color);
+    width: calc(100% - 20px);
+    margin-bottom: 10px;
+  }
+
+  a {
+    font-size: 0.8em;
+    color: white;
   }
 }
 
-.login {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--background);
-  border-radius: 40px;
-  padding: 40px;
-}
+.connection-button {
+  padding: 10px 30px;
+  border-radius: 5px;
+  background: var(--light-background);
+  border: none;
+  color: white;
+  cursor: pointer;
 
-.repo-link {
-  color: var(--text-color);
+  &:hover {
+    box-shadow: 1px 1px 1px var(--accent);
+  }
+
+  &:active {
+    box-shadow: -1px -1px 1px var(--accent);
+  }
 }

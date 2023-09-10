@@ -1,8 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
 import {Workflow} from "../workflow.model";
-import {Repository} from "../../repository.model";
-import {GithubApiService} from "../../github-api.service";
+import {Repository} from "../../../repository.model";
+import {GithubApiService} from "../../../github-api.service";
 import {FormBuilder} from "@angular/forms";
 
 @Component({
