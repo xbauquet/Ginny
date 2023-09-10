@@ -259,4 +259,8 @@ export class PipelineComponent {
       this.savePipeline();
     }
   }
+
+  closeStepInputMenu() {
+    this.selectedNode = undefined;
+  }
 }

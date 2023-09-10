@@ -1,6 +1,6 @@
 <div class="container">
   <div class="menu" *ngIf="!selectedWorkspace || selectedWorkspace.repos.length > 0">
-    <div style="display: flex; align-items: center">
+    <div class="pipeline-selector-container">
       <div class="pipeline-selector"
            *ngIf="!isEditable"
            [style.background-color]="getPipelineColor(selectedPipeline?.name)"
@@ -51,22 +51,25 @@
 
   <!--app-no-repo-in-workspace *ngIf="selectedWorkspace && selectedWorkspace.repos.length === 0"></app-no-repo-in-workspace-->
 
-  <div style="flex: 1; position: relative">
+  <div class="pipeline-container">
 
     <div #drawflow
          class="drawflow-container"
          [class]="isEditable ? 'edition-background' : ''">
     </div>
 
-    <div *ngIf="selectedNode" class="step-input-container">
+    <div *ngIf="selectedNode"
+         class="step-input-container">
+      <mat-icon class="close-button"
+                (click)="closeStepInputMenu()">close
+      </mat-icon>
       <div>{{ selectedNode.data.workflow.name }}</div>
-      <div style="font-size: 0.8em; margin-left: 10px; color: #BBBBBB">
+      <div class="repo-name">
         {{ selectedNode.data.repo.owner + " / " + selectedNode.data.repo.name }}
       </div>
 
-      <div style="color: grey">branch</div>
-      <select style="width: 100%;"
-              class="step-input"
+      <div class="input-label">branch</div>
+      <select class="step-input select-input"
               (change)="setBranch($event)">
         <option *ngFor="let branch of selectedNode.data.branches"
                 [value]="branch"
@@ -74,8 +77,8 @@
       </select>
 
       <div *ngFor="let key of Object.keys(selectedNode.data.inputs)"
-           style="display: flex; flex-direction: column; gap: 10px;">
-        <div style="color: grey">{{ key }}</div>
+           class="input-container">
+        <div class="input-label">{{ key }}</div>
         <div>
           <input *ngIf="selectedNode.data.inputs[key].type === 'boolean'"
                  type="checkbox"
@@ -92,8 +95,7 @@
                  [value]="selectedNode.data.inputs[key].value"
                  (change)="setValue($event, key)">
 
-          <select style="width: 100%;"
-                  class="step-input"
+          <select class="step-input select-input"
                   (change)="setValue($event, key)"
                   *ngIf="selectedNode.data.inputs[key].type === 'choice'">
             <option *ngFor="let option of selectedNode.data.inputs[key].options"

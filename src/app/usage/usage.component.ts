@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {Organisation} from "../organisation.model";
-import {ActionsBilling} from "../actions-billing.model";
-import {GithubApiService} from "../../../github-api.service";
+import {Organisation} from "./organisation.model";
+import {ActionsBilling} from "./actions-billing.model";
+import {GithubApiService} from "../github-api.service";
 
 @Component({
   selector: 'app-usage',
@@ -9,6 +9,7 @@ import {GithubApiService} from "../../../github-api.service";
   styleUrls: ['./usage.component.scss']
 })
 export class UsageComponent {
+
   data: { org: Organisation, billing: ActionsBilling }[] = [];
 
   constructor(private githubApiService: GithubApiService) {

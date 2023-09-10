@@ -10,8 +10,8 @@ import {Run} from "./ci-cd/run.model";
 import {Workflow} from "./ci-cd/workflow.model";
 import {WorkflowInputs} from "./ci-cd/workflow-inputs.model";
 import * as yaml from "js-yaml";
-import {Organisation} from "./oldUI/usage/organisation.model";
-import {ActionsBilling} from "./oldUI/usage/actions-billing.model";
+import {Organisation} from "./usage/organisation.model";
+import {ActionsBilling} from "./usage/actions-billing.model";
 
 @Injectable({
   providedIn: 'root'
@@ -87,7 +87,6 @@ export class GithubApiService {
         workflow_id: workflowId,
         per_page: per_page
       });
-      console.log(results)
       return results.data.workflow_runs.map(r => {
         return new Run(
           new Date(r.run_started_at!),

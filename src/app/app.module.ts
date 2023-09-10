@@ -14,8 +14,7 @@ import {WorkflowRunnerComponent} from './workflow-runner/workflow-runner.compone
 import {MatDialogModule} from '@angular/material/dialog';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RepoRefreshFrequencyComponent} from './repo-refresh-frequency/repo-refresh-frequency.component';
-import {UsageComponent} from './oldUI/usage/usage/usage.component';
-import {UsageChartComponent} from './oldUI/usage/usage-chart/usage-chart.component';
+import {UsageChartComponent} from './usage/usage-chart/usage-chart.component';
 import {RouterModule, Routes} from "@angular/router";
 import {LoginComponent} from "./login/login.component";
 import {WorkspaceComponent} from './workspace/workspace.component';
@@ -26,11 +25,13 @@ import {ActionButtonComponent} from './action-button/action-button.component';
 import {CiCdRowComponent} from './ci-cd/ci-cd-row/ci-cd-row.component';
 import {CreatePipelineComponent} from './pipeline/create-pipeline/create-pipeline.component';
 import {PipelineComponent} from "./pipeline/pipeline.component";
+import {UsageComponent} from "./usage/usage.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/CI-CD', pathMatch: 'full'},
   {path: 'CI-CD', component: CiCdComponent},
   {path: 'pipeline', component: PipelineComponent},
+  {path: 'usage', component: UsageComponent}
 
 ];
 
@@ -40,7 +41,6 @@ const routes: Routes = [
     RepositorySelectorComponent,
     WorkflowRunnerComponent,
     RepoRefreshFrequencyComponent,
-    UsageComponent,
     UsageChartComponent,
     LoginComponent,
     WorkspaceComponent,
@@ -50,7 +50,8 @@ const routes: Routes = [
     ActionButtonComponent,
     CiCdRowComponent,
     CreatePipelineComponent,
-    PipelineComponent
+    PipelineComponent,
+    UsageComponent
   ],
   imports: [
     BrowserModule,

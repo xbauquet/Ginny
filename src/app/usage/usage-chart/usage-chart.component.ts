@@ -1,8 +1,8 @@
 import {AfterViewInit, Component, Input} from '@angular/core';
-import {Utils} from "../../../../utils";
+import {Utils} from "../../../utils";
 import {ActionsBilling} from "../actions-billing.model";
 import {Organisation} from "../organisation.model";
-import {ContextService} from "../../../context.service";
+import {ContextService} from "../../context.service";
 import Chart from "chart.js/auto";
 
 @Component({
