@@ -24,8 +24,9 @@ export class RepositorySelectorComponent implements OnInit {
 
   filteredRepoByOwner = new Map<string, Repository[]>();
   private allRepoByOwner = new Map<string, Repository[]>();
-  selectedRepoNames: string[] = [];
+  // selectedRepoNames: string[] = [];
   workspace?: Workspace;
+  repoNames: string[] = [];
 
   constructor(private workspaceService: WorkspaceService,
               private githubApiService: GithubApiService,
@@ -35,14 +36,17 @@ export class RepositorySelectorComponent implements OnInit {
   ngOnInit(): void {
     this.filteredRepoByOwner = new Map<string, Repository[]>();
     this.allRepoByOwner = new Map<string, Repository[]>();
-    this.selectedRepoNames = [];
+    // this.selectedRepoNames = [];
     this.getRepositories()
       .then(result => {
         this.filteredRepoByOwner = result.repoByOwner;
         this.allRepoByOwner = result.repoByOwner;
-        this.selectedRepoNames = result.selectedRepoNames;
-        this.workspace = result.workspace;
       })
+
+    this.workspaceService.workspace.subscribe(w => {
+      this.workspace = w;
+      this.repoNames = this.workspace!.repos.map(r => r.name);
+    });
   }
 
   selectionChanged(event: any, repo: any) {
@@ -54,7 +58,11 @@ export class RepositorySelectorComponent implements OnInit {
   }
 
   close() {
-    this.dialogRef.close();
+    if (this.workspace!.repos.length > 0) {
+      this.dialogRef.close();
+    } else {
+      alert("You must choose at least one repository");
+    }
   }
 
   private async getRepositories() {
@@ -66,16 +74,11 @@ export class RepositorySelectorComponent implements OnInit {
       }
       repoByOwner.get(repository.owner)!.push(repository);
     });
-    const workspace = this.workspaceService.workspace.value;
-    let selectedRepoNames: string[] = [];
-    if (workspace) {
-      selectedRepoNames = workspace.repos.map(repo => repo.name)
-    }
-    return Promise.resolve({repoByOwner, selectedRepoNames, workspace});
+    return Promise.resolve({repoByOwner});
   }
 
   filterByText(text: string) {
-    const filteredRepo= new Map<string, Repository[]>();
+    const filteredRepo = new Map<string, Repository[]>();
     this.allRepoByOwner.forEach((repositories, key) => {
       const filtered = repositories.filter(r => r.name.toUpperCase().indexOf(text.toUpperCase()) > -1);
       if (filtered.length > 0) {

@@ -13,7 +13,7 @@
     </div>
     <div style="padding: 10px">
       <div>Select repositories to include in your workspace: <b>{{ workspace?.name }}</b></div>
-      <div>{{ selectedRepoNames.length }} repositories selected</div>
+      <div>{{ workspace!.repos.length }} repositories selected</div>
     </div>
   </div>
 
@@ -29,7 +29,7 @@
             <input type="checkbox"
                    [name]="repo.name"
                    (change)="selectionChanged($event, repo)"
-                   [checked]="selectedRepoNames.indexOf(repo.name) >= 0">
+                   [checked]="repoNames.includes(repo.name)">
             <label [for]="repo.name">{{ repo.name }}</label>
           </div>
         </div>

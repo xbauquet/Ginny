@@ -51,7 +51,7 @@
 
   <!--app-no-repo-in-workspace *ngIf="selectedWorkspace && selectedWorkspace.repos.length === 0"></app-no-repo-in-workspace-->
 
-  <div class="pipeline-container">
+  <div class="pipeline-container" *ngIf="selectedWorkspace && selectedWorkspace.repos.length > 0">
 
     <div #drawflow
          class="drawflow-container"
