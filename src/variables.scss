@@ -2,8 +2,8 @@
   --green: #61c30b;
   --red: #d75452;
   --grey: #808fa2;
-  --orange:#FD943C;
-  --blue:#1792f6;
+  --orange: #FD943C;
+  --blue: #1792f6;
   --light-grey: #e2e2e2;
 }
 
@@ -11,24 +11,29 @@ $small-screen: 1024px;
 
 
 @mixin darken() {
-  --background: #1F2125;
-  --background-light: #2b2d33;
+  --background: black;
+  --light-background: #081414;
+  --accent: #759A8B;
+  --accent-20: #759A8B20;
   --text-color: #fff;
-  --text-color-light: #b6b9c2;
+
   --hover: #2b2d33;
 }
 
 @mixin lighten() {
-  --background: #f6f7f9;
-  --background-light: #e7e9ef;
+  --background: white;
+  --light-background: #e7e9ef;
+  --accent: #759A8B;
+  --accent-20: #759A8B20;
   --text-color: #000;
-  --text-color-light: #4e525d;
+
   --hover: #e2e2e2;
 }
 
 body.dark {
   @include darken();
 }
+
 body.light {
   @include lighten();
 }

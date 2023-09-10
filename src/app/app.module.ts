@@ -18,10 +18,13 @@ import {RunRowComponent} from './runs/run-row/run-row.component';
 import {WorkflowRunnerComponent} from './runs/workflow-runner/workflow-runner.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { PipelineComponent } from './pipeline/pipeline/pipeline.component';
-import { RepoRefreshFrequencyComponent } from './header/repo-refresh-frequency/repo-refresh-frequency.component';
-import { UsageComponent } from './usage/usage/usage.component';
-import { UsageChartComponent } from './usage/usage-chart/usage-chart.component';
+import {PipelineComponent} from './pipeline/pipeline/pipeline.component';
+import {RepoRefreshFrequencyComponent} from './header/repo-refresh-frequency/repo-refresh-frequency.component';
+import {UsageComponent} from './usage/usage/usage.component';
+import {UsageChartComponent} from './usage/usage-chart/usage-chart.component';
+import {RouterModule, Routes} from "@angular/router";
+
+const routes: Routes = [];
 
 @NgModule({
   declarations: [
@@ -50,7 +53,8 @@ import { UsageChartComponent } from './usage/usage-chart/usage-chart.component';
     MatProgressBarModule,
     MatDialogModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,74 +1,71 @@
 .container {
+  width: 100%;
   height: 100%;
+  background-color: var(--background);
   display: flex;
+}
+
+.left-menu {
+  display: flex;
+  justify-content: center;
   flex-direction: column;
+  width: 280px;
+  height: 100%;
+  background-color: var(--light-background);
+  color: var(--text-color);
+}
+
+.left-menu-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  border-bottom: 1px solid var(--accent-20);
+  border-right: 1px solid var(--accent-20);
+}
+
+.left-menu-content {
+  flex: 1;
 }
 
 .main-section {
-  height: calc(100% - 50px);
-  display: flex;
-
-}
-
-.login {
-  height: 100%;
-  width: 100%;
   flex: 1;
-}
-
-.repository-selector-container {
   height: 100%;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
   width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: var(--background-light);
+  height: 48px;
+  background-color: var(--light-background);
+  color: var(--text-color);
 }
 
-.repository-selector {
-  height: calc(100% - 40px);
+.connection-container {
+  width: 100%;
+  height: calc(100% - 48px);
 }
 
-.repository-selector-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+.version {
+  color: var(--text-color-light);
+  padding-right: 15px;
+  text-align: right;
+}
+
+.app-menu-button {
   cursor: pointer;
-}
-
-.pipeline-container {
+  margin-right: 10px;
   display: flex;
-  overflow: auto;
-}
-
-.resize-handle {
+  align-items: center;
   height: 100%;
-  width: 2px;
-  background-color: lightblue;
-  cursor: ew-resize;
-  // Avoid selection of other elements on the page
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+}
 
-  &:hover {
-    width: 3px;
-    background-color: rgb(93, 159, 235);
+.logo-menu-item {
+  display: flex;
+  align-items: center;
+
+  img {
+    margin-right: 16px;
   }
-}
-
-.usage {
-  border-right: 0.5px solid var(--text-color-light);
-}
-
-.run-list {
-  flex: 1;
-  overflow-y: scroll;
-}
-
-.pipeline {
-  width: calc(100% - 2px);
 }

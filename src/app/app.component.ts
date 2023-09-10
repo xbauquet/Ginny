@@ -1,87 +1,55 @@
-import {AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
+import packageJson from "../../package.json";
 import {ContextService} from "./context.service";
+import {RepoRefreshFrequencyComponent} from "./header/repo-refresh-frequency/repo-refresh-frequency.component";
+import {MatDialog} from "@angular/material/dialog";
 import {GithubApiService} from "./github-api.service";
+import {RepositoryObserverService} from "./runs/repository-observer.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, AfterViewInit {
-
-  @ViewChild('pipelineContainer') pipelineContainer!: ElementRef;
+export class AppComponent {
 
   isLoggedIn = false;
-  showRunList = true;
-  showPipeline = true;
-  showUsage = true;
-
-  private pipelineWidthKey = "pipelineWidthKey";
-  private resizingEvent = {
-    isResizing: false,
-    startingCursorX: 0,
-    startingWidth: 0,
-  };
+  theme = "light";
+  version: string = packageJson.version;
+  frequency = 0;
 
   constructor(private contextService: ContextService,
-              private githubApiService: GithubApiService) {
+              private githubApiService: GithubApiService,
+              private repoObserverService: RepositoryObserverService,
+              private matDialog: MatDialog) {
     this.githubApiService.isLoggedIn.subscribe(v => this.isLoggedIn = v);
-    this.contextService.showPipelines.subscribe(v => this.showPipeline = v);
-    this.contextService.showRuns.subscribe(v => this.showRunList = v);
-    this.contextService.showUsage.subscribe(v => this.showUsage = v);
+    this.contextService.theme.subscribe(this.applyTheme);
+    this.frequency = this.repoObserverService.frequency;
   }
 
-  ngOnInit() {
-    this.contextService.setSmallScreen(window.innerWidth < 1024);
+  logOut() {
+    this.githubApiService.logOut();
   }
 
-  @HostListener("window:resize", []) onResize() {
-    this.contextService.setSmallScreen(window.innerWidth < 1024);
+  toggleTheme() {
+    this.contextService.toggleTheme();
   }
 
-
-  //_______________________________________________________________________________
-  // Resizable pipeline container
-  //_______________________________________________________________________________
-  ngAfterViewInit() {
-    if (this.pipelineContainer) {
-      const pipelineWidth = localStorage.getItem(this.pipelineWidthKey);
-      if (pipelineWidth) {
-        this.pipelineContainer.nativeElement.style.width = pipelineWidth;
-      } else {
-        this.pipelineContainer.nativeElement.style.width = "50%";
-      }
-    }
+  private applyTheme(newTheme: string) {
+    this.theme = newTheme;
+    document.body.classList.remove("dark");
+    document.body.classList.remove("light");
+    document.body.classList.add(newTheme);
   }
 
-  startResizingPipeline(event: MouseEvent) {
-    if (this.pipelineContainer) {
-      this.resizingEvent = {
-        isResizing: true,
-        startingCursorX: event.clientX,
-        startingWidth: this.pipelineContainer.nativeElement.offsetWidth,
-      };
-    }
-  }
-
-  @HostListener('window:mousemove', ['$event'])
-  updatePipelineSize(event: MouseEvent) {
-    if (this.pipelineContainer) {
-      if (!this.resizingEvent.isResizing) {
-        return;
-      }
-      const cursorDeltaX = event.clientX - this.resizingEvent.startingCursorX;
-      const newWidth = this.resizingEvent.startingWidth - cursorDeltaX;
-      const percentage = newWidth / window.innerWidth * 100;
-      this.pipelineContainer.nativeElement.style.width = percentage + "%";
-    }
-  }
-
-  @HostListener('window:mouseup')
-  stopResizing() {
-    if (this.pipelineContainer) {
-      this.resizingEvent.isResizing = false;
-      localStorage.setItem(this.pipelineWidthKey, this.pipelineContainer.nativeElement.style.width);
-    }
+  setFrequency() {
+    this.matDialog.open(RepoRefreshFrequencyComponent, RepoRefreshFrequencyComponent.config)
+      .afterClosed()
+      .subscribe(value => {
+        if (value && value.frequency) {
+          this.repoObserverService.setFrequency(value.frequency * 1000);
+          this.frequency = this.repoObserverService.frequency;
+        }
+      });
   }
 }

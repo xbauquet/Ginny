@@ -1,28 +1,69 @@
 <div class="container">
-  <div>
-    <app-header></app-header>
-  </div>
-  <div *ngIf="!isLoggedIn"
-       class="login">
-    <app-login></app-login>
-  </div>
-  <div class="main-section" *ngIf="isLoggedIn">
-    <div class="usage" *ngIf="showUsage">
-      <app-usage></app-usage>
+  <div class="left-menu">
+    <div class="left-menu-header">
+      <img ngSrc="assets/logo-24px.png" height="24" width="24" alt="">
     </div>
-    <div class="run-list" *ngIf="showRunList">
-      <app-run-list></app-run-list>
+    <div class="left-menu-content">
+      <!--app-workspace-selection-menu *ngIf="isLoggedIn"></app-workspace-selection-menu>
+      <app-connection *ngIf="!isLoggedIn"></app-connection-->
     </div>
-    <div #pipelineContainer
-         class="pipeline-container"
-         [style]="showRunList ? '' : 'flex: 1'"
-         *ngIf="showPipeline">
-      <div *ngIf="showRunList"
-           class="resize-handle"
-           (mousedown)="startResizingPipeline($event)"></div>
-      <div class="pipeline">
-        <app-pipeline></app-pipeline>
+  </div>
+
+  <div class="main-section">
+    <div class="nav-menu">
+      <!--app-top-menu *ngIf="isLoggedIn"></app-top-menu-->
+      <div style="flex: 1"></div>
+      <div class="app-menu-button">
+        <mat-icon matTooltip="Application menu"
+                  [matMenuTriggerFor]="appMenu">
+          more_vert
+        </mat-icon>
       </div>
     </div>
+    <div *ngIf="!isLoggedIn" class="connection-container">
+      <!--app-not-connected></app-not-connected-->
+    </div>
+    <router-outlet *ngIf="isLoggedIn"></router-outlet>
   </div>
 </div>
+
+<!--------------------------------------------
+App menu
+--------------------------------------------->
+<mat-menu #appMenu="matMenu">
+  <button mat-menu-item (click)="toggleTheme()">
+    <mat-icon>{{ theme === "dark" ? "light_mode" : "dark_mode" }}</mat-icon>
+    {{ theme === "dark" ? "Activate light mode" : "Activate dark mode" }}
+  </button>
+  <button mat-menu-item (click)="setFrequency()" *ngIf="isLoggedIn">
+    <mat-icon>sync</mat-icon>
+    Change refresh frequency ({{ frequency / 1000 }}s)
+  </button>
+  <button mat-menu-item (click)="logOut()" *ngIf="isLoggedIn">
+    <mat-icon>logout</mat-icon>
+    Logout
+  </button>
+  <mat-divider></mat-divider>
+  <a mat-menu-item href="https://github.com/xbauquet/Ginny" target="_blank">
+    <mat-icon>code</mat-icon>
+    Sources on github
+  </a>
+  <a mat-menu-item href="https://www.flaticon.com/collections/MTAzODYxOTQ=" target="_blank">
+    <div class="logo-menu-item">
+      <img ngSrc="assets/logo-outline-24px.png"
+           alt=""
+           height="24"
+           width="24">
+      Logo
+    </div>
+  </a>
+
+  <mat-divider></mat-divider>
+  <a mat-menu-item href="https://github.com/xbauquet" target="_blank">
+    <mat-icon>favorite</mat-icon>
+    Coded by @xbauquet
+  </a>
+  <div class="version">
+    {{ version }}
+  </div>
+</mat-menu>
