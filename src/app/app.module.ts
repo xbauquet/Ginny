@@ -24,8 +24,15 @@ import {RouterModule, Routes} from "@angular/router";
 import {LoginComponent} from "./login/login.component";
 import {WorkspaceComponent} from './workspace/workspace.component';
 import {WorkspaceCreatorComponent} from "./workspace/workspace-creator/workspace-creator.component";
+import { CiCdComponent } from './ci-cd/ci-cd.component';
+import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { ActionButtonComponent } from './action-button/action-button.component';
+import { CiCdRowComponent } from './ci-cd/ci-cd-row/ci-cd-row.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path: '', redirectTo: '/CI-CD', pathMatch: 'full'},
+  {path: 'CI-CD', component: CiCdComponent},
+];
 
 @NgModule({
   declarations: [
@@ -41,7 +48,11 @@ const routes: Routes = [];
     UsageChartComponent,
     LoginComponent,
     WorkspaceComponent,
-    WorkspaceCreatorComponent
+    WorkspaceCreatorComponent,
+    CiCdComponent,
+    NavMenuComponent,
+    ActionButtonComponent,
+    CiCdRowComponent
   ],
   imports: [
     BrowserModule,

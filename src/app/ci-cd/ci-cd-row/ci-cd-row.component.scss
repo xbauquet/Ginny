@@ -1,0 +1,70 @@
+.run-row {
+  color: var(--light-text-color);
+  margin: 0 0 0 30px;
+  border-radius: 10px;
+  background-color: var(--light-background);
+  display: flex;
+  border-left: 10px solid #A3D471;
+  height: 50px;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-width: 250px;
+
+  .subtitle {
+    font-size: 0.8em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+  }
+}
+
+.run-information {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+}
+
+.branch-name {
+  width: 100px;
+  text-align: center;
+  text-overflow: ellipsis;
+}
+
+.run-menu-button {
+  cursor: pointer;
+}
+
+.run-row-success {
+  border-left: 10px solid #A3D471;
+}
+
+.run-row-failure {
+  border-left: 10px solid #CF3658;
+}
+
+.run-row-neutral {
+  border-left: 10px solid #545454;
+}
+
+.run-row-cancelled {
+  border-left: 10px solid #545454;
+}
+
+.run-row-timed_out {
+  border-left: 10px solid #CF3658;
+}
+
+.run-row-action_required {
+  border-left: 10px solid #C19236;
+}
+
+.run-row-in_progress {
+  border-left: 10px solid #156797;
+}

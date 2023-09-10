@@ -87,6 +87,7 @@ export class GithubApiService {
         workflow_id: workflowId,
         per_page: per_page
       });
+      console.log(results)
       return results.data.workflow_runs.map(r => {
         return new Run(
           new Date(r.run_started_at!),
@@ -97,7 +98,9 @@ export class GithubApiService {
           r.html_url!,
           r.name!,
           r.rerun_url!,
-          new Date(r.updated_at!)
+          new Date(r.updated_at!),
+          r.head_commit!.message,
+          r.jobs_url
         );
       });
     } else {
