@@ -5,6 +5,8 @@ import {RepoRefreshFrequencyComponent} from "./repo-refresh-frequency/repo-refre
 import {MatDialog} from "@angular/material/dialog";
 import {GithubApiService} from "./github-api.service";
 import {RepositoryObserverService} from "./ci-cd/repository-observer.service";
+import {WorkspaceService} from "./workspace/workspace.service";
+import {Workspace} from "./workspace/workspace.model";
 
 @Component({
   selector: 'app-root',
@@ -17,14 +19,17 @@ export class AppComponent {
   theme = "light";
   version: string = packageJson.version;
   frequency = 0;
+  workspace: Workspace | undefined;
 
   constructor(private contextService: ContextService,
               private githubApiService: GithubApiService,
               private repoObserverService: RepositoryObserverService,
-              private matDialog: MatDialog) {
+              private matDialog: MatDialog,
+              private workspaceService: WorkspaceService) {
     this.githubApiService.isLoggedIn.subscribe(v => this.isLoggedIn = v);
     this.contextService.theme.subscribe(this.applyTheme);
     this.frequency = this.repoObserverService.frequency;
+    this.workspaceService.workspace.subscribe(w => this.workspace = w);
   }
 
   logOut() {

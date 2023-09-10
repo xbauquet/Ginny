@@ -1,0 +1,9 @@
+.container {
+  background-color: var(--light-background);
+  border-radius: 5px;
+  padding: 60px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+}

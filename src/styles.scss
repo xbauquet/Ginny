@@ -17,8 +17,16 @@ html, body {
 }
 
 h1 {
-  color: var(--orange);
-  font-size: 0.9rem;
+  width: 439px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+  background: linear-gradient(95deg, #A3D471 0.66%, var(--light-text-color) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+  padding: 0;
 }
 
 input, select {
@@ -46,6 +54,7 @@ input, select {
 
 .icon-button {
   padding: 5px;
+
   &:hover {
     background-color: var(--background-light);
   }

@@ -28,6 +28,7 @@ import {PipelineComponent} from "./pipeline/pipeline.component";
 import {UsageComponent} from "./usage/usage.component";
 import { HomeComponent } from './home/home.component';
 import { ScreenshotComponent } from './home/screenshot/screenshot.component';
+import { WorkspaceHelpComponent } from './workspace/workspace-help/workspace-help.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/CI-CD', pathMatch: 'full'},
@@ -55,7 +56,8 @@ const routes: Routes = [
     PipelineComponent,
     UsageComponent,
     HomeComponent,
-    ScreenshotComponent
+    ScreenshotComponent,
+    WorkspaceHelpComponent
   ],
   imports: [
     BrowserModule,
