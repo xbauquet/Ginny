@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
-import {RepoRun} from "../oldUI/runs/repo.run";
+import {RepoRun} from "./repo.run";
 import {Workspace} from "../workspace/workspace.model";
-import {RepositoryObserverService} from "../oldUI/runs/repository-observer.service";
+import {RepositoryObserverService} from "./repository-observer.service";
 import {WorkspaceService} from "../workspace/workspace.service";
 import {MatDialog} from "@angular/material/dialog";
-import {RepositorySelectorComponent} from "../oldUI/workspace/repository-selector/repository-selector.component";
+import {RepositorySelectorComponent} from "../repository-selector/repository-selector.component";
 
 @Component({
   selector: 'app-ci-cd',

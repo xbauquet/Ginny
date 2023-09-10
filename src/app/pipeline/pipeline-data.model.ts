@@ -1,5 +1,5 @@
-import {Repository} from "../../../repository.model";
-import {Workflow} from "../../runs/workflow.model";
+import {Repository} from "../repository.model";
+import {Workflow} from "../ci-cd/workflow.model";
 
 export class PipelineData {
   constructor(public stepUUID: string,

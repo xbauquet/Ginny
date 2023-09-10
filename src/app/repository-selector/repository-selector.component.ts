@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {WorkspaceService} from "../../../workspace/workspace.service";
-import {Repository} from "../../../repository.model";
-import {GithubApiService} from "../../../github-api.service";
-import {Workspace} from "../../../workspace/workspace.model";
+import {WorkspaceService} from "../workspace/workspace.service";
+import {Repository} from "../repository.model";
+import {GithubApiService} from "../github-api.service";
+import {Workspace} from "../workspace/workspace.model";
 import {MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
 
 @Component({

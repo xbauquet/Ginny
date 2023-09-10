@@ -1,0 +1,72 @@
+.container {
+  width: 100%;
+  height: calc(100% - 48px);
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.drawflow-container {
+  width: 100%;
+  height: 100%;
+}
+
+.edition-background {
+  background-size: 25px 25px;
+  background-image: linear-gradient(to right, #4e525d30 1px, transparent 1px), linear-gradient(to bottom, #4e525d30 1px, transparent 1px);
+}
+
+.edition-menu {
+  display: flex;
+  gap: 10px;
+  padding: 10px 20px;
+  background-color: var(--background);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
+  mat-icon {
+    cursor: pointer;
+  }
+}
+
+.menu {
+  margin: 2px;
+  background-color: #081414;
+  height: 80px;
+  display: flex;
+  gap: 5px;
+  justify-content: right;
+  width: calc(100% - 4px);
+}
+
+.pipeline-selector {
+  display: flex;
+  gap: 20px;
+  margin-left: 20px;
+  border-radius: 5px;
+  background-color: #4e525d;
+  padding: 7px 10px 7px 15px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 500,
+    'GRAD' 0,
+    'opsz' 24
+}
+
+.step-input-container {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background-color: #081414;
+  padding: 20px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 200px;
+}

@@ -1,0 +1,13 @@
+<div class="dialog-container">
+  <mat-icon class="close-button"
+            (click)="close()">
+    close
+  </mat-icon>
+  Choose a name for your pipeline
+  <input #pipelineNameInput type="text"/>
+  <button (click)="create(pipelineNameInput.value)"
+          [disabled]="!pipelineNameInput.value"
+          class="validation-button">
+    Create pipeline
+  </button>
+</div>

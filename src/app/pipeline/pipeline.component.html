@@ -1,0 +1,147 @@
+<div class="container">
+  <div class="menu" *ngIf="!selectedWorkspace || selectedWorkspace.repos.length > 0">
+    <div style="display: flex; align-items: center">
+      <div class="pipeline-selector"
+           *ngIf="!isEditable"
+           [style.background-color]="getPipelineColor(selectedPipeline?.name)"
+           [matMenuTriggerFor]="pipelineMenu">
+        {{ selectedPipeline ? selectedPipeline.name : 'No pipeline' }}
+        <mat-icon>expand_more</mat-icon>
+      </div>
+
+      <div *ngIf="selectedPipeline && isEditable"
+           class="pipeline-selector"
+           [style.background-color]="getPipelineColor(selectedPipeline.name)">
+        {{ selectedPipeline.name }}
+        <mat-icon>edit</mat-icon>
+      </div>
+    </div>
+
+    <div style="flex: 1"></div>
+    <app-action-button *ngIf="selectedPipeline && isEditable"
+                       [icon]="'add'"
+                       [text]="'Add step'"
+                       [matMenuTriggerFor]="addStepMenu"></app-action-button>
+
+    <app-action-button *ngIf="selectedPipeline && isEditable"
+                       [icon]="'save'"
+                       [text]="'Save pipeline'"
+                       (click)="savePipeline()"></app-action-button>
+
+    <app-action-button *ngIf="selectedPipeline && isEditable"
+                       [icon]="'close'"
+                       [text]="'Leave edition mode'"
+                       (click)="setIsEditable(false)"></app-action-button>
+
+    <app-action-button *ngIf="selectedPipeline && !isEditable"
+                       [icon]="'edit'"
+                       [text]="'Edit pipeline'"
+                       (click)="toggleEditPipeline()"></app-action-button>
+
+    <app-action-button *ngIf="selectedPipeline && !isEditable"
+                       [icon]="'play_arrow'"
+                       [text]="'Run pipeline'"
+                       (click)="runPipeline()"></app-action-button>
+
+    <app-action-button *ngIf="selectedPipeline && !isEditable"
+                       [icon]="'delete'"
+                       [text]="'Delete pipeline'"
+                       (click)="deletePipeline()"></app-action-button>
+  </div>
+
+  <!--app-no-repo-in-workspace *ngIf="selectedWorkspace && selectedWorkspace.repos.length === 0"></app-no-repo-in-workspace-->
+
+  <div style="flex: 1; position: relative">
+
+    <div #drawflow
+         class="drawflow-container"
+         [class]="isEditable ? 'edition-background' : ''">
+    </div>
+
+    <div *ngIf="selectedNode" class="step-input-container">
+      <div>{{ selectedNode.data.workflow.name }}</div>
+      <div style="font-size: 0.8em; margin-left: 10px; color: #BBBBBB">
+        {{ selectedNode.data.repo.owner + " / " + selectedNode.data.repo.name }}
+      </div>
+
+      <div style="color: grey">branch</div>
+      <select style="width: 100%;"
+              class="step-input"
+              (change)="setBranch($event)">
+        <option *ngFor="let branch of selectedNode.data.branches"
+                [value]="branch"
+                [selected]="branch === selectedNode.data.repo.defaultBranch">{{ branch }}</option>
+      </select>
+
+      <div *ngFor="let key of Object.keys(selectedNode.data.inputs)"
+           style="display: flex; flex-direction: column; gap: 10px;">
+        <div style="color: grey">{{ key }}</div>
+        <div>
+          <input *ngIf="selectedNode.data.inputs[key].type === 'boolean'"
+                 type="checkbox"
+                 [value]="selectedNode.data.inputs[key].value"
+                 (change)="setValue($event, key)">
+
+          <input *ngIf="selectedNode.data.inputs[key].type === 'string'"
+                 type="text"
+                 [value]="selectedNode.data.inputs[key].value"
+                 (change)="setValue($event, key)">
+
+          <input *ngIf="selectedNode.data.inputs[key].type === 'number'"
+                 type="number"
+                 [value]="selectedNode.data.inputs[key].value"
+                 (change)="setValue($event, key)">
+
+          <select style="width: 100%;"
+                  class="step-input"
+                  (change)="setValue($event, key)"
+                  *ngIf="selectedNode.data.inputs[key].type === 'choice'">
+            <option *ngFor="let option of selectedNode.data.inputs[key].options"
+                    [value]="option"
+                    [selected]="option === selectedNode.data.inputs[key].value">
+              {{ option }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--------------------------------------------
+  Pipeline menu
+  --------------------------------------------->
+<mat-menu #pipelineMenu="matMenu">
+  <div mat-menu-item
+       *ngFor="let pipeline of pipelines"
+       (click)="selectPipeline(pipeline)">
+    <mat-icon class="material-symbols-outlined"
+              [style.color]="getPipelineColor(pipeline.name)">fiber_manual_record
+    </mat-icon>
+    {{ pipeline.name }}
+  </div>
+  <mat-divider *ngIf="pipelines.length > 0"></mat-divider>
+  <div mat-menu-item
+       (click)="createPipeline()">
+    <mat-icon>add</mat-icon>
+    Create new pipeline
+  </div>
+</mat-menu>
+
+<!--------------------------------------------
+  Add step to pipeline menu
+  --------------------------------------------->
+<mat-menu #addStepMenu="matMenu">
+  <ng-container *ngFor="let run of runRepos">
+    <div class="workflow-selection-menu">
+      <img alt="" [ngSrc]="run.repo.ownerAvatarUrl" width="24" height="24"/>
+      <h1>{{ run.repo.owner }}/{{ run.repo.name }}</h1>
+    </div>
+    <button mat-menu-item
+            *ngFor="let workflowRun of run.workflowRun"
+            (click)="addStep(run.repo, workflowRun.workflow)">
+      {{ workflowRun.workflow.name }}
+    </button>
+  </ng-container>
+</mat-menu>

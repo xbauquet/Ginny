@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
 import packageJson from "../../package.json";
 import {ContextService} from "./context.service";
-import {RepoRefreshFrequencyComponent} from "./oldUI/header/repo-refresh-frequency/repo-refresh-frequency.component";
+import {RepoRefreshFrequencyComponent} from "./repo-refresh-frequency/repo-refresh-frequency.component";
 import {MatDialog} from "@angular/material/dialog";
 import {GithubApiService} from "./github-api.service";
-import {RepositoryObserverService} from "./oldUI/runs/repository-observer.service";
+import {RepositoryObserverService} from "./ci-cd/repository-observer.service";
 
 @Component({
   selector: 'app-root',
