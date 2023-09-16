@@ -21,7 +21,7 @@ export class GithubApiService {
   isLoggedIn = new BehaviorSubject(false);
 
   private octokit?: Core & { paginate: PaginateInterface } & RestEndpointMethods & Api;
-  private tokenKey = "token";
+  private tokenKey = "ginny-token";
 
   constructor() {
     const token = localStorage.getItem(this.tokenKey);

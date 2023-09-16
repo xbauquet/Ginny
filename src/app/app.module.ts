@@ -21,6 +21,8 @@ import { ActionButtonComponent } from './micro-components/action-button/action-b
 import { LoaderComponent } from './micro-components/loader/loader.component';
 import { DonutActionButtonComponent } from './micro-components/donut-action-button/donut-action-button.component';
 import { RunRowComponent } from './run-row/run-row.component';
+import { LoginComponent } from './login/login.component';
+import { CiCdComponent } from './ci-cd/ci-cd.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { RunRowComponent } from './run-row/run-row.component';
     ActionButtonComponent,
     LoaderComponent,
     DonutActionButtonComponent,
-    RunRowComponent
+    RunRowComponent,
+    LoginComponent,
+    CiCdComponent
   ],
   imports: [
     BrowserModule,

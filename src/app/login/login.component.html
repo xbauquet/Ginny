@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="section">
+
+    <div class="h1">
+      Get the best out of your Github actions with Ginny
+    </div>
+
+    <div class="inside-container">
+      <img ngSrc="assets/logo.png" height="60" width="60" alt="">
+
+      <div class="message">
+        Use your Github token to connect to Ginny
+      </div>
+      <div class="input-container">
+        <input #tokenInput type="text" placeholder="Token"/>
+        <a href="https://github.com/xbauquet/Ginny#getting-the-right-token" target="_blank">How to create my
+          token ?</a>
+      </div>
+      <app-button (click)="connect(tokenInput.value)"
+                  [title]="'Connect'"
+                  [color]="'#FD943C'"></app-button>
+    </div>
+
+  </div>
+  <div class="action-button-container">
+  </div>
+</div>
