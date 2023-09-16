@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {ContextService} from "../context.service";
-import {GithubApiService} from "../github-api.service";
+import {GithubApiService} from "../../github-api/github-api.service";
 import packageJson from '../../../../package.json';
-import {RepositoryObserverService} from "../runs/repository-observer.service";
+import {RepositoryObserverService} from "../../github-api/repository-observer.service";
 import {MatDialog} from "@angular/material/dialog";
 import {RepoRefreshFrequencyComponent} from "./repo-refresh-frequency/repo-refresh-frequency.component";
 

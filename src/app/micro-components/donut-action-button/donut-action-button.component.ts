@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {ActionsBilling} from "../../old/usage/actions-billing.model";
-import {Organisation} from "../../old/usage/organisation.model";
+import {ActionsBilling} from "../../github-api/actions-billing.model";
+import {Organisation} from "../../github-api/organisation.model";
 import {Utils} from "../../old/utils";
 import {ContextService} from "../../old/context.service";
 import Chart from "chart.js/auto";

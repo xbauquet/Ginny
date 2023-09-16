@@ -1,5 +1,5 @@
-import {Repository} from "../../repository.model";
-import {Workflow} from "../../runs/workflow.model";
+import {Repository} from "../../../github-api/repository.model";
+import {Workflow} from "../../../github-api/workflow.model";
 
 export class PipelineData {
   constructor(public stepUUID: string,

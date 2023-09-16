@@ -1,4 +1,4 @@
-import {Repository} from "../repository.model";
+import {Repository} from "../../github-api/repository.model";
 
 /**
  * Class representing a workspace.

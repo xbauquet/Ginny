@@ -1,17 +1,17 @@
 import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
-import {GithubApiService} from "../../github-api.service";
+import {GithubApiService} from "../../../github-api/github-api.service";
 import Drawflow from "drawflow";
 import {Pipeline} from "../pipeline.model";
 import {PipelineHtmlBuilder} from "../pipeline-html.builder";
 import {RunnerService} from "../runner.service";
 import {Utils} from "../../utils";
-import {Repository} from "../../repository.model";
-import {Workflow} from "../../runs/workflow.model";
+import {Repository} from "../../../github-api/repository.model";
+import {Workflow} from "../../../github-api/workflow.model";
 import {PipelineService} from "../pipeline.service";
 import {WorkspaceService} from "../../workspace/workspace.service";
 import {Workspace} from "../../workspace/workspace.model";
-import {RepositoryObserverService} from "../../runs/repository-observer.service";
-import {RepoRun} from "../../runs/repo.run";
+import {RepositoryObserverService} from "../../../github-api/repository-observer.service";
+import {RepoRun} from "../../../github-api/repo.run";
 import {PipelineData} from "./pipeline-data.model";
 
 @Component({

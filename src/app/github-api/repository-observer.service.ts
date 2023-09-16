@@ -1,9 +1,9 @@
 import {HostListener, Injectable} from '@angular/core';
 import {Workflow} from "./workflow.model";
 import {Run} from "./run.model";
-import {Workspace} from "../workspace/workspace.model";
-import {WorkspaceService} from "../workspace/workspace.service";
-import {GithubApiService} from "../github-api.service";
+import {Workspace} from "../old/workspace/workspace.model";
+import {WorkspaceService} from "../old/workspace/workspace.service";
+import {GithubApiService} from "./github-api.service";
 import {BehaviorSubject, interval, Subscription} from "rxjs";
 import {RepoRun} from "./repo.run";
 

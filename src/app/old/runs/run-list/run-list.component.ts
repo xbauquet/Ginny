@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
 import {WorkspaceService} from "../../workspace/workspace.service";
-import {RepositoryObserverService} from "../repository-observer.service";
+import {RepositoryObserverService} from "../../../github-api/repository-observer.service";
 import {ContextService} from "../../context.service";
-import {Repository} from "../../repository.model";
-import {Workflow} from "../workflow.model";
+import {Repository} from "../../../github-api/repository.model";
+import {Workflow} from "../../../github-api/workflow.model";
 import {Workspace} from "../../workspace/workspace.model";
-import {RepoRun} from "../repo.run";
+import {RepoRun} from "../../../github-api/repo.run";
 
 @Component({
   selector: 'app-run-list',

@@ -7,6 +7,8 @@ export class Repository {
               public readonly ownerAvatarUrl: string,
               public readonly htmlUrl: string,
               public readonly isPrivate: boolean,
-              public readonly defaultBranch: string) {
+              public readonly defaultBranch: string,
+              public readonly isArchived: boolean,
+              public readonly lastCommitDate: Date) {
   }
 }

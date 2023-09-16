@@ -1,7 +1,7 @@
 import {DrawflowExport, DrawflowNode} from "drawflow";
 import EventEmitter from "eventemitter3";
-import {GithubApiService} from "../github-api.service";
-import {Run} from "../runs/run.model";
+import {GithubApiService} from "../../github-api/github-api.service";
+import {Run} from "../../github-api/run.model";
 
 import {PipelineData} from "./pipeline/pipeline-data.model";
 

@@ -12,6 +12,8 @@ export class Run {
               public htmlUrl: string,
               public runName: string,
               public rerunUrl: string,
-              public updateDate: Date) {
+              public updateDate: Date,
+              public commitMessage: string,
+              public jobsUrl: string) {
   }
 }

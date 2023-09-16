@@ -6,12 +6,12 @@ import {Octokit} from "@octokit/rest";
 import {Octokit as Core} from "@octokit/core";
 import {BehaviorSubject} from "rxjs";
 import {Repository} from "./repository.model";
-import {Run} from "./runs/run.model";
-import {Workflow} from "./runs/workflow.model";
-import {WorkflowInputs} from "./runs/workflow-inputs.model";
+import {Run} from "./run.model";
+import {Workflow} from "./workflow.model";
+import {WorkflowInputs} from "./workflow-inputs.model";
 import * as yaml from "js-yaml";
-import {Organisation} from "./usage/organisation.model";
-import {ActionsBilling} from "./usage/actions-billing.model";
+import {Organisation} from "./organisation.model";
+import {ActionsBilling} from "./actions-billing.model";
 
 @Injectable({
   providedIn: 'root'
@@ -65,7 +65,9 @@ export class GithubApiService {
           r.owner.avatar_url,
           r.html_url,
           r.private,
-          r.default_branch
+          r.default_branch,
+          r.archived,
+          r.pushed_at
         );
       });
     } else {
@@ -97,7 +99,9 @@ export class GithubApiService {
           r.html_url!,
           r.name!,
           r.rerun_url!,
-          new Date(r.updated_at!)
+          new Date(r.updated_at!),
+          r.head_commit!.message,
+          r.jobs_url
         );
       });
     } else {

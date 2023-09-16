@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
-import {Workflow} from "../workflow.model";
-import {Run} from "../run.model";
-import {Repository} from "../../repository.model";
+import {Workflow} from "../../../github-api/workflow.model";
+import {Run} from "../../../github-api/run.model";
+import {Repository} from "../../../github-api/repository.model";
 import {MatDialog} from "@angular/material/dialog";
 import {WorkflowRunnerComponent} from "../workflow-runner/workflow-runner.component";
 

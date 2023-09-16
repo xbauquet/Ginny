@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 import {Workspace} from "./workspace.model";
-import {Repository} from "../repository.model";
+import {Repository} from "../../github-api/repository.model";
 
 @Injectable({
   providedIn: 'root'
