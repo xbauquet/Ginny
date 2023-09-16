@@ -1,0 +1,11 @@
+<div class="section container"
+     [class.selected]="selected">
+  <div class="h2">{{ org.name }}</div>
+  <div class="donut">
+    <img [src]="org.avatarUrl" [alt]="'Avatar for ' + org.name + ' organization'"/>
+    <canvas [id]="uuid"></canvas>
+  </div>
+  <div class="light-text">
+    {{ billing.totalMinutesUsed }} / {{ billing.includedMinutes }} min
+  </div>
+</div>

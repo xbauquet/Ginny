@@ -1,4 +1,6 @@
 import {Component} from '@angular/core';
+import {Organisation} from "../old/usage/organisation.model";
+import {ActionsBilling} from "../old/usage/actions-billing.model";
 
 /**
  * Component displaying all the micro component.
@@ -11,5 +13,25 @@ import {Component} from '@angular/core';
   styleUrls: ['./style.component.scss']
 })
 export class StyleComponent {
+    fakeOrg() {
+      return new Organisation(
+        "",
+        "Org name",
+        "",
+      "https://avatars.githubusercontent.com/u/8179943"
+      );
+    }
 
+    fakeBilling() {
+      return new ActionsBilling(
+        2000,
+        1200,
+        0,
+        {
+          UBUNTU: 300,
+          MAC: 800,
+          WINDOWS: 100
+        }
+      )
+    }
 }

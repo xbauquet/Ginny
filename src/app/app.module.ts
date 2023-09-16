@@ -19,6 +19,7 @@ import { SelectButtonComponent } from './micro-components/select-button/select-b
 import { ButtonComponent } from './micro-components/button/button.component';
 import { ActionButtonComponent } from './micro-components/action-button/action-button.component';
 import { LoaderComponent } from './micro-components/loader/loader.component';
+import { DonutActionButtonComponent } from './micro-components/donut-action-button/donut-action-button.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { LoaderComponent } from './micro-components/loader/loader.component';
     SelectButtonComponent,
     ButtonComponent,
     ActionButtonComponent,
-    LoaderComponent
+    LoaderComponent,
+    DonutActionButtonComponent
   ],
   imports: [
     BrowserModule,

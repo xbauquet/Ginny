@@ -61,6 +61,12 @@
   </div>
   <div class="row">
     <app-loader></app-loader>
+    <app-donut-action-button [org]="fakeOrg()"
+                             [billing]="fakeBilling()"
+                             [selected]="false"></app-donut-action-button>
+    <app-donut-action-button [org]="fakeOrg()"
+                             [billing]="fakeBilling()"
+                             [selected]="true"></app-donut-action-button>
   </div>
 
   <h1>Macro components</h1>
