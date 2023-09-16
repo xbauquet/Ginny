@@ -1,0 +1,30 @@
+.container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: var(--background-light);
+  width: calc(var(--action-button-width) - 40px);
+  color: var(--text-color-light);
+
+  div {
+    font-size: 0.85em;
+    text-align: center;
+  }
+
+  &:hover {
+    color: var(--text-color);
+    background-color: var(--background-ultra-light);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.selected {
+  box-shadow: 0 0 10px 0 var(--text-color);
+}

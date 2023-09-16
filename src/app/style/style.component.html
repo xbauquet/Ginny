@@ -24,8 +24,19 @@
                   [color]="'#BA326E'"></app-button>
     </div>
   </div>
-</div>
 
+  <div class="row">
+    <div>
+      <app-action-button [icon]="'sync'"
+                         [title]="'Action button'"></app-action-button>
+    </div>
+    <div>
+      <app-action-button [icon]="'sync'"
+                         [title]="'Selected button'"
+                         [selected]="true"></app-action-button>
+    </div>
+  </div>
+</div>
 
 <mat-menu #selectMenu="matMenu">
   <div mat-menu-item>

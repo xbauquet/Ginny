@@ -17,6 +17,7 @@ import {routes} from "./appRoutes.enum";
 import { NavButtonComponent } from './micro-components/nav-button/nav-button.component';
 import { SelectButtonComponent } from './micro-components/select-button/select-button.component';
 import { ButtonComponent } from './micro-components/button/button.component';
+import { ActionButtonComponent } from './micro-components/action-button/action-button.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ButtonComponent } from './micro-components/button/button.component';
     StyleComponent,
     NavButtonComponent,
     SelectButtonComponent,
-    ButtonComponent
+    ButtonComponent,
+    ActionButtonComponent
   ],
   imports: [
     BrowserModule,
