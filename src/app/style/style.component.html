@@ -1,1 +1,18 @@
-<p>style works!</p>
+<div class="container">
+  <h1>Buttons</h1>
+  <div class="row">
+    <div>
+      <div>Normal</div>
+      <app-nav-button [icon]="'all_inclusive'"
+                      [title]="'CI / CD'"
+                      style="border: 1px solid black"></app-nav-button>
+    </div>
+    <div>
+      <div>Selected</div>
+      <app-nav-button [icon]="'all_inclusive'"
+                      [title]="'CI / CD'"
+                      [selected]="true"
+                      style="border: 1px solid black"></app-nav-button>
+    </div>
+  </div>
+</div>

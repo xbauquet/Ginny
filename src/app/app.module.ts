@@ -14,11 +14,13 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {StyleComponent} from './style/style.component';
 import {RouterModule} from "@angular/router";
 import {routes} from "./appRoutes.enum";
+import { NavButtonComponent } from './micro-components/nav-button/nav-button.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    StyleComponent
+    StyleComponent,
+    NavButtonComponent
   ],
   imports: [
     BrowserModule,

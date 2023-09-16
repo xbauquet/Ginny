@@ -1,0 +1,28 @@
+@import "../../../variables";
+
+.nav-button {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 0 15px;
+  height: 48px;
+  cursor: pointer;
+  font-size: 0.9em;
+  white-space: nowrap;
+  color: var(--text-color-light);
+  background-color: var(--background);
+  width: calc(100% - 30px);
+
+  &:hover {
+    color: var(--text-color);
+    background-color: var(--background-light);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.selected {
+  color: var(--text-color);
+}
