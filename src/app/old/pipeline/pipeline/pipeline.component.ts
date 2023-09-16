@@ -4,7 +4,7 @@ import Drawflow from "drawflow";
 import {Pipeline} from "../pipeline.model";
 import {PipelineHtmlBuilder} from "../pipeline-html.builder";
 import {RunnerService} from "../runner.service";
-import {Utils} from "../../../utils";
+import {Utils} from "../../utils";
 import {Repository} from "../../repository.model";
 import {Workflow} from "../../runs/workflow.model";
 import {PipelineService} from "../pipeline.service";

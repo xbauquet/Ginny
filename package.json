@@ -27,7 +27,8 @@
     "js-yaml": "^4.1.0",
     "drawflow": "^0.0.59",
     "eventemitter3": "^5.0.1",
-    "chart.js": "^4.3.3"
+    "chart.js": "^4.3.3",
+    "uniqolor": "^1.1.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.1.0",

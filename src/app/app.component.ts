@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
-import {ContextService} from "./context.service";
-import {GithubApiService} from "./github-api.service";
+import {ContextService} from "./old/context.service";
+import {GithubApiService} from "./old/github-api.service";
 
 @Component({
   selector: 'app-root',
