@@ -1,15 +1,14 @@
 <div class="container">
+  <h1>Micro components</h1>
   <div class="row">
     <div>
-      <div>Normal</div>
       <app-nav-button [icon]="'all_inclusive'"
                       [title]="'CI / CD'"
                       style="border: 1px solid black"></app-nav-button>
     </div>
     <div>
-      <div>Selected</div>
       <app-nav-button [icon]="'all_inclusive'"
-                      [title]="'CI / CD'"
+                      [title]="'Selected'"
                       [selected]="true"
                       style="border: 1px solid black"></app-nav-button>
     </div>
@@ -34,9 +33,6 @@
                          [title]="'Selected button'"
                          [selected]="true"></app-action-button>
     </div>
-  </div>
-
-  <div class="row">
     <div class="section"> Section</div>
     <div class="sub-section"> Sub-section</div>
   </div>
@@ -63,6 +59,11 @@
       <div class="light-text">This is a text</div>
     </div>
   </div>
+  <div class="row">
+    <app-loader></app-loader>
+  </div>
+
+  <h1>Macro components</h1>
 
 </div>
 

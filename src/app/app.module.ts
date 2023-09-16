@@ -18,6 +18,7 @@ import { NavButtonComponent } from './micro-components/nav-button/nav-button.com
 import { SelectButtonComponent } from './micro-components/select-button/select-button.component';
 import { ButtonComponent } from './micro-components/button/button.component';
 import { ActionButtonComponent } from './micro-components/action-button/action-button.component';
+import { LoaderComponent } from './micro-components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ActionButtonComponent } from './micro-components/action-button/action-b
     NavButtonComponent,
     SelectButtonComponent,
     ButtonComponent,
-    ActionButtonComponent
+    ActionButtonComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
