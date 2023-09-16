@@ -28,3 +28,15 @@
 .selected {
   box-shadow: 0 0 10px 0 var(--text-color);
 }
+
+.rotate {
+  animation: loading 3s linear infinite;
+  @keyframes loading {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

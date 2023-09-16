@@ -9,4 +9,5 @@ export class ActionButtonComponent {
   @Input() icon!: string;
   @Input() title!: string;
   @Input() selected = false;
+  @Input() rotateIcon = false;
 }

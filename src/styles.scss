@@ -16,18 +16,6 @@ html, body {
   padding: 0;
 }
 
-.rotate {
-  animation: loading 3s linear infinite;
-  @keyframes loading {
-    0% {
-      transform: rotate(0);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-}
-
 .mdc-tooltip__surface {
   margin-top: 10px !important;
   background-color: white !important;
@@ -91,4 +79,8 @@ input {
   color: var(--text-color-light);
   border: none;
   padding: 10px;
+}
+
+.mat-icon {
+  overflow: unset !important;
 }

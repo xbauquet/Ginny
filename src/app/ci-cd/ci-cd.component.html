@@ -1,1 +1,39 @@
-<p>ci-cd works!</p>
+<div class="container">
+  <div class="section">
+
+    <div class="loader"
+         *ngIf="isLoading">
+      <app-loader></app-loader>
+    </div>
+
+    <div *ngFor="let repoRun of repoRuns">
+      <div class="h2">
+        {{ repoRun.repo.owner }} / {{ repoRun.repo.name }}
+      </div>
+      <div *ngFor="let run of repoRun.workflowRun">
+        <app-run-row [run]="run"
+                     [repo]="repoRun.repo"
+                     (runWorkflow)="runWorkflow(run, repoRun.repo)"></app-run-row>
+      </div>
+      <div *ngIf="repoRun.workflowRun.length === 0"
+           class="light-text" style="margin-left: 60px">
+        This repository as no actions
+      </div>
+    </div>
+  </div>
+  <div class="action-button-container">
+    <app-action-button [icon]="'reorder'"
+                       [title]="'Repositories'"
+                       (click)="changeRepositories()"></app-action-button>
+    <app-action-button [icon]="'refresh'"
+                       [title]="'Refresh once'"
+                       (click)="refreshOnce()"></app-action-button>
+    <app-action-button [icon]="'sync'"
+                       [title]="isRefreshing ? 'Stop autorefresh' : 'Start autorefresh'"
+                       [rotateIcon]="isRefreshing"
+                       (click)="toggleAutoRefresh()"></app-action-button>
+    <app-action-button [icon]="'delete'"
+                       [title]="'Delete workspace'"
+                       (click)="deleteWorkspace()"></app-action-button>
+  </div>
+</div>

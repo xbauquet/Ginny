@@ -15,7 +15,7 @@ export class RepositoryObserverService {
   runRepos = new BehaviorSubject<RepoRun[]>([]);
 
   private workspace?: Workspace;
-  private isRefreshing = false;
+  isRefreshing = new BehaviorSubject(false);
   private refreshFrequency = 30000;
   private wasRefreshing = false;
   private scheduler?: Subscription;
@@ -35,10 +35,6 @@ export class RepositoryObserverService {
     return this.refreshFrequency;
   }
 
-  get refreshing(): boolean {
-    return this.isRefreshing;
-  }
-
   async refreshOnce() {
     if (this.workspace) {
       const newArray: RepoRun[] = [];
@@ -56,7 +52,7 @@ export class RepositoryObserverService {
   }
 
   refresh() {
-    this.isRefreshing = true;
+    this.isRefreshing.next(true);
     this.wasRefreshing = true;
     this.refreshOnce().catch(e => console.error(e));
     this.scheduler = interval(this.refreshFrequency)
@@ -64,7 +60,7 @@ export class RepositoryObserverService {
   }
 
   pause(): void {
-    this.isRefreshing = false;
+    this.isRefreshing.next(false);
     this.wasRefreshing = false;
     this.scheduler?.unsubscribe();
   }
@@ -81,12 +77,12 @@ export class RepositoryObserverService {
   @HostListener('document:visibilitychange', ['$event']) visibilitychange() {
     if (document.hidden) {
       if (this.isRefreshing) {
-        this.isRefreshing = false;
+        this.isRefreshing.next(false);
         this.wasRefreshing = true;
       }
     } else {
       if (this.wasRefreshing) {
-        this.isRefreshing = true;
+        this.isRefreshing.next(true);
       }
     }
   }
