@@ -1,34 +1,29 @@
 :root {
-  --green: #61c30b;
-  --red: #d75452;
-  --grey: #808fa2;
-  --orange:#FD943C;
-  --blue:#1792f6;
-  --light-grey: #e2e2e2;
+  --small-screen: 1024px;
+  --margin: 30px;
+  --action-button-width: 160px;
 }
 
-$small-screen: 1024px;
-
-
 @mixin darken() {
-  --background: #1F2125;
-  --background-light: #2b2d33;
+  --background: #1A1A1A;
+  --background-light: #2A2A2A;
+  --background-ultra-light: #3d3d3d;
   --text-color: #fff;
-  --text-color-light: #b6b9c2;
-  --hover: #2b2d33;
+  --text-color-light: #C3C3C3;
 }
 
 @mixin lighten() {
   --background: #f6f7f9;
   --background-light: #e7e9ef;
+  --background-ultra-light: #f6f7f9;
   --text-color: #000;
   --text-color-light: #4e525d;
-  --hover: #e2e2e2;
 }
 
 body.dark {
   @include darken();
 }
+
 body.light {
   @include lighten();
 }

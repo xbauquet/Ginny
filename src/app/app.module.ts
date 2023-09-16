@@ -11,10 +11,14 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatDialogModule} from '@angular/material/dialog';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {StyleComponent} from './style/style.component';
+import {RouterModule} from "@angular/router";
+import {routes} from "./appRoutes.enum";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    StyleComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     MatProgressBarModule,
     MatDialogModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]

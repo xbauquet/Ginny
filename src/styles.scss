@@ -6,29 +6,14 @@
 
 html, body {
   font-family: 'Open sans', sans-serif;
+  width: 100%;
   height: 100%;
   letter-spacing: 0.5px;
   font-size: 1rem;
-  background-color: var(--background-light);
+  background-color: var(--background);
   color: var(--text-color);
   margin: 0;
   padding: 0;
-}
-
-h1 {
-  color: var(--orange);
-  font-size: 0.9rem;
-}
-
-input, select {
-  border: none;
-  background-color: var(--light-grey);
-  padding: 10px;
-}
-
-.mat-mdc-progress-spinner
-.mdc-circular-progress__indeterminate-circle-graphic {
-  stroke: var(--orange) !important;
 }
 
 .rotate {
@@ -43,13 +28,6 @@ input, select {
   }
 }
 
-.icon-button {
-  padding: 5px;
-  &:hover {
-    background-color: var(--background-light);
-  }
-}
-
 .mdc-tooltip__surface {
   margin-top: 10px !important;
   background-color: white !important;
@@ -57,20 +35,4 @@ input, select {
   overflow: hidden !important;
   color: black !important;
   text-align: center !important;
-}
-
-.blur {
-  background: #ffffff80;
-  backdrop-filter: blur(5px);
-}
-
-.dialog-container {
-  width: calc(100% - 40px);
-  height: calc(100% - 40px);
-  max-height: calc(98vh - 40px);
-  padding: 20px;
-  background-color: var(--background);
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
 }
