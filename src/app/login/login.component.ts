@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 import {GithubApiService} from "../github-api/github-api.service";
+import {Router} from "@angular/router";
+import {AppRoutes} from "../appRoutes.enum";
 
 @Component({
   selector: 'app-login',
@@ -8,7 +10,13 @@ import {GithubApiService} from "../github-api/github-api.service";
 })
 export class LoginComponent {
 
-  constructor(private githubApiService: GithubApiService) {
+  constructor(private githubApiService: GithubApiService,
+              private router: Router) {
+    this.githubApiService.isLoggedIn.subscribe(isLoggedIn => {
+      if(isLoggedIn) {
+        this.router.navigateByUrl(AppRoutes.CI_CD);
+      }
+    })
   }
 
   connect(value: string) {

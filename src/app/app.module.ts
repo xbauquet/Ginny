@@ -23,6 +23,8 @@ import { DonutActionButtonComponent } from './micro-components/donut-action-butt
 import { RunRowComponent } from './run-row/run-row.component';
 import { LoginComponent } from './login/login.component';
 import { CiCdComponent } from './ci-cd/ci-cd.component';
+import { WorkspaceCreationComponent } from './workspace/workspace-creation/workspace-creation.component';
+import { WorkspaceRepositorySelectorComponent } from './workspace/workspace-repository-selector/workspace-repository-selector.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { CiCdComponent } from './ci-cd/ci-cd.component';
     DonutActionButtonComponent,
     RunRowComponent,
     LoginComponent,
-    CiCdComponent
+    CiCdComponent,
+    WorkspaceCreationComponent,
+    WorkspaceRepositorySelectorComponent
   ],
   imports: [
     BrowserModule,

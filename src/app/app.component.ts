@@ -2,8 +2,8 @@ import {Component} from '@angular/core';
 import {ContextService} from "./old/context.service";
 import {GithubApiService} from "./github-api/github-api.service";
 import packageJson from "../../package.json";
-import {Workspace} from "./old/workspace/workspace.model";
-import {WorkspaceService} from "./old/workspace/workspace.service";
+import {Workspace} from "./workspace/workspace.model";
+import {WorkspaceService} from "./workspace/workspace.service";
 
 @Component({
   selector: 'app-root',

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Pipeline} from "./pipeline.model";
-import {Workspace} from "../workspace/workspace.model";
-import {WorkspaceService} from "../workspace/workspace.service";
+import {Workspace} from "../../workspace/workspace.model";
+import {WorkspaceService} from "../../workspace/workspace.service";
 import {BehaviorSubject} from "rxjs";
 
 @Injectable({
