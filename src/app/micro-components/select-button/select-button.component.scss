@@ -1,0 +1,18 @@
+.select {
+  border-radius: 10px;
+  padding: 10px 10px 10px 20px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.50);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: calc(100% - 30px);
+  justify-content: space-between;
+
+  &:hover {
+    filter: grayscale(20%);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}

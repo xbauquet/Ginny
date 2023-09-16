@@ -15,12 +15,16 @@ import {StyleComponent} from './style/style.component';
 import {RouterModule} from "@angular/router";
 import {routes} from "./appRoutes.enum";
 import { NavButtonComponent } from './micro-components/nav-button/nav-button.component';
+import { SelectButtonComponent } from './micro-components/select-button/select-button.component';
+import { ButtonComponent } from './micro-components/button/button.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StyleComponent,
-    NavButtonComponent
+    NavButtonComponent,
+    SelectButtonComponent,
+    ButtonComponent
   ],
   imports: [
     BrowserModule,

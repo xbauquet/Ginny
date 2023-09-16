@@ -14,5 +14,31 @@
                       [selected]="true"
                       style="border: 1px solid black"></app-nav-button>
     </div>
+    <div>
+      <app-select-button [matMenuTriggerFor]="selectMenu"
+                         [title]="'My select'"
+                         [color]="'#FD943C'"></app-select-button>
+    </div>
+    <div>
+      <app-button [title]="'My button'"
+                  [color]="'#BA326E'"></app-button>
+    </div>
   </div>
 </div>
+
+
+<mat-menu #selectMenu="matMenu">
+  <div mat-menu-item>
+    <mat-icon>fiber_manual_record</mat-icon>
+    Menu entry 1
+  </div>
+  <div mat-menu-item>
+    <mat-icon>fiber_manual_record</mat-icon>
+    Menu entry 2
+  </div>
+  <mat-divider></mat-divider>
+  <div mat-menu-item>
+    <mat-icon>fiber_manual_record</mat-icon>
+    Menu entry 3
+  </div>
+</mat-menu>
