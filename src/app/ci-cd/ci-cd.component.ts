@@ -87,7 +87,6 @@ export class CiCdComponent {
           });
         })
         .catch(e => console.error(e));
-
     }
   }
 }

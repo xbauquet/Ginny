@@ -27,6 +27,7 @@ import { WorkspaceCreationComponent } from './workspace/workspace-creation/works
 import { WorkspaceRepositorySelectorComponent } from './workspace/workspace-repository-selector/workspace-repository-selector.component';
 import { WorkflowRunnerComponent } from './workflow-runner/workflow-runner.component';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { UsageComponent } from './usage/usage.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     CiCdComponent,
     WorkspaceCreationComponent,
     WorkspaceRepositorySelectorComponent,
-    WorkflowRunnerComponent
+    WorkflowRunnerComponent,
+    UsageComponent
   ],
   imports: [
     BrowserModule,

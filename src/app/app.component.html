@@ -15,6 +15,12 @@
                       routerLink="/ci-cd"
                       routerLinkActive
                       #rlaCiCd="routerLinkActive"></app-nav-button>
+      <app-nav-button [icon]="'analytics'"
+                      [title]="'Usage'"
+                      [selected]="rlaUsage.isActive"
+                      routerLink="/usage"
+                      routerLinkActive
+                      #rlaUsage="routerLinkActive"></app-nav-button>
     </ng-template>
 
     <app-nav-button class="settings"
