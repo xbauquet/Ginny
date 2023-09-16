@@ -13,8 +13,9 @@ export class LoginComponent {
   constructor(private githubApiService: GithubApiService,
               private router: Router) {
     this.githubApiService.isLoggedIn.subscribe(isLoggedIn => {
-      if(isLoggedIn) {
-        this.router.navigateByUrl(AppRoutes.CI_CD);
+      if (isLoggedIn) {
+        this.router.navigateByUrl(AppRoutes.CI_CD)
+          .catch(console.error);
       }
     })
   }

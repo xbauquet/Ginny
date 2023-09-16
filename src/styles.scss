@@ -84,3 +84,11 @@ html, body {
   font-size: 0.9em;
   color: var(--text-color-light);
 }
+
+input {
+  border-radius: 4px;
+  background-color: var(--background-ultra-light);
+  color: var(--text-color-light);
+  border: none;
+  padding: 10px;
+}

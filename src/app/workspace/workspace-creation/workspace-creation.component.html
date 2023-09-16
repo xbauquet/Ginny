@@ -1,1 +1,30 @@
-<p>workspace-creation works!</p>
+<div class="container">
+  <div class="section">
+
+    <div class="h1">
+      Create a new workspace
+    </div>
+
+    <div class="inside-container">
+      <div class="message">
+        Organise your personal repositories and the repositories from your organisations in Workspaces. And
+        change Workspace with a single click.
+      </div>
+      <div class="input-container">
+        <input #workspaceInput type="text" placeholder="Workspace"/>
+      </div>
+      <div style="display: flex; gap: 40px">
+        <app-button (click)="cancel()"
+                    [title]="'Cancel'"
+                    [color]="'#4D4D4D'"
+                    *ngIf="isCancellable"></app-button>
+        <app-button (click)="create(workspaceInput.value)"
+                    [title]="'Create'"
+                    [color]="'#FD943C'"></app-button>
+      </div>
+    </div>
+
+  </div>
+  <div class="action-button-container">
+  </div>
+</div>
