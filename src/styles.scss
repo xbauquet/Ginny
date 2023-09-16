@@ -73,7 +73,7 @@ html, body {
   color: var(--text-color-light);
 }
 
-input {
+input, select {
   border-radius: 4px;
   background-color: var(--background-ultra-light);
   color: var(--text-color-light);
@@ -83,4 +83,12 @@ input {
 
 .mat-icon {
   overflow: unset !important;
+}
+
+.mat-mdc-snack-bar-container {
+  &.success-snack-bar {
+    --mdc-snackbar-container-color: #A3D471;
+    --mat-mdc-snack-bar-button-color: black;
+    --mdc-snackbar-supporting-text-color: black;
+  }
 }

@@ -8,6 +8,8 @@ import {AppRoutes} from "../appRoutes.enum";
 import {Workflow} from "../github-api/workflow.model";
 import {Run} from "../github-api/run.model";
 import {Repository} from "../github-api/repository.model";
+import {GithubApiService} from "../github-api/github-api.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-ci-cd',
@@ -21,9 +23,13 @@ export class CiCdComponent {
   isLoading = false;
   isRefreshing = false;
 
+  workflowRunnerData?: { repo: Repository, workflow: Workflow, branches: string[] };
+
   constructor(private repositoryObserverService: RepositoryObserverService,
               private workspaceService: WorkspaceService,
-              private router: Router) {
+              private githubApiService: GithubApiService,
+              private router: Router,
+              private snackBar: MatSnackBar) {
     this.workspaceService.workspace.subscribe(w => {
       this.isLoading = true;
       this.selectedWorkspace = w;
@@ -53,7 +59,35 @@ export class CiCdComponent {
     this.isRefreshing ? this.repositoryObserverService.pause() : this.repositoryObserverService.refresh();
   }
 
-  runWorkflow(run: { workflow: Workflow; runs: Run[] }, repo: Repository) {
+  showWorkflowInputs(run: { workflow: Workflow; runs: Run[] }, repo: Repository) {
+    this.workflowRunnerData = {
+      repo,
+      workflow: run.workflow,
+      branches: ['main']
+    }
+  }
 
+  closeWorkflowRunner() {
+    this.workflowRunnerData = undefined;
+  }
+
+  runWorkflow(data: {branch: string, inputs: any}) {
+    if (this.workflowRunnerData) {
+      this.githubApiService
+        .runWorkflow(
+          this.workflowRunnerData.repo,
+          this.workflowRunnerData.workflow,
+          data.branch,
+          data.inputs)
+        .then(() => {
+          this.workflowRunnerData = undefined;
+          this.snackBar.open("Workflow started", undefined, {
+            duration: 2000,
+            panelClass: ['success-snack-bar']
+          });
+        })
+        .catch(e => console.error(e));
+
+    }
   }
 }

@@ -25,6 +25,8 @@ import { LoginComponent } from './login/login.component';
 import { CiCdComponent } from './ci-cd/ci-cd.component';
 import { WorkspaceCreationComponent } from './workspace/workspace-creation/workspace-creation.component';
 import { WorkspaceRepositorySelectorComponent } from './workspace/workspace-repository-selector/workspace-repository-selector.component';
+import { WorkflowRunnerComponent } from './workflow-runner/workflow-runner.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { WorkspaceRepositorySelectorComponent } from './workspace/workspace-repo
     LoginComponent,
     CiCdComponent,
     WorkspaceCreationComponent,
-    WorkspaceRepositorySelectorComponent
+    WorkspaceRepositorySelectorComponent,
+    WorkflowRunnerComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,8 @@ import { WorkspaceRepositorySelectorComponent } from './workspace/workspace-repo
     MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
