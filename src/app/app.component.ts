@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {ContextService} from "./old/context.service";
 import {GithubApiService} from "./github-api/github-api.service";
 import packageJson from "../../package.json";
+import {Workspace} from "./old/workspace/workspace.model";
+import {WorkspaceService} from "./old/workspace/workspace.service";
 
 @Component({
   selector: 'app-root',
@@ -16,9 +18,17 @@ export class AppComponent {
 
 
   constructor(private contextService: ContextService,
-              private githubApiService: GithubApiService) {
+              private githubApiService: GithubApiService,
+              private workspaceService: WorkspaceService) {
     this.contextService.theme.subscribe(v => this.applyTheme(v));
-    this.githubApiService.isLoggedIn.subscribe(v => this.isLoggedIn = v);
+    this.githubApiService.isLoggedIn.subscribe(v => {
+      this.isLoggedIn = v;
+      if (this.isLoggedIn && workspaceService.workspaces.length === 0) {
+        // Create workspace
+      } else if (this.isLoggedIn && workspaceService.workspace.value && workspaceService.workspace.value.repos.length === 0) {
+        // Add repo to repo workspace Using guard ?
+      }
+    });
   }
 
   toggleTheme() {

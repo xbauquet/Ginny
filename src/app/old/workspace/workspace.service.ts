@@ -13,7 +13,7 @@ export class WorkspaceService {
   workspace = new BehaviorSubject<Workspace | undefined>(undefined);
 
   private readonly workspaceStorageKey = "ginny-workspaces";
-  private workspaces: Workspace[] = [];
+  workspaces: Workspace[] = [];
 
   constructor() {
     this.getWorkspaces();
