@@ -1,6 +1,22 @@
 <div class="container">
   <div class="menu">
 
+    <div class="workspace-container"
+         *ngIf="workspace && isWorkspacePopulated()">
+      <app-select-button [title]="workspace.name"
+                         [color]="getColor(workspace.name)"
+                         [matMenuTriggerFor]="workspaceMenu"></app-select-button>
+    </div>
+
+    <ng-template [ngIf]="isWorkspacePopulated()">
+      <app-nav-button [icon]="'all_inclusive'"
+                      [title]="'CI / CD'"
+                      [selected]="rlaCiCd.isActive"
+                      routerLink="/ci-cd"
+                      routerLinkActive
+                      #rlaCiCd="routerLinkActive"></app-nav-button>
+    </ng-template>
+
     <app-nav-button class="settings"
                     [icon]="'settings'"
                     [title]="'Settings'"
@@ -32,5 +48,25 @@ Main menu
   </a>
   <div class="version">
     {{ version }}
+  </div>
+</mat-menu>
+
+<!--------------------------------------------
+Workspace menu
+--------------------------------------------->
+<mat-menu #workspaceMenu="matMenu">
+  <div mat-menu-item
+       *ngFor="let w of workspaces"
+       (click)="selectWorkspace(w)">
+    <mat-icon class="material-symbols-outlined"
+              [style.color]="getColor(w.name)">fiber_manual_record
+    </mat-icon>
+    {{ w.name }}
+  </div>
+  <mat-divider></mat-divider>
+  <div mat-menu-item
+       (click)="createWorkspace()">
+    <mat-icon>add</mat-icon>
+    Create new workspace
   </div>
 </mat-menu>
