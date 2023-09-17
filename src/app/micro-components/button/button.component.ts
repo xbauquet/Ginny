@@ -7,7 +7,7 @@ import {Component, Input} from '@angular/core';
 })
 export class ButtonComponent {
   @Input() title!: string;
-  @Input() color!: string;
+  @Input() color = '#FD943C';
 
   adjust(color: string, amount: number) {
     return '#' + color

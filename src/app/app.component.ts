@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ContextService} from "./old/context.service";
+import {ContextService} from "./context.service";
 import {GithubApiService} from "./github-api/github-api.service";
 import packageJson from "../../package.json";
 import {Workspace} from "./workspace/workspace.model";

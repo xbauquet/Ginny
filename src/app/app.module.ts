@@ -28,6 +28,8 @@ import { WorkspaceRepositorySelectorComponent } from './workspace/workspace-repo
 import { WorkflowRunnerComponent } from './workflow-runner/workflow-runner.component';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { UsageComponent } from './usage/usage.component';
+import { PipelineComponent } from './pipeline/pipeline.component';
+import { SafeHtmlPipe } from './style/safe-html.pipe';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { UsageComponent } from './usage/usage.component';
     WorkspaceCreationComponent,
     WorkspaceRepositorySelectorComponent,
     WorkflowRunnerComponent,
-    UsageComponent
+    UsageComponent,
+    PipelineComponent,
+    SafeHtmlPipe
   ],
   imports: [
     BrowserModule,

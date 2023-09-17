@@ -1,9 +1,9 @@
 import {DrawflowExport, DrawflowNode} from "drawflow";
 import EventEmitter from "eventemitter3";
-import {GithubApiService} from "../../github-api/github-api.service";
-import {Run} from "../../github-api/run.model";
+import {GithubApiService} from "../github-api/github-api.service";
+import {Run} from "../github-api/run.model";
 
-import {PipelineData} from "./pipeline/pipeline-data.model";
+import {PipelineData} from "./pipeline-data.model";
 
 export declare interface RunnerService {
   on(event: 'stepStarted', listener: (stepId: string) => void): this;

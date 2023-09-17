@@ -4,6 +4,7 @@ import {ActionsBilling} from "../github-api/actions-billing.model";
 import {Repository} from "../github-api/repository.model";
 import {Workflow} from "../github-api/workflow.model";
 import {Run} from "../github-api/run.model";
+import {PipelineHtmlBuilder} from "../pipeline/pipeline-html.builder";
 
 /**
  * Component displaying all the micro component.
@@ -16,27 +17,27 @@ import {Run} from "../github-api/run.model";
   styleUrls: ['./style.component.scss']
 })
 export class StyleComponent {
-    fakeOrg() {
-      return new Organisation(
-        "",
-        "Org name",
-        "",
+  fakeOrg() {
+    return new Organisation(
+      "",
+      "Org name",
+      "",
       "https://avatars.githubusercontent.com/u/8179943"
-      );
-    }
+    );
+  }
 
-    fakeBilling() {
-      return new ActionsBilling(
-        2000,
-        1200,
-        0,
-        {
-          UBUNTU: 300,
-          MAC: 800,
-          WINDOWS: 100
-        }
-      )
-    }
+  fakeBilling() {
+    return new ActionsBilling(
+      2000,
+      1200,
+      0,
+      {
+        UBUNTU: 300,
+        MAC: 800,
+        WINDOWS: 100
+      }
+    )
+  }
 
   fakeRepo(): Repository {
     return new Repository(
@@ -81,5 +82,102 @@ export class StyleComponent {
       ""
     );
     return {workflow, runs: [run]};
+  }
+
+  getPipelineNode() {
+    const data = {
+      boolean: {key: 'boolean', value: true, type: 'boolean', options: [], description: 'boolean'},
+      choice: {key: 'choice', value: 'choice1', type: 'choice', options: ['choice1', 'choice2'], description: 'choice'},
+      number: {key: 'number', value: 5, type: 'number', options: [], description: 'This is a important number'},
+      text: {key: 'text', value: 'defaultText', type: 'string', options: [], description: 'text'}
+    };
+
+    const builder = new PipelineHtmlBuilder();
+
+    return `
+      <div class="drawflow-container parent-drawflow" style="overflow: unset">
+        <div class="drawflow">
+          <div class="parent-node">
+            <div class="drawflow-node">
+              <div class="inputs">
+                <div class="input input_1"></div>
+              </div>
+              <div class="drawflow_content_node">
+                ${builder.getHTML("xbauquet/Ginny", "Publish", data, ["main", "dev"])}
+              </div>
+              <div class="outputs">
+                <div class="output output_1"></div>
+                <div class="output output_2"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  getPipelineNodeSelected() {
+    const data = {
+      boolean: {key: 'boolean', value: true, type: 'boolean', options: [], description: 'boolean'},
+      choice: {key: 'choice', value: 'choice1', type: 'choice', options: ['choice1', 'choice2'], description: 'choice'},
+      number: {key: 'number', value: 5, type: 'number', options: [], description: 'This is a important number'},
+      text: {key: 'text', value: 'defaultText', type: 'string', options: [], description: 'text'}
+    };
+
+    const builder = new PipelineHtmlBuilder();
+
+    return `
+      <div class="drawflow-container parent-drawflow" style="overflow: unset">
+        <div class="drawflow">
+          <div class="parent-node">
+            <div class="drawflow-node selected">
+              <div class="inputs">
+                <div class="input input_1"></div>
+              </div>
+              <div class="drawflow_content_node">
+                ${builder.getHTML("xbauquet/Ginny", "Publish", data, ["main", "dev"])}
+              </div>
+              <div class="outputs">
+                <div class="output output_1"></div>
+                <div class="output output_2"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  getPipelineNodeDelete() {
+    const data = {
+      boolean: {key: 'boolean', value: true, type: 'boolean', options: [], description: 'boolean'},
+      choice: {key: 'choice', value: 'choice1', type: 'choice', options: ['choice1', 'choice2'], description: 'choice'},
+      number: {key: 'number', value: 5, type: 'number', options: [], description: 'This is a important number'},
+      text: {key: 'text', value: 'defaultText', type: 'string', options: [], description: 'text'}
+    };
+
+    const builder = new PipelineHtmlBuilder();
+
+    return `
+      <div class="drawflow-container parent-drawflow" style="overflow: unset">
+        <div class="drawflow">
+          <div class="parent-node">
+            <div class="drawflow-node selected">
+              <div class="inputs">
+                <div class="input input_1"></div>
+              </div>
+              <div class="drawflow_content_node">
+                ${builder.getHTML("xbauquet/Ginny", "Publish", data, ["main", "dev"])}
+              </div>
+              <div class="outputs">
+                <div class="output output_1 active"></div>
+                <div class="output output_2 active"></div>
+              </div>
+              <div class="drawflow-delete">x</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
   }
 }

@@ -21,6 +21,12 @@
                       routerLink="/usage"
                       routerLinkActive
                       #rlaUsage="routerLinkActive"></app-nav-button>
+      <app-nav-button [icon]="'rebase_edit'"
+                      [title]="'Pipeline'"
+                      [selected]="rlaPipeline.isActive"
+                      routerLink="/pipeline"
+                      routerLinkActive
+                      #rlaPipeline="routerLinkActive"></app-nav-button>
     </ng-template>
 
     <app-nav-button class="settings"

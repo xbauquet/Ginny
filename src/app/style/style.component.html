@@ -80,6 +80,11 @@
                  [repo]="fakeRepo()"></app-run-row>
   </div>
 
+  <div class="section row">
+    <div style="height: 500px; width: 300px" [innerHTML]="getPipelineNode() | safeHtml"></div>
+    <div style="height: 500px; width: 300px" [innerHTML]="getPipelineNodeSelected() | safeHtml"></div>
+    <div style="height: 500px; width: 300px" [innerHTML]="getPipelineNodeDelete() | safeHtml"></div>
+  </div>
 </div>
 
 <mat-menu #selectMenu="matMenu">

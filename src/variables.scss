@@ -2,6 +2,14 @@
   --small-screen: 1024px;
   --margin: 30px;
   --action-button-width: 160px;
+
+  --color-green: #A3D471;
+  --color-red: #CF3658;
+  --color-grey: #545454;
+  --color-blue: #156797;
+  --color-orange: #FD943C;
+  --color-yellow: yellow;
+
 }
 
 @mixin darken() {

@@ -10,6 +10,7 @@ import {
   WorkspaceRepositorySelectorComponent
 } from "./workspace/workspace-repository-selector/workspace-repository-selector.component";
 import {UsageComponent} from "./usage/usage.component";
+import {PipelineComponent} from "./pipeline/pipeline.component";
 
 export enum AppRoutes {
   STYLE = "style",
@@ -17,7 +18,8 @@ export enum AppRoutes {
   CI_CD = "ci-cd",
   WORKSPACE_CREATION = "workspace-creation",
   WORKSPACE_REPOSITORIES = "workspace-repositories",
-  USAGE = "usage"
+  USAGE = "usage",
+  PIPELINE = "pipeline"
 }
 
 export const authGuard: CanActivateFn = (next: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
@@ -56,6 +58,11 @@ export const routes: Routes = [
   {
     path: AppRoutes.USAGE,
     component: UsageComponent,
+    canActivate: [authGuard, workspaceGuard, workspaceRepositoriesGuard]
+  },
+  {
+    path: AppRoutes.PIPELINE,
+    component: PipelineComponent,
     canActivate: [authGuard, workspaceGuard, workspaceRepositoriesGuard]
   }
 ];
