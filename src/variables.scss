@@ -21,9 +21,9 @@
 }
 
 @mixin lighten() {
-  --background: #f6f7f9;
-  --background-light: #e7e9ef;
-  --background-ultra-light: #e7e9ef;
+  --background: #e7e9ef;
+  --background-light: #f6f7f9;
+  --background-ultra-light: #d0d2d7;
   --text-color: #000;
   --text-color-light: #4e525d;
 }

@@ -1,8 +1,6 @@
 import {Component} from '@angular/core';
 import {RepoRun} from "../github-api/repo.run";
-import {Workspace} from "../workspace/workspace.model";
 import {RepositoryObserverService} from "../github-api/repository-observer.service";
-import {WorkspaceService} from "../workspace/workspace.service";
 import {Router} from "@angular/router";
 import {AppRoutes} from "../appRoutes.enum";
 import {Workflow} from "../github-api/workflow.model";
@@ -10,6 +8,7 @@ import {Run} from "../github-api/run.model";
 import {Repository} from "../github-api/repository.model";
 import {GithubApiService} from "../github-api/github-api.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {UserService, Workspace} from "../user/user.service";
 
 /**
  * Display results of the Github actions for the repositories included in the current workspace
@@ -29,13 +28,13 @@ export class CiCdComponent {
   workflowRunnerData?: { repo: Repository, workflow: Workflow, branches: string[] };
 
   constructor(private repositoryObserverService: RepositoryObserverService,
-              private workspaceService: WorkspaceService,
+              private userService: UserService,
               private githubApiService: GithubApiService,
               private router: Router,
               private snackBar: MatSnackBar) {
-    this.workspaceService.workspace.subscribe(w => {
-      this.isLoading = true;
+    this.userService.workspace.subscribe(w => {
       this.selectedWorkspace = w;
+      this.isLoading = true;
     });
     this.repositoryObserverService.isRefreshing.subscribe(v => this.isRefreshing = v);
     this.repositoryObserverService.runRepos.subscribe(v => {
@@ -88,7 +87,7 @@ export class CiCdComponent {
   }
 
   deleteWorkspace() {
-    this.workspaceService.delete();
+    this.userService.deleteCurrentWorkspace();
   }
 
   refreshOnce() {

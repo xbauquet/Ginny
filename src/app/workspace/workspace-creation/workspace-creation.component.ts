@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {WorkspaceService} from "../workspace.service";
 import {Router} from "@angular/router";
-import {Workspace} from "../workspace.model";
 import {Location} from '@angular/common';
 import {AppRoutes} from "../../appRoutes.enum";
+import {UserService, Workspace} from "../../user/user.service";
 
 @Component({
   selector: 'app-workspace-creation',
@@ -14,18 +13,18 @@ export class WorkspaceCreationComponent implements OnInit {
 
   isCancellable = true;
 
-  constructor(private workspaceService: WorkspaceService,
+  constructor(private userService: UserService,
               private location: Location,
               private router: Router) {
   }
 
   ngOnInit() {
-    this.isCancellable = this.workspaceService.workspaces.length > 0;
+    this.isCancellable = !!this.userService.user.value && this.userService.user.value.workspaces.length > 0;
   }
 
   create(value: string) {
     const workspace = new Workspace(value);
-    this.workspaceService.add(workspace);
+    this.userService.addWorkspace(workspace);
     this.router
       .navigateByUrl(AppRoutes.WORKSPACE_REPOSITORIES)
       .catch(console.error);

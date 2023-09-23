@@ -1,10 +1,4 @@
 import {Injectable} from '@angular/core';
-import {PaginateInterface} from "@octokit/plugin-paginate-rest";
-import {RestEndpointMethods} from "@octokit/plugin-rest-endpoint-methods/dist-types/generated/method-types";
-import {Api} from "@octokit/plugin-rest-endpoint-methods/dist-types/types";
-import {Octokit} from "@octokit/rest";
-import {Octokit as Core} from "@octokit/core";
-import {BehaviorSubject} from "rxjs";
 import {Repository} from "./repository.model";
 import {Run} from "./run.model";
 import {Workflow} from "./workflow.model";
@@ -12,53 +6,17 @@ import {WorkflowInputs} from "./workflow-inputs.model";
 import * as yaml from "js-yaml";
 import {Organisation} from "./organisation.model";
 import {ActionsBilling} from "./actions-billing.model";
-import {User} from "./user.model";
+import {OctokitType, UserService} from "../user/user.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class GithubApiService {
 
-  isLoggedIn = new BehaviorSubject(false);
-  user = new BehaviorSubject<User | undefined>(undefined);
+  private octokit?: OctokitType;
 
-  private octokit?: Core & { paginate: PaginateInterface } & RestEndpointMethods & Api;
-  private tokenKey = "ginny-token";
-
-  constructor() {
-    const token = localStorage.getItem(this.tokenKey);
-    if (token) {
-      this.logIn(token);
-    } else {
-      this.logOut();
-    }
-  }
-
-  /***
-   * ******************************************************************************************************************
-   * Authentication
-   * ******************************************************************************************************************
-   */
-  async logIn(token: string) {
-    localStorage.setItem(this.tokenKey, token);
-    this.octokit = new Octokit({auth: token});
-    this.isLoggedIn.next(true);
-    const result = await this.octokit.rest.users.getAuthenticated();
-    const user = new User(
-      result.data.name || "",
-      result.data.login,
-      result.data.email || "",
-      result.data.avatar_url,
-      result.data.html_url
-    );
-    this.user.next(user);
-  }
-
-  logOut() {
-    localStorage.removeItem(this.tokenKey);
-    this.octokit = undefined;
-    this.isLoggedIn.next(false);
-    this.user.next(undefined);
+  constructor(private userService: UserService) {
+    this.userService.octokit.subscribe(o => this.octokit = o);
   }
 
   /***

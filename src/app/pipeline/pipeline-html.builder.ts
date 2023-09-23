@@ -154,9 +154,7 @@ export class PipelineHtmlBuilder {
 
     private addClass(parentClass: string, elementClass: string, classToAdd: string) {
         const parent = document.getElementsByClassName(parentClass)[0];
-        console.log(parent);
         const element = parent.getElementsByClassName(elementClass)[0];
-        console.log(element)
         element.classList.add(classToAdd);
     }
 

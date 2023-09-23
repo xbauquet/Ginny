@@ -1,16 +1,16 @@
 <div class="container">
   <div class="menu">
     <div class="workspace-container"
-         *ngIf="isLoggedIn && workspace && isWorkspacePopulated()">
+         *ngIf="user && workspace && isWorkspacePopulated()">
 
-      <app-user *ngIf="user" [user]="user" (logout)="logOut()"></app-user>
+      <app-user *ngIf="user" [user]="user" (logout)="logout()"></app-user>
 
       <app-select-button [title]="workspace.name"
                          [color]="getWorkspaceColor(workspace.name)"
                          [matMenuTriggerFor]="workspaceMenu"></app-select-button>
     </div>
 
-    <ng-template [ngIf]="isLoggedIn && isWorkspacePopulated()">
+    <ng-template [ngIf]="user && isWorkspacePopulated()">
       <app-nav-button [icon]="'all_inclusive'"
                       [title]="'CI / CD'"
                       [selected]="rlaCiCd.isActive"
@@ -49,7 +49,7 @@ Main menu
 <mat-menu #settingsMenu="matMenu">
   <button mat-menu-item (click)="toggleTheme()">
     <mat-icon>{{ theme === "dark" ? "light_mode" : "dark_mode" }}</mat-icon>
-    {{ theme === "dark" ? "Activate light mode" : "Activate dark mode" }}
+    {{ theme === "dark" ? "Switch to light mode" : "Switch to dark mode" }}
   </button>
   <button mat-menu-item routerLink="/style">
     <mat-icon>style</mat-icon>

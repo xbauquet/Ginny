@@ -1,11 +1,10 @@
 import {HostListener, Injectable} from '@angular/core';
 import {Workflow} from "./workflow.model";
 import {Run} from "./run.model";
-import {Workspace} from "../workspace/workspace.model";
-import {WorkspaceService} from "../workspace/workspace.service";
 import {GithubApiService} from "./github-api.service";
 import {BehaviorSubject, interval, Subscription} from "rxjs";
 import {RepoRun} from "./repo.run";
+import {UserService, Workspace} from "../user/user.service";
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +20,9 @@ export class RepositoryObserverService {
   private scheduler?: Subscription;
   private frequencyKey = "refreshFrequency";
 
-  constructor(private workspaceService: WorkspaceService,
+  constructor(private userService: UserService,
               private githubApiService: GithubApiService) {
-    this.workspaceService.workspace.subscribe(w => {
+    this.userService.workspace.subscribe(w => {
       this.initFrequency();
       this.workspace = w;
       this.runRepos.next([]);

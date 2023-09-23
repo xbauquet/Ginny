@@ -1,13 +1,10 @@
 import {Component} from '@angular/core';
 import {ThemeService} from "./theme.service";
-import {GithubApiService} from "./github-api/github-api.service";
 import packageJson from "../../package.json";
-import {Workspace} from "./workspace/workspace.model";
-import {WorkspaceService} from "./workspace/workspace.service";
 import * as uniqolor from "uniqolor";
 import {Router} from "@angular/router";
 import {AppRoutes} from "./appRoutes.enum";
-import {User} from "./github-api/user.model";
+import {User, UserService, Workspace} from "./user/user.service";
 
 @Component({
   selector: 'app-root',
@@ -17,26 +14,26 @@ import {User} from "./github-api/user.model";
 export class AppComponent {
 
   theme: "light" | "dark" = "light";
-  isLoggedIn = false;
   user?: User;
   version = packageJson.version;
   workspace?: Workspace;
   workspaces: Workspace[] = [];
 
   constructor(private themeService: ThemeService,
-              private githubApiService: GithubApiService,
-              private workspaceService: WorkspaceService,
+              private userService: UserService,
               private router: Router) {
     this.themeService.theme.subscribe(v => this.theme = v);
-    this.githubApiService.isLoggedIn.subscribe(v => {
-      this.isLoggedIn = v;
-      this.router
-        .navigateByUrl(AppRoutes.AUTH)
-        .catch(console.error)
+    this.userService.user.subscribe(u => {
+      this.user = u;
+      if (this.user) {
+        this.workspaces = this.user.workspaces;
+      } else {
+        this.router
+          .navigateByUrl(AppRoutes.AUTH)
+          .catch(console.error);
+      }
     });
-    this.githubApiService.user.subscribe(v => this.user = v);
-    this.workspaceService.workspace.subscribe(v => this.workspace = v);
-    this.workspaces = this.workspaceService.workspaces;
+    this.userService.workspace.subscribe(w => this.workspace = w);
   }
 
   /**
@@ -58,7 +55,7 @@ export class AppComponent {
    * Methods for the workspace menu
    *****************************************/
   selectWorkspace(workspace: Workspace) {
-    this.workspaceService.selectWorkspace(workspace);
+    this.userService.selectWorkspace(workspace);
   }
 
   createWorkspace() {
@@ -74,7 +71,7 @@ export class AppComponent {
     this.themeService.toggleTheme();
   }
 
-  logOut() {
-    this.githubApiService.logOut();
+  logout() {
+    this.userService.logout();
   }
 }

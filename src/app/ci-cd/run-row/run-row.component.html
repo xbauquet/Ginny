@@ -1,22 +1,22 @@
 <div class="container">
   <div class="title-container">
-    <mat-icon [class]="'run-row-' + run.runs[0].conclusion">fiber_manual_record</mat-icon>
+    <mat-icon [class]="run.runs.length > 0 ? 'run-row-' + run.runs[0].conclusion : 'run-row-neutral'">fiber_manual_record</mat-icon>
     <div>
       <div class="h3">
         {{ run.workflow.name }}
       </div>
       <div class="light-text">
-        {{ run.runs[0].commitMessage }}
+        {{ run.runs.length > 0 ? run.runs[0].commitMessage : "" }}
       </div>
     </div>
   </div>
 
   <div class="information-container">
     <div class="light-text date">
-      {{ run.runs[0].startDate | date:'YYYY/MM/dd - HH:mm' }}
+      {{ run.runs.length > 0 ? (run.runs[0].startDate | date:'YYYY/MM/dd - HH:mm') : "No run history for this workflow" }}
     </div>
     <div class="branch light-text">
-      {{ run.runs[0].headBranch }}
+      {{ run.runs.length > 0 ? run.runs[0].headBranch : "" }}
     </div>
     <mat-icon class="light-text"
               [matMenuTriggerFor]="rowMenu">more_vert

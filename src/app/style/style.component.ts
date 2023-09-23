@@ -5,7 +5,7 @@ import {Repository} from "../github-api/repository.model";
 import {Workflow} from "../github-api/workflow.model";
 import {Run} from "../github-api/run.model";
 import {PipelineHtmlBuilder} from "../pipeline/pipeline-html.builder";
-import {User} from "../github-api/user.model";
+import {User} from "../user/user.service";
 
 /**
  * Component displaying components of the app in one page.
@@ -86,13 +86,14 @@ export class StyleComponent {
   }
 
   fakeUser() {
-    return new User(
-      "Xavier",
-      "xbauquet",
-      "xavier@github.com",
-      "https://avatars.githubusercontent.com/u/8179943",
-      "https://github.com/xbauquet"
-    );
+    const user = new User();
+    user.name = "Xavier";
+    user.login = "xbauquet";
+    user.email = "xavier@github.com";
+    user.avatar_url = "https://avatars.githubusercontent.com/u/8179943";
+    user.html_url = "https://github.com/xbauquet";
+    user.workspaces = [];
+    return user;
   }
 
   getPipelineNode() {

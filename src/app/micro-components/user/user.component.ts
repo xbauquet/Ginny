@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {User} from "../../github-api/user.model";
+import {User} from "../../user/user.service";
 
 @Component({
   selector: 'app-user',

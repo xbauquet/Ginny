@@ -1,8 +1,7 @@
 import {Component} from '@angular/core';
 import {Repository} from "../../github-api/repository.model";
-import {WorkspaceService} from "../workspace.service";
 import {GithubApiService} from "../../github-api/github-api.service";
-import {Workspace} from "../workspace.model";
+import {UserService, Workspace} from "../../user/user.service";
 
 export class Filters {
   showArchived = false;
@@ -30,7 +29,7 @@ export class WorkspaceRepositorySelectorComponent {
 
   isLoading = false;
 
-  constructor(private workspaceService: WorkspaceService,
+  constructor(private userService: UserService,
               private githubApiService: GithubApiService) {
   }
 
@@ -48,10 +47,10 @@ export class WorkspaceRepositorySelectorComponent {
 
   selectionChanged(event: any, repo: any) {
     if (event.target.checked) {
-      this.workspaceService.addRepositoryToWorkspace(repo);
+      this.userService.addRepositoryToWorkspace(repo);
       this.selectedRepoNames.push(repo.owner + "/" + repo.name);
     } else {
-      this.workspaceService.removeRepositoryFromWorkspace(repo);
+      this.userService.removeRepositoryFromWorkspace(repo);
       this.selectedRepoNames.splice(this.selectedRepoNames.indexOf(repo.owner + "/" + repo.name), 1);
     }
   }
@@ -132,7 +131,7 @@ export class WorkspaceRepositorySelectorComponent {
       }
       repoByOwner.get(repository.owner)!.push(repository);
     });
-    const workspace = this.workspaceService.workspace.value;
+    const workspace = this.userService.workspace.value;
     let selectedRepoNames: string[] = [];
     if (workspace) {
       selectedRepoNames = workspace.repos.map(repo => repo.owner + "/" + repo.name)
