@@ -15,7 +15,9 @@ $menu-width: 250px;
 
   .workspace-container {
     padding: var(--margin);
-    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
 }
 

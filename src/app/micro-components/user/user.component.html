@@ -1,0 +1,23 @@
+<div *ngIf="user"
+     class="section"
+     [matMenuTriggerFor]="userMenu">
+  <img [src]="user.avatar_url" alt=""/>
+  {{ user.login }}
+</div>
+
+<!--------------------------------------------
+User menu
+--------------------------------------------->
+<mat-menu #userMenu="matMenu">
+  <a mat-menu-item
+     [href]="user.html_url"
+     style="min-width: 200px"
+     target="_blank">
+    <mat-icon class="heart-icon">link</mat-icon>
+    Profile
+  </a>
+  <button mat-menu-item (click)="logout.emit()">
+    <mat-icon>logout</mat-icon>
+    Logout
+  </button>
+</mat-menu>

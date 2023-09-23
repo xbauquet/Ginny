@@ -7,7 +7,7 @@ $node-padding: 20px;
   background: var(--background);
   border: none;
   border-radius: 5px;
-  min-width: 200px;
+  width: 250px;
   padding: $node-padding;
 }
 
@@ -34,6 +34,31 @@ Content
   display: flex;
   flex-direction: column;
   gap: 10px;
+  background-color: var(--background-ultra-light);
+  padding: 15px;
+
+  .box + .box {
+    border-top: 1px solid grey;
+  }
+
+  .box {
+    display: flex;
+    align-items: center;
+    padding: 10px 0 5px 0;
+
+    .light-text {
+      border: none;
+      width: 50%;
+    }
+
+    input, select {
+      background-color: transparent;
+      text-align: center;
+      padding: 0;
+      margin: 0;
+      width: 50%;
+    }
+  }
 }
 
 .background-success {
@@ -50,7 +75,6 @@ Input / Output
 
 $input-output-size: 20px;
 $input-output-border: 3px;
-$input-output-full-size: $input-output-size + $input-output-border + $input-output-border;
 
 .drawflow .drawflow-node .input,
 .drawflow .drawflow-node .output {
@@ -82,11 +106,11 @@ $input-output-full-size: $input-output-size + $input-output-border + $input-outp
 }
 
 .drawflow .drawflow-node .output {
-  right: calc(($node-padding * -1) + ($input-output-full-size / 2));
+  right: calc(($node-padding * -1) + ($input-output-size / 2));
 }
 
 .drawflow .drawflow-node .input {
-  left: calc(($node-padding * -1) - ($input-output-full-size / 2));
+  left: calc(($node-padding * -1) - ($input-output-size / 2));
   border: 3px solid var(--background-ultra-light);
 }
 

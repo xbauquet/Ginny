@@ -12,6 +12,7 @@ import {WorkflowInputs} from "./workflow-inputs.model";
 import * as yaml from "js-yaml";
 import {Organisation} from "./organisation.model";
 import {ActionsBilling} from "./actions-billing.model";
+import {User} from "./user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ import {ActionsBilling} from "./actions-billing.model";
 export class GithubApiService {
 
   isLoggedIn = new BehaviorSubject(false);
+  user = new BehaviorSubject<User | undefined>(undefined);
 
   private octokit?: Core & { paginate: PaginateInterface } & RestEndpointMethods & Api;
   private tokenKey = "ginny-token";
@@ -37,16 +39,26 @@ export class GithubApiService {
    * Authentication
    * ******************************************************************************************************************
    */
-  logIn(token: string) {
+  async logIn(token: string) {
     localStorage.setItem(this.tokenKey, token);
     this.octokit = new Octokit({auth: token});
     this.isLoggedIn.next(true);
+    const result = await this.octokit.rest.users.getAuthenticated();
+    const user = new User(
+      result.data.name || "",
+      result.data.login,
+      result.data.email || "",
+      result.data.avatar_url,
+      result.data.html_url
+    );
+    this.user.next(user);
   }
 
   logOut() {
     localStorage.removeItem(this.tokenKey);
     this.octokit = undefined;
     this.isLoggedIn.next(false);
+    this.user.next(undefined);
   }
 
   /***
@@ -299,3 +311,4 @@ export class GithubApiService {
     }
   }
 }
+

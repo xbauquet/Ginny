@@ -7,6 +7,7 @@ import {WorkspaceService} from "./workspace/workspace.service";
 import * as uniqolor from "uniqolor";
 import {Router} from "@angular/router";
 import {AppRoutes} from "./appRoutes.enum";
+import {User} from "./github-api/user.model";
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ export class AppComponent {
 
   theme: "light" | "dark" = "light";
   isLoggedIn = false;
+  user?: User;
   version = packageJson.version;
   workspace?: Workspace;
   workspaces: Workspace[] = [];
@@ -28,11 +30,11 @@ export class AppComponent {
     this.themeService.theme.subscribe(v => this.theme = v);
     this.githubApiService.isLoggedIn.subscribe(v => {
       this.isLoggedIn = v;
-      console.log(this.isLoggedIn);
       this.router
         .navigateByUrl(AppRoutes.AUTH)
         .catch(console.error)
     });
+    this.githubApiService.user.subscribe(v => this.user = v);
     this.workspaceService.workspace.subscribe(v => this.workspace = v);
     this.workspaces = this.workspaceService.workspaces;
   }

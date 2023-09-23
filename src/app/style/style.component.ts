@@ -5,6 +5,7 @@ import {Repository} from "../github-api/repository.model";
 import {Workflow} from "../github-api/workflow.model";
 import {Run} from "../github-api/run.model";
 import {PipelineHtmlBuilder} from "../pipeline/pipeline-html.builder";
+import {User} from "../github-api/user.model";
 
 /**
  * Component displaying components of the app in one page.
@@ -82,6 +83,16 @@ export class StyleComponent {
       ""
     );
     return {workflow, runs: [run]};
+  }
+
+  fakeUser() {
+    return new User(
+      "Xavier",
+      "xbauquet",
+      "xavier@github.com",
+      "https://avatars.githubusercontent.com/u/8179943",
+      "https://github.com/xbauquet"
+    );
   }
 
   getPipelineNode() {

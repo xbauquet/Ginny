@@ -1,91 +1,100 @@
-<div class="container">
-  <h1>Micro components</h1>
-  <div class="row">
-    <div>
-      <app-nav-button [icon]="'all_inclusive'"
-                      [title]="'CI / CD'"
-                      style="border: 1px solid black"></app-nav-button>
+<app-main-section>
+  <div section class="inner-section">
+    <div class="row">
+      <div>
+        <app-nav-button [icon]="'all_inclusive'"
+                        [title]="'CI / CD'"
+                        style="border: 1px solid black"></app-nav-button>
+      </div>
+      <div>
+        <app-nav-button [icon]="'all_inclusive'"
+                        [title]="'Selected'"
+                        [selected]="true"
+                        style="border: 1px solid black"></app-nav-button>
+      </div>
+      <div>
+        <app-select-button [matMenuTriggerFor]="selectMenu"
+                           [title]="'My select'"
+                           [color]="'#FD943C'"></app-select-button>
+      </div>
+      <div>
+        <app-button [title]="'My button'"
+                    [color]="'#BA326E'"></app-button>
+      </div>
     </div>
-    <div>
-      <app-nav-button [icon]="'all_inclusive'"
-                      [title]="'Selected'"
-                      [selected]="true"
-                      style="border: 1px solid black"></app-nav-button>
+
+    <div class="row">
+      <div>
+        <app-action-button [icon]="'sync'"
+                           [title]="'Action button'"></app-action-button>
+      </div>
+      <div>
+        <app-action-button [icon]="'sync'"
+                           [title]="'Selected button'"
+                           [selected]="true"></app-action-button>
+      </div>
+      <div>
+        <app-action-button [icon]="'sync'"
+                           [title]="'Selected button'"
+                           [rotateIcon]="true"></app-action-button>
+      </div>
+      <div class="section" style="padding: 40px"> Section</div>
+      <div class="sub-section"> Sub-section</div>
     </div>
-    <div>
-      <app-select-button [matMenuTriggerFor]="selectMenu"
-                         [title]="'My select'"
-                         [color]="'#FD943C'"></app-select-button>
+
+    <div class="row">
+      <div>
+        <div>h1</div>
+        <h1 class="h1">This is a title</h1>
+      </div>
+      <div>
+        <div>h2</div>
+        <h2 class="h2">This is a title</h2>
+      </div>
+      <div>
+        <div>h3</div>
+        <h3 class="h3">This is a title</h3>
+      </div>
+      <div>
+        <div>normal</div>
+        <div>This is a text</div>
+      </div>
+      <div>
+        <div>light</div>
+        <div class="light-text">This is a text</div>
+      </div>
     </div>
+    <div class="row">
+      <app-loader></app-loader>
+      <app-donut-action-button [org]="fakeOrg()"
+                               [billing]="fakeBilling()"
+                               [selected]="false"></app-donut-action-button>
+      <app-donut-action-button [org]="fakeOrg()"
+                               [billing]="fakeBilling()"
+                               [selected]="true"></app-donut-action-button>
+      <app-user [user]="fakeUser()"></app-user>
+    </div>
+
     <div>
-      <app-button [title]="'My button'"
-                  [color]="'#BA326E'"></app-button>
+      <app-run-row [run]="fakeRun()"
+                   [repo]="fakeRepo()"></app-run-row>
+    </div>
+
+    <div class="row">
+      <div style="height: 350px; width: 300px" [innerHTML]="getPipelineNode() | safeHtml"></div>
+      <div style="height: 350px; width: 300px" [innerHTML]="getPipelineNodeSelected() | safeHtml"></div>
+      <div style="height: 350px; width: 300px" [innerHTML]="getPipelineNodeDelete() | safeHtml"></div>
+    </div>
+
+    <div class="row">
+      <app-workflow-runner [workflow]="fakeRun().workflow"
+                           [repo]="fakeRepo()"
+                           [branches]="['main', 'dev', 'newFeat']"></app-workflow-runner>
     </div>
   </div>
 
-  <div class="row">
-    <div>
-      <app-action-button [icon]="'sync'"
-                         [title]="'Action button'"></app-action-button>
-    </div>
-    <div>
-      <app-action-button [icon]="'sync'"
-                         [title]="'Selected button'"
-                         [selected]="true"></app-action-button>
-    </div>
-    <div>
-      <app-action-button [icon]="'sync'"
-                         [title]="'Selected button'"
-                         [rotateIcon]="true"></app-action-button>
-    </div>
-    <div class="section"> Section</div>
-    <div class="sub-section"> Sub-section</div>
-  </div>
 
-  <div class="row">
-    <div>
-      <div>h1</div>
-      <h1 class="h1">This is a title</h1>
-    </div>
-    <div>
-      <div>h2</div>
-      <h2 class="h2">This is a title</h2>
-    </div>
-    <div>
-      <div>h3</div>
-      <h3 class="h3">This is a title</h3>
-    </div>
-    <div>
-      <div>normal</div>
-      <div>This is a text</div>
-    </div>
-    <div>
-      <div>light</div>
-      <div class="light-text">This is a text</div>
-    </div>
-  </div>
-  <div class="row">
-    <app-loader></app-loader>
-    <app-donut-action-button [org]="fakeOrg()"
-                             [billing]="fakeBilling()"
-                             [selected]="false"></app-donut-action-button>
-    <app-donut-action-button [org]="fakeOrg()"
-                             [billing]="fakeBilling()"
-                             [selected]="true"></app-donut-action-button>
-  </div>
-
-  <h1>Macro components</h1>
-  <div class="section">
-    <app-run-row [run]="fakeRun()"
-                 [repo]="fakeRepo()"></app-run-row>
-  </div>
-
-  <div class="section row">
-    <div style="height: 500px; width: 300px" [innerHTML]="getPipelineNode() | safeHtml"></div>
-    <div style="height: 500px; width: 300px" [innerHTML]="getPipelineNodeSelected() | safeHtml"></div>
-    <div style="height: 500px; width: 300px" [innerHTML]="getPipelineNodeDelete() | safeHtml"></div>
-  </div>
-</div>
+</app-main-section>
 
 <mat-menu #selectMenu="matMenu">
   <div mat-menu-item>

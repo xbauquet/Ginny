@@ -33,6 +33,7 @@ import {UsageComponent} from './usage/usage.component';
 import {PipelineComponent} from './pipeline/pipeline.component';
 import {SafeHtmlPipe} from './style/safe-html.pipe';
 import { MainSectionComponent } from './main-section/main-section.component';
+import { UserComponent } from './micro-components/user/user.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { MainSectionComponent } from './main-section/main-section.component';
     UsageComponent,
     PipelineComponent,
     SafeHtmlPipe,
-    MainSectionComponent
+    MainSectionComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
