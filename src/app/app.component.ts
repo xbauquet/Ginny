@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ContextService} from "./context.service";
+import {ThemeService} from "./theme.service";
 import {GithubApiService} from "./github-api/github-api.service";
 import packageJson from "../../package.json";
 import {Workspace} from "./workspace/workspace.model";
@@ -21,21 +21,34 @@ export class AppComponent {
   workspace?: Workspace;
   workspaces: Workspace[] = [];
 
-  constructor(private contextService: ContextService,
+  constructor(private themeService: ThemeService,
               private githubApiService: GithubApiService,
               private workspaceService: WorkspaceService,
               private router: Router) {
-    this.contextService.theme.subscribe(v => this.applyTheme(v));
+    this.themeService.theme.subscribe(v => this.theme = v);
     this.githubApiService.isLoggedIn.subscribe(v => this.isLoggedIn = v);
     this.workspaceService.workspace.subscribe(v => this.workspace = v);
     this.workspaces = this.workspaceService.workspaces;
   }
 
+  /**
+   * Rather the workspace contains repositories or not
+   */
   isWorkspacePopulated() {
     return !this.router.url.includes("workspace")
       || (this.router.url.includes("workspace-repositories") && this.workspace && this.workspace.repos.length > 0);
   }
 
+  /**
+   * Generate a determinist color from the workspace name
+   */
+  getWorkspaceColor(workspaceName: string): string {
+    return uniqolor(workspaceName).color;
+  }
+
+  /*****************************************
+   * Methods for the workspace menu
+   *****************************************/
   selectWorkspace(workspace: Workspace) {
     this.workspaceService.selectWorkspace(workspace);
   }
@@ -46,22 +59,14 @@ export class AppComponent {
       .catch(console.error);
   }
 
+  /*****************************************
+   * Methods for the settings menu
+   *****************************************/
   toggleTheme() {
-    this.contextService.toggleTheme();
+    this.themeService.toggleTheme();
   }
 
   logOut() {
     this.githubApiService.logOut();
-  }
-
-  getColor(text: string): string {
-    return uniqolor(text).color;
-  }
-
-  private applyTheme(newTheme: "light" | "dark") {
-    this.theme = newTheme;
-    document.body.classList.remove("dark");
-    document.body.classList.remove("light");
-    document.body.classList.add(newTheme);
   }
 }

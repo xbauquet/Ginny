@@ -22,14 +22,23 @@ export enum AppRoutes {
   PIPELINE = "pipeline"
 }
 
+/**
+ * Redirect the user to the login page is not authenticated
+ */
 export const authGuard: CanActivateFn = (next: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
   return inject(GithubApiService).isLoggedIn.value ? true : inject(Router).createUrlTree(['/' + AppRoutes.AUTH]);
 }
 
+/**
+ * Redirect the user to the Workspace creation page if the list of workspaces is empty
+ */
 export const workspaceGuard: CanActivateFn = (next: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
   return inject(WorkspaceService).workspaces.length > 0 ? true : inject(Router).createUrlTree(['/' + AppRoutes.WORKSPACE_CREATION]);
 }
 
+/**
+ * Redirect the user to the Workspace repository selection page if the workspace doesn't have any repositories
+ */
 export const workspaceRepositoriesGuard: CanActivateFn = (next: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
   const workspace = inject(WorkspaceService).workspace.value;
   return workspace && workspace.repos.length > 0 ? true : inject(Router).createUrlTree(['/' + AppRoutes.WORKSPACE_REPOSITORIES]);

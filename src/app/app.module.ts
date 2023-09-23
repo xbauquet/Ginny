@@ -14,22 +14,25 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {StyleComponent} from './style/style.component';
 import {RouterModule} from "@angular/router";
 import {routes} from "./appRoutes.enum";
-import { NavButtonComponent } from './micro-components/nav-button/nav-button.component';
-import { SelectButtonComponent } from './micro-components/select-button/select-button.component';
-import { ButtonComponent } from './micro-components/button/button.component';
-import { ActionButtonComponent } from './micro-components/action-button/action-button.component';
-import { LoaderComponent } from './micro-components/loader/loader.component';
-import { DonutActionButtonComponent } from './micro-components/donut-action-button/donut-action-button.component';
-import { RunRowComponent } from './run-row/run-row.component';
-import { LoginComponent } from './login/login.component';
-import { CiCdComponent } from './ci-cd/ci-cd.component';
-import { WorkspaceCreationComponent } from './workspace/workspace-creation/workspace-creation.component';
-import { WorkspaceRepositorySelectorComponent } from './workspace/workspace-repository-selector/workspace-repository-selector.component';
-import { WorkflowRunnerComponent } from './workflow-runner/workflow-runner.component';
+import {NavButtonComponent} from './micro-components/nav-button/nav-button.component';
+import {SelectButtonComponent} from './micro-components/select-button/select-button.component';
+import {ButtonComponent} from './micro-components/button/button.component';
+import {ActionButtonComponent} from './micro-components/action-button/action-button.component';
+import {LoaderComponent} from './micro-components/loader/loader.component';
+import {DonutActionButtonComponent} from './micro-components/donut-action-button/donut-action-button.component';
+import {RunRowComponent} from './ci-cd/run-row/run-row.component';
+import {LoginComponent} from './login/login.component';
+import {CiCdComponent} from './ci-cd/ci-cd.component';
+import {WorkspaceCreationComponent} from './workspace/workspace-creation/workspace-creation.component';
+import {
+  WorkspaceRepositorySelectorComponent
+} from './workspace/workspace-repository-selector/workspace-repository-selector.component';
+import {WorkflowRunnerComponent} from './ci-cd/workflow-runner/workflow-runner.component';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
-import { UsageComponent } from './usage/usage.component';
-import { PipelineComponent } from './pipeline/pipeline.component';
-import { SafeHtmlPipe } from './style/safe-html.pipe';
+import {UsageComponent} from './usage/usage.component';
+import {PipelineComponent} from './pipeline/pipeline.component';
+import {SafeHtmlPipe} from './style/safe-html.pipe';
+import { MainSectionComponent } from './main-section/main-section.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,8 @@ import { SafeHtmlPipe } from './style/safe-html.pipe';
     WorkflowRunnerComponent,
     UsageComponent,
     PipelineComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    MainSectionComponent
   ],
   imports: [
     BrowserModule,

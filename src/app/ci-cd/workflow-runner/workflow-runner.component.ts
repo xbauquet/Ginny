@@ -1,8 +1,11 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Workflow} from "../github-api/workflow.model";
-import {Repository} from "../github-api/repository.model";
-import {WorkflowInputs} from "../github-api/workflow-inputs.model";
+import {Workflow} from "../../github-api/workflow.model";
+import {Repository} from "../../github-api/repository.model";
+import {WorkflowInputs} from "../../github-api/workflow-inputs.model";
 
+/**
+ * Displays input options to run a specific Github action (Workflow)
+ */
 @Component({
   selector: 'app-workflow-runner',
   templateUrl: './workflow-runner.component.html',

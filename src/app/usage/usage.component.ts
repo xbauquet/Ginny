@@ -3,6 +3,9 @@ import {Organisation} from "../github-api/organisation.model";
 import {ActionsBilling} from "../github-api/actions-billing.model";
 import {GithubApiService} from "../github-api/github-api.service";
 
+/**
+ * Displays usage of Github actions by organization / user
+ */
 @Component({
   selector: 'app-usage',
   templateUrl: './usage.component.html',
@@ -15,10 +18,11 @@ export class UsageComponent {
   }
 
   ngOnInit() {
-    this.getInfo().catch(e => console.error(e));
+    this.getUsageInformation()
+      .catch(console.error);
   }
 
-  private async getInfo() {
+  private async getUsageInformation() {
     this.data = [];
     const user = await this.githubApiService.getUserAsOrg();
     const userBilling = await this.githubApiService.actionBillingForUser(user.name);

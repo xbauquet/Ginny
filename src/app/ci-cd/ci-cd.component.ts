@@ -11,6 +11,10 @@ import {Repository} from "../github-api/repository.model";
 import {GithubApiService} from "../github-api/github-api.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
+/**
+ * Display results of the Github actions for the repositories included in the current workspace
+ * Also allow to run a workflow that can be triggered manually (has the workflow_dispatch triggering event)
+ */
 @Component({
   selector: 'app-ci-cd',
   templateUrl: './ci-cd.component.html',
@@ -19,7 +23,6 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class CiCdComponent {
   repoRuns: RepoRun[] = [];
   selectedWorkspace?: Workspace;
-
   isLoading = false;
   isRefreshing = false;
 
@@ -41,6 +44,43 @@ export class CiCdComponent {
     });
   }
 
+  /*****************************************
+   * Methods to run workflows
+   *****************************************/
+  async showWorkflowInputs(run: { workflow: Workflow; runs: Run[] }, repo: Repository) {
+    this.workflowRunnerData = {
+      repo,
+      workflow: run.workflow,
+      branches: await this.githubApiService.listBranchNames(repo)
+    }
+  }
+
+  closeWorkflowRunner() {
+    this.workflowRunnerData = undefined;
+  }
+
+  runWorkflow(data: { branch: string, inputs: any }) {
+    if (this.workflowRunnerData) {
+      this.githubApiService
+        .runWorkflow(
+          this.workflowRunnerData.repo,
+          this.workflowRunnerData.workflow,
+          data.branch,
+          data.inputs)
+        .then(() => {
+          this.closeWorkflowRunner();
+          this.snackBar.open("Workflow started", undefined, {
+            duration: 2000,
+            panelClass: ['success-snack-bar']
+          });
+        })
+        .catch(console.error);
+    }
+  }
+
+  /*****************************************
+   * Methods for the action menu
+   *****************************************/
   changeRepositories() {
     this.router
       .navigateByUrl(AppRoutes.WORKSPACE_REPOSITORIES)
@@ -57,36 +97,5 @@ export class CiCdComponent {
 
   toggleAutoRefresh() {
     this.isRefreshing ? this.repositoryObserverService.pause() : this.repositoryObserverService.refresh();
-  }
-
-  showWorkflowInputs(run: { workflow: Workflow; runs: Run[] }, repo: Repository) {
-    this.workflowRunnerData = {
-      repo,
-      workflow: run.workflow,
-      branches: ['main']
-    }
-  }
-
-  closeWorkflowRunner() {
-    this.workflowRunnerData = undefined;
-  }
-
-  runWorkflow(data: {branch: string, inputs: any}) {
-    if (this.workflowRunnerData) {
-      this.githubApiService
-        .runWorkflow(
-          this.workflowRunnerData.repo,
-          this.workflowRunnerData.workflow,
-          data.branch,
-          data.inputs)
-        .then(() => {
-          this.workflowRunnerData = undefined;
-          this.snackBar.open("Workflow started", undefined, {
-            duration: 2000,
-            panelClass: ['success-snack-bar']
-          });
-        })
-        .catch(e => console.error(e));
-    }
   }
 }

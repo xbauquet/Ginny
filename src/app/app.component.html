@@ -4,7 +4,7 @@
     <div class="workspace-container"
          *ngIf="workspace && isWorkspacePopulated()">
       <app-select-button [title]="workspace.name"
-                         [color]="getColor(workspace.name)"
+                         [color]="getWorkspaceColor(workspace.name)"
                          [matMenuTriggerFor]="workspaceMenu"></app-select-button>
     </div>
 
@@ -71,7 +71,7 @@ Workspace menu
        *ngFor="let w of workspaces"
        (click)="selectWorkspace(w)">
     <mat-icon class="material-symbols-outlined"
-              [style.color]="getColor(w.name)">fiber_manual_record
+              [style.color]="getWorkspaceColor(w.name)">fiber_manual_record
     </mat-icon>
     {{ w.name }}
   </div>

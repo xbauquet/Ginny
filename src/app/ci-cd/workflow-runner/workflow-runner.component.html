@@ -1,0 +1,48 @@
+<div class="sub-section">
+  <div class="h2">{{ workflow.name }}</div>
+  <div class="h2">{{ repo.owner + " / " + repo.name }}</div>
+
+
+  <div class="input-container">
+    <div>branch</div>
+    <select (change)="setBranch($event)">
+      <option *ngFor="let branch of branches"
+              [value]="branch"
+              [selected]="branch === repo.defaultBranch">{{ branch }}</option>
+    </select>
+  </div>
+
+  <div *ngFor="let input of workflow.inputs"
+       class="input-container">
+    <div>{{ input.key }}</div>
+    <div class="light-text">{{ input.description }}</div>
+    <div>
+      <input *ngIf="input.type === 'boolean'"
+             type="checkbox"
+             [value]="input.defaultValue"
+             (change)="setValue($event, input)">
+
+      <input *ngIf="input.type === 'string'"
+             type="text"
+             [value]="input.defaultValue"
+             (change)="setValue($event, input)">
+
+      <input *ngIf="input.type === 'number'"
+             type="number"
+             [value]="input.defaultValue"
+             (change)="setValue($event, input)">
+
+      <select class="step-input select-input"
+              (change)="setValue($event, input)"
+              *ngIf="input.type === 'choice'">
+        <option *ngFor="let option of input.options"
+                [value]="option"
+                [selected]="option === input.defaultValue">
+          {{ option }}
+        </option>
+      </select>
+    </div>
+  </div>
+  <app-button [title]="'Run workflow'"
+              (click)="runWorkflow()"></app-button>
+</div>

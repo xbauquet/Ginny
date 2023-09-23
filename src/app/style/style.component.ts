@@ -7,7 +7,7 @@ import {Run} from "../github-api/run.model";
 import {PipelineHtmlBuilder} from "../pipeline/pipeline-html.builder";
 
 /**
- * Component displaying all the micro component.
+ * Component displaying components of the app in one page.
  * This component is not made for the end user, it is a
  * tool for development and debug.
  */
