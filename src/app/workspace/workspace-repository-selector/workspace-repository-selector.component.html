@@ -1,6 +1,5 @@
-<div class="container">
-  <div class="section">
-
+<app-main-section>
+  <div section class="inner-section">
     <div class="loader"
          *ngIf="isLoading">
       <app-loader></app-loader>
@@ -60,9 +59,9 @@
         </div>
       </div>
     </div>
-
   </div>
-  <div class="action-button-container">
+
+  <ng-container actions>
     <app-action-button [title]="'Unselected'"
                        [icon]="'fiber_manual_record'"
                        [selected]="filters.showUnselected"
@@ -79,5 +78,5 @@
                        [icon]="'inventory_2'"
                        [selected]="filters.showArchived"
                        (click)="onArchivedFilterChanged(!filters.showArchived)"></app-action-button>
-  </div>
-</div>
+  </ng-container>
+</app-main-section>

@@ -7,7 +7,7 @@
   justify-content: center;
   cursor: pointer;
   background-color: var(--background-light);
-  width: calc(var(--action-button-width) - 40px);
+  width: var(--action-button-width);
   color: var(--text-color-light);
 
   div {

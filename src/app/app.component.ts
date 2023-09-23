@@ -26,7 +26,13 @@ export class AppComponent {
               private workspaceService: WorkspaceService,
               private router: Router) {
     this.themeService.theme.subscribe(v => this.theme = v);
-    this.githubApiService.isLoggedIn.subscribe(v => this.isLoggedIn = v);
+    this.githubApiService.isLoggedIn.subscribe(v => {
+      this.isLoggedIn = v;
+      console.log(this.isLoggedIn);
+      this.router
+        .navigateByUrl(AppRoutes.AUTH)
+        .catch(console.error)
+    });
     this.workspaceService.workspace.subscribe(v => this.workspace = v);
     this.workspaces = this.workspaceService.workspaces;
   }

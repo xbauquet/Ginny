@@ -1,11 +1,11 @@
-<div class="container">
-  <div class="section">
+<app-main-section>
+  <div section class="inner-section">
     <div class="light-text coming-soon">More coming soon</div>
   </div>
-  <div class="action-button-container">
+  <ng-container actions>
     <div *ngFor="let d of data">
       <app-donut-action-button [org]="d.org"
                                [billing]="d.billing"></app-donut-action-button>
     </div>
-  </div>
-</div>
+  </ng-container>
+</app-main-section>

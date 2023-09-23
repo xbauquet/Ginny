@@ -2,13 +2,13 @@
   <div class="menu">
 
     <div class="workspace-container"
-         *ngIf="workspace && isWorkspacePopulated()">
+         *ngIf="isLoggedIn && workspace && isWorkspacePopulated()">
       <app-select-button [title]="workspace.name"
                          [color]="getWorkspaceColor(workspace.name)"
                          [matMenuTriggerFor]="workspaceMenu"></app-select-button>
     </div>
 
-    <ng-template [ngIf]="isWorkspacePopulated()">
+    <ng-template [ngIf]="isLoggedIn && isWorkspacePopulated()">
       <app-nav-button [icon]="'all_inclusive'"
                       [title]="'CI / CD'"
                       [selected]="rlaCiCd.isActive"

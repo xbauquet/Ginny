@@ -1,7 +1,7 @@
-<div class="container">
-  <div class="section"
-       (click)="closeWorkflowRunner()">
-
+<app-main-section>
+  <div section
+       (click)="closeWorkflowRunner()"
+       class="inner-section">
     <div class="workflow-runner-container"
          (click)="$event.stopPropagation()">
       <app-workflow-runner *ngIf="workflowRunnerData"
@@ -31,7 +31,8 @@
       </div>
     </div>
   </div>
-  <div class="action-button-container">
+
+  <ng-container actions>
     <app-action-button [icon]="'reorder'"
                        [title]="'Repositories'"
                        (click)="changeRepositories()"></app-action-button>
@@ -45,5 +46,5 @@
     <app-action-button [icon]="'delete'"
                        [title]="'Delete workspace'"
                        (click)="deleteWorkspace()"></app-action-button>
-  </div>
-</div>
+  </ng-container>
+</app-main-section>

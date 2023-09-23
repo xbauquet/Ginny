@@ -1,7 +1,7 @@
 .container {
   padding: var(--margin) var(--margin) var(--margin) 10px;
-  width: calc(100% - var(--margin));
-  height: calc(100% - var(--margin) - var(--margin));
+  width: 100%;
+  height: 100%;
   display: flex;
   gap: var(--margin);
 }
@@ -11,4 +11,8 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+.section {
+  flex: 1;
 }
