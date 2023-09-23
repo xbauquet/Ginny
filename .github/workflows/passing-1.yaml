@@ -1,0 +1,10 @@
+name: Passing 1
+on:
+  workflow_dispatch:
+
+jobs:
+  Passing1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run
+        run: echo "passing 1"

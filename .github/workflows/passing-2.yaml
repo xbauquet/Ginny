@@ -1,0 +1,33 @@
+name: Passing 2
+on:
+  workflow_dispatch:
+    inputs:
+      choice:
+        description: 'choice'
+        required: true
+        default: 'choice1'
+        type: choice
+        options:
+          - choice1
+          - choice2
+      text:
+        description: 'text'
+        required: true
+        default: 'defaultText'
+        type: string
+      number:
+        description: 'This is a important number'
+        required: true
+        default: 5
+        type: number
+      boolean:
+        description: 'boolean'
+        required: true
+        default: true
+        type: boolean
+jobs:
+  Passing2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run
+        run: echo "passing 2"

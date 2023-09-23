@@ -1,0 +1,10 @@
+name: Failing 1
+on:
+  workflow_dispatch:
+
+jobs:
+  Failing1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run
+        run: exit 1
