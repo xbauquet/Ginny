@@ -2,53 +2,22 @@
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 @import "drawflow/dist/drawflow.min.css";
 @import "variables";
-@import "progress_bar";
 @import "pipeline";
+
+html, div {
+  box-sizing: border-box;
+}
 
 html, body {
   font-family: 'Open sans', sans-serif;
+  width: 100%;
   height: 100%;
   letter-spacing: 0.5px;
   font-size: 1rem;
-  background-color: var(--background-light);
+  background-color: var(--background);
   color: var(--text-color);
   margin: 0;
   padding: 0;
-}
-
-h1 {
-  color: var(--orange);
-  font-size: 0.9rem;
-}
-
-input, select {
-  border: none;
-  background-color: var(--light-grey);
-  padding: 10px;
-}
-
-.mat-mdc-progress-spinner
-.mdc-circular-progress__indeterminate-circle-graphic {
-  stroke: var(--orange) !important;
-}
-
-.rotate {
-  animation: loading 3s linear infinite;
-  @keyframes loading {
-    0% {
-      transform: rotate(0);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-}
-
-.icon-button {
-  padding: 5px;
-  &:hover {
-    background-color: var(--background-light);
-  }
 }
 
 .mdc-tooltip__surface {
@@ -60,18 +29,74 @@ input, select {
   text-align: center !important;
 }
 
-.blur {
-  background: #ffffff80;
-  backdrop-filter: blur(5px);
+.section {
+  border-radius: 10px;
+  background: var(--background-light);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.50);
 }
 
-.dialog-container {
-  width: calc(100% - 40px);
-  height: calc(100% - 40px);
-  max-height: calc(98vh - 40px);
-  padding: 20px;
-  background-color: var(--background);
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.sub-section {
+  border-radius: 10px;
+  background: var(--background);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.50);
+  padding: 40px;
+}
+
+.inner-section {
+  height: 100%;
+  width: 100%;
+}
+
+.h1 {
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(96deg, #fdbd86 -16.88%, #FD943C 83.22%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.h2 {
+  padding: 0;
+  margin: 0;
+  color: var(--text-color);
+  font-size: 1em;
+  font-weight: normal;
+}
+
+.h3 {
+  padding: 0;
+  margin: 0;
+  color: var(--text-color-light);
+  font-size: 0.9em;
+  font-weight: normal;
+}
+
+.light-text {
+  padding: 0;
+  margin: 0;
+  font-size: 0.9em;
+  color: var(--text-color-light);
+}
+
+input, select {
+  border-radius: 4px;
+  background-color: var(--background-ultra-light);
+  color: var(--text-color-light);
+  border: none;
+  padding: 10px;
+}
+
+.mat-icon {
+  overflow: unset !important;
+}
+
+.mat-mdc-snack-bar-container {
+  &.success-snack-bar {
+    --mdc-snackbar-container-color: #A3D471;
+    --mat-mdc-snack-bar-button-color: black;
+    --mdc-snackbar-supporting-text-color: black;
+  }
 }

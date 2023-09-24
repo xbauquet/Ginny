@@ -1,0 +1,23 @@
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.sub-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+select {
+  width: 100%;
+  background-color: var(--background-light);
+}
+
+input {
+  width: calc(100% - 20px);
+  background-color: var(--background-light);
+}

@@ -1,0 +1,50 @@
+<app-main-section>
+  <div section
+       (click)="closeWorkflowRunner()"
+       class="inner-section">
+    <div class="workflow-runner-container"
+         (click)="$event.stopPropagation()">
+      <app-workflow-runner *ngIf="workflowRunnerData"
+                           (run)="runWorkflow($event)"
+                           [repo]="workflowRunnerData.repo"
+                           [workflow]="workflowRunnerData.workflow"
+                           [branches]="workflowRunnerData.branches"></app-workflow-runner>
+    </div>
+
+    <div class="loader"
+         *ngIf="isLoading">
+      <app-loader></app-loader>
+    </div>
+
+    <div *ngFor="let repoRun of repoRuns">
+      <div class="h2">
+        {{ repoRun.repo.owner }} / {{ repoRun.repo.name }}
+      </div>
+      <div *ngFor="let run of repoRun.workflowRun">
+        <app-run-row [run]="run"
+                     [repo]="repoRun.repo"
+                     (runWorkflow)="showWorkflowInputs(run, repoRun.repo)"></app-run-row>
+      </div>
+      <div *ngIf="repoRun.workflowRun.length === 0"
+           class="light-text" style="margin-left: 60px">
+        This repository as no actions
+      </div>
+    </div>
+  </div>
+
+  <ng-container actions>
+    <app-action-button [icon]="'reorder'"
+                       [title]="'Repositories'"
+                       (click)="changeRepositories()"></app-action-button>
+    <app-action-button [icon]="'refresh'"
+                       [title]="'Refresh once'"
+                       (click)="refreshOnce()"></app-action-button>
+    <app-action-button [icon]="'sync'"
+                       [title]="isRefreshing ? 'Stop autorefresh' : 'Start autorefresh'"
+                       [rotateIcon]="isRefreshing"
+                       (click)="toggleAutoRefresh()"></app-action-button>
+    <app-action-button [icon]="'delete'"
+                       [title]="'Delete workspace'"
+                       (click)="deleteWorkspace()"></app-action-button>
+  </ng-container>
+</app-main-section>

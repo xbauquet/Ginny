@@ -1,0 +1,7 @@
+<div class="nav-button"
+     [class.selected]="selected">
+  <mat-icon>{{ icon }}</mat-icon>
+  {{ title }}
+  <div style="flex: 1"></div>
+  <mat-icon *ngIf="selected">chevron_right</mat-icon>
+</div>

@@ -1,0 +1,27 @@
+.inner-section {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  overflow: scroll;
+  padding: 0 10%;
+  position: relative;
+  margin: 40px 0;
+  height: calc(100% - 80px);
+}
+
+.workflow-runner-container {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.h2 {
+  margin-bottom: 20px;
+}

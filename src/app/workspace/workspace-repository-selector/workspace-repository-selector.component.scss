@@ -1,0 +1,125 @@
+.inner-section {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.search-bar {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+
+  input {
+    flex: 1;
+    caret-color: var(--text-color);
+    color: var(--text-color);
+    font-size: 1em;
+    background-color: var(--background-light);
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: var(--text-color-light);
+    }
+  }
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 20px;
+}
+
+.filter-active {
+  background-color: #FD943C50;
+}
+
+.repo-list {
+  flex: 1;
+  overflow: scroll;
+  padding: 0 40px 40px 40px;
+}
+
+.repo-row {
+  display: flex;
+  gap: 50px;
+  padding: 20px 40px;
+
+  &:hover {
+    background-color: var(--background);
+  }
+
+}
+
+
+/****************************
+ Input checkbox https://alvarotrigo.com/blog/css-checkbox-styles/
+ *****************************/
+.styled-input-single {
+  position: relative;
+  padding: 0 0 0 30px;
+
+  label {
+    cursor: pointer;
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      border-radius: 50%;
+    }
+
+    &:before {
+      left: 0;
+      width: 16px;
+      height: 16px;
+      margin: -8px 0 0;
+      background: #f7f7f7;
+      box-shadow: 0 0 1px grey;
+    }
+
+    &:after {
+      left: 3px;
+      width: 10px;
+      height: 10px;
+      margin: -5px 0 0;
+      opacity: 0;
+      background: #FD943C;
+      transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+    }
+  }
+
+  input[type="checkbox"] {
+    position: absolute;
+    top: 0;
+    left: -9999px;
+    visibility: hidden;
+
+    &:checked + label {
+      &:before {
+      }
+
+      &:after {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+      }
+    }
+  }
+}

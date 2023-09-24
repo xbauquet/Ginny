@@ -1,27 +1,23 @@
-<div class="container">
-  <img ngSrc="assets/logo.png" height="100" width="100" alt="">
-  <h2>Welcome to Ginny</h2>
+<app-main-section>
+  <div section
+       class="inner-section">
+    <div class="h1">
+      Get the best out of your Github actions with Ginny
+    </div>
 
-  <div>
-    What can you do with Ginny:
-    <ul>
-      <li>Organise your repositories in Workspaces</li>
-      <li>Monitor your actions</li>
-      <li>Run your actions</li>
-      <li>Create multi-repo pipelines</li>
-    </ul>
-    Learn more: <a href="https://github.com/xbauquet/Ginny"
-                   target="_blank"
-                   class="repo-link">xbauquet/Ginny</a>
-  </div>
+    <div class="sub-section inside-container">
+      <img ngSrc="assets/logo.png" height="60" width="60" alt="">
 
-  <div class="login">
-    <div>Use your Github token to login</div>
-    <input #tokenInput type="text" placeholder="Token..."/>
-    <button (click)="logIn(tokenInput.value)"
-            class="login-button">
-      <mat-icon>login</mat-icon>
-      Login with a token
-    </button>
+      <div class="message">
+        Use your Github token to connect to Ginny
+      </div>
+      <div class="input-container">
+        <input #tokenInput type="text" placeholder="Token"/>
+        <a href="https://github.com/xbauquet/Ginny#getting-the-right-token" target="_blank">How to create my
+          token ?</a>
+      </div>
+      <app-button (click)="login(tokenInput.value)"
+                  [title]="'Connect'"></app-button>
+    </div>
   </div>
-</div>
+</app-main-section>

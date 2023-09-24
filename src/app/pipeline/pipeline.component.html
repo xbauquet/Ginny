@@ -1,0 +1,99 @@
+<app-main-section>
+  <div section
+       class="inner-section">
+    <div *ngIf="pipelines.length === 0 || showCreatePipeline"
+         class="pipeline-creation">
+      <div class="h1">
+        Create a new pipeline
+      </div>
+
+      <div class="inside-container">
+        <div class="message">
+          Organise your personal repositories and the repositories from your organisations in Workspaces. And
+          change Workspace with a single click.
+        </div>
+        <div class="input-container">
+          <input #pipelineInput type="text" placeholder="Pipeline"/>
+        </div>
+        <div style="display: flex; gap: 40px">
+          <app-button (click)="createPipeline(pipelineInput.value)"
+                      [title]="'Create'"></app-button>
+        </div>
+      </div>
+    </div>
+
+    <div #drawflow
+         class="drawflow-container"
+         [class]="isEditable ? 'edition-background' : ''">
+    </div>
+    <div class="pipeline-button" *ngIf="pipelines.length > 0">
+      <app-select-button [title]="selectedPipeline ? selectedPipeline.name : 'Select a pipeline'"
+                         [color]="selectedPipeline ? getPipelineColor(selectedPipeline.name) : '#4e525d'"
+                         [matMenuTriggerFor]="pipelineMenu"></app-select-button>
+    </div>
+  </div>
+  <ng-container actions>
+    <app-action-button *ngIf="selectedPipeline && isEditable"
+                       [icon]="'add'"
+                       [title]="'Add step'"
+                       [matMenuTriggerFor]="addStepMenu"></app-action-button>
+    <app-action-button *ngIf="selectedPipeline && isEditable"
+                       [icon]="'save'"
+                       [title]="'Save pipeline'"
+                       (click)="savePipeline()"></app-action-button>
+
+    <app-action-button *ngIf="selectedPipeline && isEditable"
+                       [icon]="'close'"
+                       [title]="'Leave edition mode'"
+                       (click)="setIsEditable(false)"></app-action-button>
+    <app-action-button *ngIf="selectedPipeline && !isEditable"
+                       [icon]="'edit'"
+                       [title]="'Edit pipeline'"
+                       (click)="toggleEditPipeline()"></app-action-button>
+    <app-action-button *ngIf="selectedPipeline && !isEditable"
+                       [icon]="'play_arrow'"
+                       [title]="'Run pipeline'"
+                       (click)="runPipeline()"></app-action-button>
+    <app-action-button *ngIf="selectedPipeline && !isEditable"
+                       [icon]="'delete'"
+                       [title]="'Delete pipeline'"
+                       (click)="deletePipeline()"></app-action-button>
+  </ng-container>
+</app-main-section>
+
+<!--------------------------------------------
+  Pipeline menu
+  --------------------------------------------->
+<mat-menu #pipelineMenu="matMenu">
+  <div mat-menu-item
+       *ngFor="let pipeline of pipelines"
+       (click)="setSelectedPipeline(pipeline)">
+    <mat-icon class="material-symbols-outlined"
+              [style.color]="getPipelineColor(pipeline.name)">fiber_manual_record
+    </mat-icon>
+    {{ pipeline.name }}
+  </div>
+  <mat-divider *ngIf="pipelines.length > 0"></mat-divider>
+  <div mat-menu-item
+       (click)="showPipelineCreation()">
+    <mat-icon>add</mat-icon>
+    Create new pipeline
+  </div>
+</mat-menu>
+
+<!--------------------------------------------
+  Add step to pipeline menu
+  --------------------------------------------->
+<mat-menu #addStepMenu="matMenu">
+  <ng-container *ngFor="let run of runRepos">
+    <div class="workflow-selection-menu">
+      <img alt="" [ngSrc]="run.repo.ownerAvatarUrl" width="24" height="24"/>
+      <h1>{{ run.repo.owner }}/{{ run.repo.name }}</h1>
+    </div>
+    <button mat-menu-item
+            *ngFor="let workflowRun of run.workflowRun"
+            (click)="addStep(run.repo, workflowRun.workflow)">
+      {{ workflowRun.workflow.name }}
+    </button>
+  </ng-container>
+</mat-menu>

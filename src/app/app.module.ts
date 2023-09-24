@@ -1,42 +1,62 @@
-import {NgModule} from '@angular/core';
+import {NgModule, isDevMode} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
-import {HeaderComponent} from './header/header.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {NgOptimizedImage} from "@angular/common";
-import {WorkspaceSelectorComponent} from './workspace/workspace-selector/workspace-selector.component';
-import {LoginComponent} from './login/login.component';
-import {RepositorySelectorComponent} from './workspace/repository-selector/repository-selector.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {RunListComponent} from './runs/run-list/run-list.component';
 import {MatProgressBarModule} from "@angular/material/progress-bar";
-import {RunRowComponent} from './runs/run-row/run-row.component';
-import {WorkflowRunnerComponent} from './runs/workflow-runner/workflow-runner.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { PipelineComponent } from './pipeline/pipeline/pipeline.component';
-import { RepoRefreshFrequencyComponent } from './header/repo-refresh-frequency/repo-refresh-frequency.component';
-import { UsageComponent } from './usage/usage/usage.component';
-import { UsageChartComponent } from './usage/usage-chart/usage-chart.component';
+import {StyleComponent} from './style/style.component';
+import {RouterModule} from "@angular/router";
+import {routes} from "./appRoutes.enum";
+import {NavButtonComponent} from './micro-components/nav-button/nav-button.component';
+import {SelectButtonComponent} from './micro-components/select-button/select-button.component';
+import {ButtonComponent} from './micro-components/button/button.component';
+import {ActionButtonComponent} from './micro-components/action-button/action-button.component';
+import {LoaderComponent} from './micro-components/loader/loader.component';
+import {DonutActionButtonComponent} from './micro-components/donut-action-button/donut-action-button.component';
+import {RunRowComponent} from './ci-cd/run-row/run-row.component';
+import {LoginComponent} from './login/login.component';
+import {CiCdComponent} from './ci-cd/ci-cd.component';
+import {WorkspaceCreationComponent} from './workspace/workspace-creation/workspace-creation.component';
+import {
+  WorkspaceRepositorySelectorComponent
+} from './workspace/workspace-repository-selector/workspace-repository-selector.component';
+import {WorkflowRunnerComponent} from './ci-cd/workflow-runner/workflow-runner.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {UsageComponent} from './usage/usage.component';
+import {PipelineComponent} from './pipeline/pipeline.component';
+import {SafeHtmlPipe} from './style/safe-html.pipe';
+import { MainSectionComponent } from './main-section/main-section.component';
+import { UserComponent } from './micro-components/user/user.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    WorkspaceSelectorComponent,
-    LoginComponent,
-    RepositorySelectorComponent,
-    RunListComponent,
+    StyleComponent,
+    NavButtonComponent,
+    SelectButtonComponent,
+    ButtonComponent,
+    ActionButtonComponent,
+    LoaderComponent,
+    DonutActionButtonComponent,
     RunRowComponent,
+    LoginComponent,
+    CiCdComponent,
+    WorkspaceCreationComponent,
+    WorkspaceRepositorySelectorComponent,
     WorkflowRunnerComponent,
-    PipelineComponent,
-    RepoRefreshFrequencyComponent,
     UsageComponent,
-    UsageChartComponent
+    PipelineComponent,
+    SafeHtmlPipe,
+    MainSectionComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +70,15 @@ import { UsageChartComponent } from './usage/usage-chart/usage-chart.component';
     MatProgressBarModule,
     MatDialogModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(routes),
+    MatSnackBarModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

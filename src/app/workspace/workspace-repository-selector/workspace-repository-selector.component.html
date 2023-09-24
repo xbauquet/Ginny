@@ -1,0 +1,82 @@
+<app-main-section>
+  <div section class="inner-section">
+    <div class="loader"
+         *ngIf="isLoading">
+      <app-loader></app-loader>
+    </div>
+
+    <div class="search-bar" *ngIf="!isLoading">
+      <mat-icon>search</mat-icon>
+      <input #searchInput
+             type="text"
+             placeholder="Search..."
+             (keyup)="filterByText(searchInput.value)"/>
+      <app-button [title]="selectedRepoNames.length + ' selected'"
+                  (click)="toggleSelected()"></app-button>
+    </div>
+
+    <div class="repo-list"
+         *ngIf="filteredRepoByOwner.size > 0">
+      <div *ngFor="let ownerName of filteredRepoByOwnerKeys">
+        <div *ngIf="filteredRepoByOwner.get(ownerName)!.length > 0" style="margin-bottom: 20px">
+          <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 20px">
+            <img alt=""
+                 [ngSrc]="filteredRepoByOwner.get(ownerName)![0].ownerAvatarUrl"
+                 width="24"
+                 height="24"/>
+            <div class="h2">{{ filteredRepoByOwner.get(ownerName)![0].owner }}</div>
+          </div>
+          <div *ngFor="let repo of filteredRepoByOwner.get(ownerName)"
+               class="repo-row">
+            <div class="styled-input-single" style="width: 300px">
+              <input type="checkbox"
+                     [id]="repo.owner + '/' + repo.name"
+                     (change)="selectionChanged($event, repo)"
+                     [checked]="selectedRepoNames.indexOf(repo.owner + '/' + repo.name) >= 0">
+              <label class="h3" [for]="repo.owner + '/' + repo.name">{{ repo.name }}</label>
+            </div>
+            <div class="h3">
+              {{ repo.lastCommitDate | date:'YYYY/MM/dd - HH:mm'}}
+            </div>
+            <div style="height: 15px; width: 15px; content: ''">
+              <mat-icon style="height: 15px; width: 15px; font-size: 15px;"
+                        *ngIf="repo.isPrivate">lock
+              </mat-icon>
+            </div>
+            <div style="height: 15px; width: 15px; content: ''">
+              <mat-icon style="height: 15px; width: 15px;font-size: 15px;"
+                        *ngIf="repo.isArchived">inventory_2
+              </mat-icon>
+            </div>
+            <div style="height: 15px; width: 15px; content: ''">
+              <a [href]="repo.htmlUrl" target="_blank">
+                <mat-icon style="height: 15px; width: 15px;font-size: 15px; color: white">
+                  open_in_new
+                </mat-icon>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-container actions>
+    <app-action-button [title]="'Unselected'"
+                       [icon]="'fiber_manual_record'"
+                       [selected]="filters.showUnselected"
+                       (click)="onSelectedFilterChanged(!filters.showUnselected)"></app-action-button>
+    <app-action-button [title]="'Private'"
+                       [icon]="'lock'"
+                       [selected]="filters.showPrivate"
+                       (click)="onPrivateFilterChanged(!filters.showPrivate)"></app-action-button>
+    <app-action-button [title]="'Public'"
+                       [icon]="'lock_open'"
+                       [selected]="filters.showPublic"
+                       (click)="onPublicFilterChanged(!filters.showPublic)"></app-action-button>
+    <app-action-button [title]="'Archived'"
+                       [icon]="'inventory_2'"
+                       [selected]="filters.showArchived"
+                       (click)="onArchivedFilterChanged(!filters.showArchived)"></app-action-button>
+  </ng-container>
+</app-main-section>

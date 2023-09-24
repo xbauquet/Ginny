@@ -1,129 +1,166 @@
-import {Pipeline} from "./pipeline.model";
-
 export class PipelineHtmlBuilder {
 
-  removeClassFromSuccessOutput(parentClass: string, classToAdd: string) {
-    this.removeClass(parentClass, "output_1", classToAdd);
-  }
+    /******************************************
+     HTML
+     ******************************************/
+    getHTML(title: string, workflowName: string, data: any, branches: string[]) {
+        return `
+      <div>
+        <div class="step-title">
+            <div class="h2">${workflowName}</div>
+            <div class="h3">${title}</div>
+        </div>
 
-  removeClassFromFailureOutput(parentClass: string, classToAdd: string) {
-    this.removeClass(parentClass, "output_2", classToAdd);
-  }
+        <div class="step-input-container">
+            <div class="box">
+                <div class="light-text">branch</div>
+                <select class="step-input" df-inputs-branch>
+                    ${this.getBranchOptions(branches, 'main')}
+                </select>
+            </div>
 
-  removeTitleSuccess(parentClass: string) {
-    this.removeClass(parentClass, "step-title", "background-success");
-  }
-
-  removeConnectionsColor() {
-    const connections = Array.from(document.getElementsByClassName("connection"));
-    connections.forEach(c => {
-      const element = c.getElementsByClassName('main-path')[0];
-      element.classList.remove('green-stroke');
-    });
-  }
-
-  addClassToSuccessOutput(parentClass: string, classToAdd: string) {
-    this.addClass(parentClass, "output_1", classToAdd);
-  }
-
-  addClassToFailureOutput(parentClass: string, classToAdd: string) {
-    this.addClass(parentClass, "output_2", classToAdd);
-  }
-
-  titleSuccess(parentClass: string) {
-    this.addClass(parentClass, "step-title", "background-success");
-  }
-
-  colorConnection(stepInId: number, stepOutId: number) {
-    const parent = document.getElementsByClassName('node_in_node-' + stepInId + " " + 'node_out_node-' + stepOutId)[0];
-    const element = parent.getElementsByClassName('main-path')[0];
-    element.classList.add('green-stroke');
-  }
-
-  getHTML(title: string, workflowName: string, data: any, branches: string[]) {
-    let html = "<div>";
-    html = html + `<div class="step-title">
-                      <div>${workflowName}</div>
-                      <div style="font-size: 0.8em;">${title}</div>
-                   </div>
-                   <div class="step-input-container">`;
-
-
-    html = html + `<div style="color: gray">branch</div>`;
-    html = html + `<select style="width: 100%;" class="step-input" df-inputs-branch>`;
-    for (let option of branches) {
-      html = html + `<option value="${option}" selected="${ option === 'main' || option === 'master' }">${option}</option>`;
+            ${this.getInputs(data)}
+        </div>
+      </div>
+    `;
     }
-    html = html + `</select>`;
 
-    if (data) {
-      const keys = Object.keys(data);
-      for (let key of keys) {
-
-        // html = html + `<div>=</div>`;
-        if (data[key].type === 'boolean') {
-          html = html + `<div style="display: flex; gap: 10px; align-items: center">`;
-          html = html + `<div style="color: gray">${key}</div>`;
-          html = html + `<input type="checkbox" value="${data[key].value}" df-inputs-${key}-value>`;
-          html = html + `</div>`;
-        } else if (data[key].type === 'choice') {
-          html = html + `<div style="color: gray">${key}</div>`;
-          html = html + `<select style="width: 100%;" class="step-input" df-inputs-${key}-value>`;
-          for (let option of data[key].options) {
-            html = html + `<option value="${option}" selected="${ option === data[key].value}">${option}</option>`;
-          }
-          html = html + `</select>`;
-        } else if (data[key].type === 'string') {
-          html = html + `<div style="color: gray">${key}</div>`;
-          html = html + `<input style="width: calc(100% - 20px);" class="step-input" type="text" value="${data[key].value}" df-inputs-${key}-value>`;
-        } else if (data[key].type === 'number') {
-          html = html + `<div style="color: gray">${key}</div>`;
-          html = html + `<input style="width: calc(100% - 20px);" class="step-input" type="number" value="${data[key].value}" df-inputs-${key}-value>`;
+    private getBranchOptions(options: string[], defaultBranch: string): string {
+        let html = "";
+        for (let option of options) {
+            html += `<option value="${option}"
+                       selected="${option === defaultBranch}">${option}</option>`;
         }
-      }
+        return html;
     }
-    html = html + `</div></div>`;
-    return html;
-  }
 
-  setEditionColors(pipeline: Pipeline) {
-    if (!pipeline.pipeline) {
-      return;
+    private getInputs(data: any) {
+        let html = "";
+        if (data) {
+            const keys = Object.keys(data);
+            for (let key of keys) {
+                if (data[key].type === 'boolean') {
+                    html += this.getBooleanInput(key, data);
+                } else if (data[key].type === 'choice') {
+                    html += this.getChoiceInput(key, data);
+                } else if (data[key].type === 'string') {
+                    html += this.getStringInput(key, data);
+                } else if (data[key].type === 'number') {
+                    html += this.getNumberInput(key, data);
+                }
+            }
+        }
+        return html;
     }
-    const steps = Object.values(pipeline.pipeline.drawflow.Home.data);
-    steps.forEach(step => {
-      this.removeClassFromSuccessOutput(step.class, "white-dot");
-      this.removeClassFromFailureOutput(step.class, "white-dot");
-      this.removeClassFromSuccessOutput(step.class, "yellow-dot");
-      this.removeClassFromFailureOutput(step.class, "yellow-dot");
-      this.removeTitleSuccess(step.class);
-    });
-    this.removeConnectionsColor();
-  }
 
-  setStaticColors(pipeline: Pipeline) {
-    if (!pipeline.pipeline) {
-      return;
+    private getBooleanInput(key: string, data: any) {
+        return `
+      <div class="box">
+        <div class="light-text">${key}</div>
+        <input type="checkbox" value="${data[key].value}" df-inputs-${key}-value>
+      </div>
+    `;
     }
-    this.setEditionColors(pipeline);
-    const steps = Object.values(pipeline.pipeline.drawflow.Home.data);
-    steps.forEach(step => {
-      this.addClassToSuccessOutput(step.class, "white-dot");
-      this.addClassToFailureOutput(step.class, "white-dot");
-      this.removeTitleSuccess(step.class);
-    });
-    this.removeConnectionsColor();
-  }
 
-  private addClass(parentClass: string, elementClass: string, classToAdd: string) {
-    const parent = document.getElementsByClassName(parentClass)[0];
-    const element = parent.getElementsByClassName(elementClass)[0];
-    element.classList.add(classToAdd);
-  }
+    private getStringInput(key: string, data: any) {
+        return `
+            <div class="box">
+                <div class="light-text">${key}</div>
+                <input class="step-input" type="text" value="${data[key].value}" df-inputs-${key}-value>
+            </div>
+          `;
+    }
 
-  private removeClass(parentClass: string, elementClass: string, classToAdd: string) {
-    const parent = document.getElementsByClassName(parentClass)[0];
-    const element = parent.getElementsByClassName(elementClass)[0];
-    element.classList.remove(classToAdd);
-  }
+    private getChoiceInput(key: string, data: any) {
+        return `
+            <div class="box">
+                <div class="light-text">${key}</div>
+                <select class="step-input" df-inputs-${key}-value>
+                    ${this.getChoiceOptions(key, data)}
+                </select>
+            </div>
+    `;
+    }
+
+    private getChoiceOptions(key: string, data: any) {
+        let html = "";
+        for (let option of data[key].options) {
+            html += `<option value="${option}" selected="${option === data[key].value}">${option}</option>`;
+        }
+        return html;
+    }
+
+    private getNumberInput(key: string, data: any) {
+        return `
+        <div class="box">
+            <div class="light-text" title="${key} \n ${data.desciption}">${key}</div>
+            <input class="step-input" type="number" value="${data[key].value}" df-inputs-${key}-value>
+        </div>
+        `;
+    }
+
+    /******************************************
+     Modifier
+     ******************************************/
+    onStepStarted(id: string) {
+        this.addClass(id, "input_1", 'active');
+    }
+
+    onStepSuccess(id: string) {
+        this.addClass(id, "output_1", 'active');
+    }
+
+    onStepFailed(id: string) {
+        this.addClass(id, "output_2", 'active');
+    }
+
+    onNextStep(stepInId: number, stepOutId: number) {
+        this.colorConnection(stepInId, stepOutId);
+    }
+
+    resetPipelineColor() {
+        this.removeStepColors();
+        this.removeConnectionsColor();
+    }
+
+    private removeStepColors() {
+        const inputs = Array.from(document.getElementsByClassName("input"));
+        inputs.forEach(i => i.classList.remove('active'));
+        const outputs = Array.from(document.getElementsByClassName("output"));
+        outputs.forEach(o => o.classList.remove('active'));
+    }
+
+    private removeConnectionsColor() {
+        const connections = Array.from(document.getElementsByClassName("connection"));
+        connections.forEach(c => {
+            const element = c.getElementsByClassName('main-path')[0];
+            element.classList.remove('green-stroke');
+        });
+    }
+
+    private addClassToSuccessOutput(parentClass: string, classToAdd: string) {
+        this.addClass(parentClass, "output_1", classToAdd);
+    }
+
+    private addClassToFailureOutput(parentClass: string, classToAdd: string) {
+        this.addClass(parentClass, "output_2", classToAdd);
+    }
+
+    colorConnection(stepInId: number, stepOutId: number) {
+        const parent = document.getElementsByClassName('node_in_node-' + stepInId + " " + 'node_out_node-' + stepOutId)[0];
+        const element = parent.getElementsByClassName('main-path')[0];
+        element.classList.add('green-stroke');
+    }
+
+    private addClass(parentClass: string, elementClass: string, classToAdd: string) {
+        const parent = document.getElementsByClassName(parentClass)[0];
+        const element = parent.getElementsByClassName(elementClass)[0];
+        element.classList.add(classToAdd);
+    }
+
+    private removeClass(parentClass: string, elementClass: string, classToAdd: string) {
+        const parent = document.getElementsByClassName(parentClass)[0];
+        const element = parent.getElementsByClassName(elementClass)[0];
+        element.classList.remove(classToAdd);
+    }
 }

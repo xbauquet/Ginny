@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="title-container">
+    <mat-icon [class]="run.runs.length > 0 ? 'run-row-' + run.runs[0].conclusion : 'run-row-neutral'">fiber_manual_record</mat-icon>
+    <div>
+      <div class="h3">
+        {{ run.workflow.name }}
+      </div>
+      <div class="light-text">
+        {{ run.runs.length > 0 ? run.runs[0].commitMessage : "" }}
+      </div>
+    </div>
+  </div>
+
+  <div class="information-container">
+    <div class="light-text date">
+      {{ run.runs.length > 0 ? (run.runs[0].startDate | date:'YYYY/MM/dd - HH:mm') : "No run history for this workflow" }}
+    </div>
+    <div class="branch light-text">
+      {{ run.runs.length > 0 ? run.runs[0].headBranch : "" }}
+    </div>
+    <mat-icon class="light-text"
+              [matMenuTriggerFor]="rowMenu">more_vert
+    </mat-icon>
+  </div>
+</div>
+
+<!--------------------------------------------
+Row menu
+--------------------------------------------->
+<mat-menu #rowMenu="matMenu">
+  <a mat-menu-item
+     [href]="run.workflow.sourceUrl"
+     target="_blank">
+    <mat-icon>code</mat-icon>
+    Code on Github
+  </a>
+
+  <a mat-menu-item
+     [disabled]="run.runs.length <= 0"
+     [href]="run.runs.length > 0 ? run.runs[0].htmlUrl : ''"
+     target="_blank">
+    <mat-icon>article</mat-icon>
+    Last workflow run on Github
+  </a>
+
+  <button mat-menu-item
+          [disabled]="!run.workflow.isDispatchable"
+          (click)="runWorkflow.emit()">
+    <mat-icon class="menu-icon">play_arrow</mat-icon>
+    Run workflow
+  </button>
+</mat-menu>
