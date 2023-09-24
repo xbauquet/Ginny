@@ -44,7 +44,7 @@ jobs:
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Build
-        run: npm run build --configuration=production
+        run: npm run build --configuration=production --base-href="/docs/"
 
       - name: Commit, Tag, Push
         run: |
