@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import {ThemeService} from "./theme.service";
 import packageJson from "../../package.json";
 import * as uniqolor from "uniqolor";
@@ -18,6 +18,7 @@ export class AppComponent {
   version = packageJson.version;
   workspace?: Workspace;
   workspaces: Workspace[] = [];
+  beforeInstallPrompt?: any;
 
   constructor(private themeService: ThemeService,
               private userService: UserService,
@@ -73,5 +74,17 @@ export class AppComponent {
 
   logout() {
     this.userService.logout();
+  }
+
+  @HostListener('window:beforeinstallprompt', ['$event'])
+  onBeforeInstallPrompt(event: any) {
+    console.log("App can be installed");
+    this.beforeInstallPrompt = event;
+  }
+
+  installApp() {
+    if (this.beforeInstallPrompt) {
+      this.beforeInstallPrompt.prompt();
+    }
   }
 }
