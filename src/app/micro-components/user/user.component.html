@@ -1,8 +1,12 @@
 <div *ngIf="user"
      class="section"
-     [matMenuTriggerFor]="userMenu">
+     [class.small]="small"
+     [matMenuTriggerFor]="userMenu"
+     [matTooltip]="small ? user.login : ''"
+     [matTooltipPosition]="'right'">
   <img [src]="user.avatar_url" alt=""/>
-  {{ user.login }}
+  <div *ngIf="!small"
+       class="title"> {{ user.login }}</div>
 </div>
 
 <!--------------------------------------------

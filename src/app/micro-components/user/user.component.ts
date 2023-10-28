@@ -9,6 +9,7 @@ import {User} from "../../user/user.service";
 export class UserComponent {
 
   @Input() user!: User;
+  @Input() small = false;
   @Output() logout = new EventEmitter<void>();
 
 }

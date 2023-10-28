@@ -13,6 +13,12 @@
     border-radius: 1000px;
   }
 
+  .title {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   &:hover {
     color: var(--text-color);
     background-color: var(--background-ultra-light);
@@ -21,4 +27,9 @@
   &:active {
     transform: translateY(1px);
   }
+}
+
+.small {
+  padding: 8px;
+  width: fit-content;
 }
