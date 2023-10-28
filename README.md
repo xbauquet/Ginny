@@ -27,14 +27,10 @@ What can you do with Ginny:
 Ginny simply works with a github personal access token with the scopes `repo`, `workflow` and `user`.
 >Find more information on how to manage your personal access tokens on the [Github documentation.](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
 
-![Token scopes](./src/assets/token-scopes.png)
-
 ## Organise your repositories in Workspaces
 
 Organise your personal repositories and repositories from your organisations in **Workspaces**.
 And change **Workspace** with a single click.
-
-![Workspace example](./src/assets/workspace-example.png)
 
 ## Monitor your actions
 
@@ -44,23 +40,15 @@ Use Ginny to
 - open the logs of the last run on Github.
 - run 'dispatchable' Github Actions.
 
-![Run example](./src/assets/run-example.png)
-
 ## Run your actions
 
 With Ginny you can easily run any Github Action that includes a `workflow_dispatch` triggering event.
 >Find more information on how to use `workflow_dispatch` on the [Github documentation](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#workflow_dispatch).
 
-![Run workflow example](./src/assets/run-workflow-example.png)
-
 ## Create multi-repo pipelines
 
 Create multi-repository pipelines and choose your input parameters for each action in the pipeline.
 
-![Pipeline example](./src/assets/pipeline-example.png)
-
 ## Monitor your usage
 
 Use Ginny to monitor your Github action usage across your organisations.
-
-![Pipeline example](./src/assets/usage-example.png)
