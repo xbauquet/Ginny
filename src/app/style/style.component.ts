@@ -21,9 +21,9 @@ export class StyleComponent {
   fakeOrg() {
     return new Organisation(
       "",
-      "Org name",
+      "Ginny",
       "",
-      "https://avatars.githubusercontent.com/u/8179943"
+      "assets/logo.png"
     );
   }
 
@@ -43,9 +43,9 @@ export class StyleComponent {
   fakeRepo(): Repository {
     return new Repository(
       "Repo name",
-      "xbauquet",
+      "ginny",
       "",
-      "https://avatars.githubusercontent.com/u/8179943",
+      "assets/logo.png",
       true,
       "main",
       false,
@@ -88,9 +88,9 @@ export class StyleComponent {
   fakeUser() {
     const user = new User();
     user.name = "Xavier";
-    user.login = "xbauquet";
+    user.login = "Ginny";
     user.email = "xavier@github.com";
-    user.avatar_url = "https://avatars.githubusercontent.com/u/8179943";
+    user.avatar_url = "assets/logo.png";
     user.html_url = "https://github.com/xbauquet";
     user.workspaces = [];
     return user;

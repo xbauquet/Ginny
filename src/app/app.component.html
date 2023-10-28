@@ -1,14 +1,21 @@
 <div class="container">
-  <div class="menu">
-    <div class="workspace-container"
-         *ngIf="user && workspace && isWorkspacePopulated()">
-
-      <app-user *ngIf="user" [user]="user" (logout)="logout()"></app-user>
+  <div class="menu"
+       [class.small-menu]="smallMenu">
+    <ng-template [ngIf]="user && workspace && isWorkspacePopulated()">
+      <app-user *ngIf="user"
+                [user]="user"
+                (logout)="logout()"
+                [small]="smallMenu"
+                [class]="smallMenu ? '' : 'full-user'"
+                class="user-bottom-margin"></app-user>
 
       <app-select-button [title]="workspace.name"
                          [color]="getWorkspaceColor(workspace.name)"
-                         [matMenuTriggerFor]="workspaceMenu"></app-select-button>
-    </div>
+                         [matMenuTriggerFor]="workspaceMenu"
+                         [small]="smallMenu"
+                         [class]="smallMenu ? '' : 'full-user'"
+                         class="user-bottom-margin"></app-select-button>
+    </ng-template>
 
     <ng-template [ngIf]="user && isWorkspacePopulated()">
       <app-nav-button [icon]="'all_inclusive'"
@@ -16,26 +23,35 @@
                       [selected]="rlaCiCd.isActive"
                       routerLink="/ci-cd"
                       routerLinkActive
-                      #rlaCiCd="routerLinkActive"></app-nav-button>
+                      #rlaCiCd="routerLinkActive"
+                      [small]="smallMenu"
+                      [style]="smallMenu ? '' : 'width: calc(100% - 20px)'"></app-nav-button>
       <app-nav-button [icon]="'analytics'"
                       [title]="'Usage'"
                       [selected]="rlaUsage.isActive"
                       routerLink="/usage"
                       routerLinkActive
-                      #rlaUsage="routerLinkActive"></app-nav-button>
+                      #rlaUsage="routerLinkActive"
+                      [small]="smallMenu"
+                      [style]="smallMenu ? '' : 'width: calc(100% - 20px)'"></app-nav-button>
       <app-nav-button [icon]="'rebase_edit'"
                       [title]="'Pipeline'"
                       [selected]="rlaPipeline.isActive"
                       routerLink="/pipeline"
                       routerLinkActive
-                      #rlaPipeline="routerLinkActive"></app-nav-button>
+                      #rlaPipeline="routerLinkActive"
+                      [small]="smallMenu"
+                      [style]="smallMenu ? '' : 'width: calc(100% - 20px)'"></app-nav-button>
     </ng-template>
 
-    <app-nav-button class="settings"
-                    [icon]="'settings'"
+    <div style="flex: 1"></div>
+
+    <app-nav-button [icon]="'settings'"
                     [title]="'Settings'"
                     [selected]="false"
-                    [matMenuTriggerFor]="settingsMenu"></app-nav-button>
+                    [matMenuTriggerFor]="settingsMenu"
+                    [small]="smallMenu"
+                    [style]="smallMenu ? '' : 'width: calc(100% - 20px)'"></app-nav-button>
   </div>
 
   <div class="main">
@@ -44,12 +60,16 @@
 </div>
 
 <!--------------------------------------------
-Main menu
+Settings menu
 --------------------------------------------->
 <mat-menu #settingsMenu="matMenu">
   <button mat-menu-item (click)="toggleTheme()">
     <mat-icon>{{ theme === "dark" ? "light_mode" : "dark_mode" }}</mat-icon>
-    {{ theme === "dark" ? "Switch to light mode" : "Switch to dark mode" }}
+    {{ theme === "dark" ? "Light mode" : "Dark mode" }}
+  </button>
+  <button mat-menu-item (click)="toggleSmallMenu()">
+    <mat-icon>{{ smallMenu ? "chevron_right" : "chevron_left" }}</mat-icon>
+    {{ smallMenu ? "Expend menu" : "Reduce menu" }}
   </button>
   <button mat-menu-item
           *ngIf="beforeInstallPrompt"

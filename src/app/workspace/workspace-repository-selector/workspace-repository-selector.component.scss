@@ -67,6 +67,9 @@
 
 }
 
+mat-icon {
+  color: var(--text-color);
+}
 
 /****************************
  Input checkbox https://alvarotrigo.com/blog/css-checkbox-styles/
@@ -92,7 +95,7 @@
       height: 16px;
       margin: -8px 0 0;
       background: #f7f7f7;
-      box-shadow: 0 0 1px grey;
+      box-shadow: 0 0 1px var(--text-color);
     }
 
     &:after {

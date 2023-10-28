@@ -4,18 +4,36 @@
       <div>
         <app-nav-button [icon]="'all_inclusive'"
                         [title]="'CI / CD'"
-                        style="border: 1px solid black"></app-nav-button>
+                        [small]="true"></app-nav-button>
       </div>
       <div>
         <app-nav-button [icon]="'all_inclusive'"
                         [title]="'Selected'"
                         [selected]="true"
-                        style="border: 1px solid black"></app-nav-button>
+                        [small]="true"></app-nav-button>
       </div>
+      <div>
+        <app-nav-button [icon]="'all_inclusive'"
+                        [title]="'CI / CD'"></app-nav-button>
+      </div>
+      <div>
+        <app-nav-button [icon]="'all_inclusive'"
+                        [title]="'Selected'"
+                        [selected]="true"></app-nav-button>
+      </div>
+    </div>
+
+    <div class="row">
       <div>
         <app-select-button [matMenuTriggerFor]="selectMenu"
                            [title]="'My select'"
                            [color]="'#FD943C'"></app-select-button>
+      </div>
+      <div>
+        <app-select-button [matMenuTriggerFor]="selectMenu"
+                           [title]="'Myselect'"
+                           [color]="'#FD943C'"
+                           [small]="true"></app-select-button>
       </div>
       <div>
         <app-button [title]="'My button'"
@@ -38,6 +56,9 @@
                            [title]="'Selected button'"
                            [rotateIcon]="true"></app-action-button>
       </div>
+    </div>
+
+    <div class="row">
       <div class="section" style="padding: 40px"> Section</div>
       <div class="sub-section"> Sub-section</div>
     </div>
@@ -72,7 +93,12 @@
       <app-donut-action-button [org]="fakeOrg()"
                                [billing]="fakeBilling()"
                                [selected]="true"></app-donut-action-button>
+
+    </div>
+    <div class="row">
       <app-user [user]="fakeUser()"></app-user>
+      <app-user [user]="fakeUser()"
+                [small]="true"></app-user>
     </div>
 
     <div>

@@ -5,36 +5,40 @@ $menu-width: 250px;
   height: 100%;
   background-color: var(--background);
   display: flex;
+  background-size: 25px 25px;
+  background-image: radial-gradient(#4e525d90 1px, transparent 1px);
 }
 
 .menu {
   width: $menu-width;
   height: 100%;
-  background-color: var(--background);
   position: relative;
+  padding: var(--margin) 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .workspace-container {
-    padding: var(--margin);
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
+.small-menu {
+  width: fit-content;
+  padding: var(--margin) 10px;
+}
+
+.full-user {
+  width: calc(100% - var(--margin) - var(--margin));
+}
+
+.user-bottom-margin {
+  margin-bottom: 30px;
 }
 
 .main {
   height: 100%;
-  width: calc(100% - $menu-width);
+  flex: 1;
 }
 
 .version {
   color: var(--text-color-light);
   padding-right: 15px;
   text-align: right;
-}
-
-.settings {
-  position: absolute;
-  bottom: var(--margin);
-  left: 0;
-  width: 100%;
 }

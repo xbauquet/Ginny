@@ -20,6 +20,8 @@ export class AppComponent {
   workspaces: Workspace[] = [];
   beforeInstallPrompt?: any;
 
+  smallMenu = true;
+
   constructor(private themeService: ThemeService,
               private userService: UserService,
               private router: Router) {
@@ -86,5 +88,9 @@ export class AppComponent {
     if (this.beforeInstallPrompt) {
       this.beforeInstallPrompt.prompt();
     }
+  }
+
+  toggleSmallMenu() {
+    this.smallMenu = !this.smallMenu
   }
 }
