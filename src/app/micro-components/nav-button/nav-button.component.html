@@ -1,7 +1,10 @@
 <div class="nav-button"
+     [matTooltip]="small ? title : ''"
+     [matTooltipPosition]="'right'"
+     [class.small]="small"
      [class.selected]="selected">
   <mat-icon>{{ icon }}</mat-icon>
-  {{ title }}
-  <div style="flex: 1"></div>
-  <mat-icon *ngIf="selected">chevron_right</mat-icon>
+  <ng-template [ngIf]="!small">{{ title }}</ng-template>
+  <div *ngIf="!small" style="flex: 1"></div>
+  <mat-icon *ngIf="!small && selected">chevron_right</mat-icon>
 </div>

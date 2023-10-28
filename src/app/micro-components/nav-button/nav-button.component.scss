@@ -10,7 +10,7 @@
   font-size: 0.9em;
   white-space: nowrap;
   color: var(--text-color-light);
-  background-color: var(--background);
+  background-color: transparent;
   width: 100%;
 
   &:hover {
@@ -25,4 +25,16 @@
 
 .selected {
   color: var(--text-color);
+  background-color: var(--background);
+}
+
+.small {
+  padding: 8px;
+  width: fit-content;
+  aspect-ratio: 1;
+  justify-content: center;
+}
+
+.small.selected {
+  border-right: 3px solid var(--text-color-light);
 }

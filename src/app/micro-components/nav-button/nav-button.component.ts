@@ -9,4 +9,5 @@ export class NavButtonComponent {
   @Input() icon!: string;
   @Input() title!: string;
   @Input() selected = false;
+  @Input() small = false;
 }
