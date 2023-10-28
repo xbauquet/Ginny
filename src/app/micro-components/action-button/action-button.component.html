@@ -1,5 +1,11 @@
 <div class="section container"
      [class.selected]="selected">
-  <mat-icon [class.rotate]="rotateIcon">{{ icon }}</mat-icon>
+  <mat-icon [class.rotate]="rotateIcon"
+            [style]="'width: ' + iconSize + '; height: ' + iconSize"
+            *ngIf="icon">{{ icon }}</mat-icon>
+  <img *ngIf="img"
+       [src]="img"
+       alt=""
+       [style]="'width: ' + iconSize + '; height: ' + iconSize"/>
   <div>{{ title }}</div>
 </div>

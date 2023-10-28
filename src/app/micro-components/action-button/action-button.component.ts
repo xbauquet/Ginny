@@ -6,8 +6,10 @@ import {Component, Input} from '@angular/core';
   styleUrls: ['./action-button.component.scss']
 })
 export class ActionButtonComponent {
-  @Input() icon!: string;
+  @Input() img?: string;
+  @Input() icon?: string;
   @Input() title!: string;
   @Input() selected = false;
   @Input() rotateIcon = false;
+  @Input() iconSize = "24px";
 }
