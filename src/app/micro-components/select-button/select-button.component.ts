@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {ButtonComponent} from "../button/button.component";
 
 @Component({
@@ -7,4 +7,5 @@ import {ButtonComponent} from "../button/button.component";
   styleUrls: ['./select-button.component.scss']
 })
 export class SelectButtonComponent extends ButtonComponent {
+  @Input() small = false;
 }

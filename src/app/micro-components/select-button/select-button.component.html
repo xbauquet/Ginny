@@ -1,5 +1,8 @@
 <div class="select"
-     [style.background]="'linear-gradient(96deg, ' + lightenColor(color, 50) + ' -16.88%, ' + color + ' 83.22%)'">
-  {{ title }}
-  <mat-icon>expand_more</mat-icon>
+     [style.background]="'linear-gradient(96deg, ' + lightenColor(color, 50) + ' -16.88%, ' + color + ' 83.22%)'"
+     [class.small]="small"
+     [matTooltip]="small ? title : ''"
+     [matTooltipPosition]="'right'">
+  {{ small ? title.slice(0, 3)  : title }}
+  <mat-icon *ngIf="!small">expand_more</mat-icon>
 </div>
