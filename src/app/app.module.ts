@@ -71,8 +71,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
-    // https://stackoverflow.com/questions/75644587/angular-website-hosted-in-github-pages-does-not-work-if-i-refresh-in-any-route
-    RouterModule.forRoot(routes, { useHash: true }),
+    RouterModule.forRoot(routes),
     MatSnackBarModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),

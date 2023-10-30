@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1695565018902,
+  "timestamp": 1698664626289,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -12,7 +12,7 @@
       },
       "urls": [
         "/index.html",
-        "/main.3f33b0cf6f674364.js",
+        "/main.7c8c508305811d3d.js",
         "/polyfills.39f3c54c5c3d877d.js",
         "/runtime.77c4dcefc08e0e23.js",
         "/styles.bde2eb335571e193.css"
@@ -36,13 +36,7 @@
         "/assets/logo-24px.png",
         "/assets/logo-outline-24px.png",
         "/assets/logo-outline.png",
-        "/assets/logo.png",
-        "/assets/pipeline-example.png",
-        "/assets/run-example.png",
-        "/assets/run-workflow-example.png",
-        "/assets/token-scopes.png",
-        "/assets/usage-example.png",
-        "/assets/workspace-example.png"
+        "/assets/logo.png"
       ],
       "patterns": []
     }
@@ -59,14 +53,8 @@
     "/assets/logo-outline-24px.png": "292194005ecc14a6d87591f0a16e1c5b3551ab54",
     "/assets/logo-outline.png": "ae6fcaea79d6112283754987ae06d48dff678cd8",
     "/assets/logo.png": "db8cdf10e84776a731f207c08083f1978da2f4ed",
-    "/assets/pipeline-example.png": "a39ec23adc70cf4469159574d6f9d5a99286749d",
-    "/assets/run-example.png": "a4f09c21b983c45023afc0f146b0da4834fd0d27",
-    "/assets/run-workflow-example.png": "536b3609269046e07750ec10661dcc1d89d558d9",
-    "/assets/token-scopes.png": "ab34b2490a539a459d5eb937237ba269eebcbf96",
-    "/assets/usage-example.png": "c9f6adfda9eae5a2f835d9aad70cbf0852a8f040",
-    "/assets/workspace-example.png": "b075d48d6e1c0951e4b6da2ff88c9b47a55e073f",
-    "/index.html": "3c4c0e283e7f76496cebaff48249df1b90e6ed0d",
-    "/main.3f33b0cf6f674364.js": "efb13defef1c66d06a6da36e70304acd430fb980",
+    "/index.html": "792ffdf20d68617b1c13f15c2ca3af02ceb4c4ef",
+    "/main.7c8c508305811d3d.js": "396b1237c7bdb54e7d11d40399acaf8a38403198",
     "/polyfills.39f3c54c5c3d877d.js": "57dd49d8c9b6f92f6b210cabf6cbc7909c97e387",
     "/runtime.77c4dcefc08e0e23.js": "e4a24b0ff153d60d64c64bb43710d9ce37cbb4c7",
     "/styles.bde2eb335571e193.css": "310252b152b8dccc99595143781147fd62e05217"
