@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1698752725908,
+  "timestamp": 1698753063555,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -12,7 +12,7 @@
       },
       "urls": [
         "/index.html",
-        "/main.63e1687defc3ff74.js",
+        "/main.c827141bcd2ca04f.js",
         "/polyfills.39f3c54c5c3d877d.js",
         "/runtime.77c4dcefc08e0e23.js",
         "/styles.bde2eb335571e193.css"
@@ -53,8 +53,8 @@
     "/assets/logo-outline-24px.png": "292194005ecc14a6d87591f0a16e1c5b3551ab54",
     "/assets/logo-outline.png": "ae6fcaea79d6112283754987ae06d48dff678cd8",
     "/assets/logo.png": "db8cdf10e84776a731f207c08083f1978da2f4ed",
-    "/index.html": "07c7eaa64e4c2d65d897b47ae809794f98972d86",
-    "/main.63e1687defc3ff74.js": "628ab2e791fb277e884daab36b5b8bb519fdaf37",
+    "/index.html": "99df9d921948b2cc6fb0075ecc3a54a5a5e28547",
+    "/main.c827141bcd2ca04f.js": "e54bfa958b23ee7a48c1abb15585b627e96b21b9",
     "/polyfills.39f3c54c5c3d877d.js": "57dd49d8c9b6f92f6b210cabf6cbc7909c97e387",
     "/runtime.77c4dcefc08e0e23.js": "e4a24b0ff153d60d64c64bb43710d9ce37cbb4c7",
     "/styles.bde2eb335571e193.css": "310252b152b8dccc99595143781147fd62e05217"
