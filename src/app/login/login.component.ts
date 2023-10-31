@@ -36,7 +36,7 @@ export class LoginComponent {
 
   private async login(code: string) {
     try {
-      const response = await fetch("http://xbauquet.eu/ginny/auth?code=" + code);
+      const response = await fetch("https://xbauquet.eu/ginny/auth?code=" + code);
       const token = await response.text();
       await this.userService.login(token);
     } catch (e) {
