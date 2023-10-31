@@ -50,9 +50,8 @@ export const workspaceRepositoriesGuard: CanActivateFn = (next: ActivatedRouteSn
 }
 
 export const routes: Routes = [
-  {path: '', redirectTo: '/' + AppRoutes.CI_CD, pathMatch: 'full'},
+  {path: '', redirectTo: AppRoutes.CI_CD, pathMatch: "full"},
   {path: AppRoutes.STYLE, component: StyleComponent},
-
   {
     path: AppRoutes.AUTH,
     component: LoginComponent

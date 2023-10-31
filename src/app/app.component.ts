@@ -20,20 +20,20 @@ export class AppComponent {
   workspaces: Workspace[] = [];
   beforeInstallPrompt?: any;
 
-  smallMenu = true;
+  private smallMenuLocalStorageKey = "ginny-small-menu";
+  smallMenu = false;
 
   constructor(private themeService: ThemeService,
               private userService: UserService,
               private router: Router) {
+    const smallMenu = localStorage.getItem(this.smallMenuLocalStorageKey);
+    this.smallMenu = smallMenu === "true";
+
     this.themeService.theme.subscribe(v => this.theme = v);
     this.userService.user.subscribe(u => {
       this.user = u;
       if (this.user) {
         this.workspaces = this.user.workspaces;
-      } else {
-        this.router
-          .navigateByUrl(AppRoutes.AUTH)
-          .catch(console.error);
       }
     });
     this.userService.workspace.subscribe(w => this.workspace = w);
@@ -92,5 +92,6 @@ export class AppComponent {
 
   toggleSmallMenu() {
     this.smallMenu = !this.smallMenu
+    localStorage.setItem(this.smallMenuLocalStorageKey, this.smallMenu + "");
   }
 }

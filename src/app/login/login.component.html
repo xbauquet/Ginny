@@ -9,15 +9,10 @@
       <img ngSrc="assets/logo.png" height="60" width="60" alt="">
 
       <div class="message">
-        Use your Github token to connect to Ginny
+        Use your Github account to connect to Ginny
       </div>
-      <div class="input-container">
-        <input #tokenInput type="text" placeholder="Token"/>
-        <a href="https://github.com/xbauquet/Ginny#getting-the-right-token" target="_blank">How to create my
-          token ?</a>
-      </div>
-      <app-button (click)="login(tokenInput.value)"
-                  [title]="'Connect'"></app-button>
+      <app-button (click)="loginWithGithub()"
+                  [title]="'Login with github'"></app-button>
     </div>
   </div>
 </app-main-section>

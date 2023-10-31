@@ -7,6 +7,8 @@ import {Octokit as Core} from "@octokit/core";
 import {PaginateInterface} from "@octokit/plugin-paginate-rest";
 import {RestEndpointMethods} from "@octokit/plugin-rest-endpoint-methods/dist-types/generated/method-types";
 import {Api} from "@octokit/plugin-rest-endpoint-methods/dist-types/types";
+import {Router} from "@angular/router";
+import {AppRoutes} from "../appRoutes.enum";
 
 export type OctokitType = Core & { paginate: PaginateInterface } & RestEndpointMethods & Api;
 
@@ -20,13 +22,16 @@ export class UserService {
   octokit = new BehaviorSubject<OctokitType | undefined>(undefined);
   isReady = new BehaviorSubject(false);
 
-  constructor() {
+  constructor(private router: Router) {
     const token = this.getToken();
     if (token) {
       this.login(token)
         .catch(console.error);
     } else {
-      this.logout();
+      this.deleteToken();
+      this.octokit.next(undefined);
+      this.user.next(undefined);
+      this.isReady.next(true);
     }
   }
 
@@ -63,6 +68,7 @@ export class UserService {
     this.octokit.next(undefined);
     this.user.next(undefined);
     this.isReady.next(true);
+    this.router.navigateByUrl(AppRoutes.AUTH);
   }
 
   /*****************************************

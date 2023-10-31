@@ -56,7 +56,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     PipelineComponent,
     SafeHtmlPipe,
     MainSectionComponent,
-    UserComponent
+    UserComponent,
   ],
   imports: [
     BrowserModule,
