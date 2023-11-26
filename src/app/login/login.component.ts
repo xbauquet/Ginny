@@ -36,7 +36,7 @@ export class LoginComponent {
 
   private async login(code: string) {
     try {
-      const response = await fetch("https://xbauquet.eu/ginny/auth?code=" + code);
+      const response = await fetch("https://xbauquet.eu/ginny/auth/app?code=" + code);
       const token = await response.text();
       await this.userService.login(token);
     } catch (e) {
@@ -46,6 +46,11 @@ export class LoginComponent {
 
   loginWithGithub() {
     const CLIENT_ID = "98a0614180ea7e399a35";
-    window.location.assign("https://github.com/login/oauth/authorize?client_id=" + CLIENT_ID);
+    // admin:org is necessary for billing
+    const scopes = ["admin:org", "read:packages", "read:user", "repo", "workflow"];
+    const urlParams = new URLSearchParams();
+    urlParams.append("client_id", CLIENT_ID);
+    urlParams.append("scope", scopes.join("%20"));
+    window.location.assign("https://github.com/login/oauth/authorize?" + urlParams);
   }
 }
